@@ -1,5 +1,20 @@
 # Blackjack RL Framework
 
+## Start the guided course
+
+This project is being developed into a step-by-step RL course and a public blackjack web game. The web game is not deployed yet.
+
+Start with [Lesson 1: the agent and environment](docs/lessons/01-agent-environment.md). It runs on Python 3.9+ with no additional dependencies:
+
+```sh
+python3 -m foundations.play --seed 7 --episodes 3
+python3 -m unittest discover -s tests -v
+```
+
+See [the project plan](PROJECT_PLAN.md) and [progress](PROGRESS.md). The `foundations/` package uses simplified, explicitly documented rules. The code below is the preserved early prototype; its agents and realistic rules have not yet been fully audited. In particular, the adaptive dealer is an alternative-game experiment.
+
+## Original prototype
+
 A Reinforcement Learning framework for playing Blackjack, featuring Deep Q-Networks (DQN), Policy Gradients, and Adversarial Training (GAN-style learning).
 
 ## Features
