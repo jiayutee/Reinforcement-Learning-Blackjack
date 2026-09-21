@@ -11,6 +11,12 @@ python3 -m foundations.play --seed 7 --episodes 3
 python3 -m unittest discover -s tests -v
 ```
 
+Continue with [Lesson 2: Monte Carlo value prediction](docs/lessons/02-monte-carlo-prediction.md):
+
+```sh
+python3 -m foundations.monte_carlo --episodes 10000 --seed 7 --trace
+```
+
 See [the project plan](PROJECT_PLAN.md) and [progress](PROGRESS.md). The `foundations/` package uses simplified, explicitly documented rules. The code below is the preserved early prototype; its agents and realistic rules have not yet been fully audited. In particular, the adaptive dealer is an alternative-game experiment.
 
 ## Original prototype
