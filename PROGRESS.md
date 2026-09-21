@@ -33,8 +33,15 @@
 
 - Added `foundations/monte_carlo.py`: full-episode recording, undiscounted returns, first-visit incremental means, visit counts, a trace, and optional versioned JSON export with rules/policy/source provenance.
 - Added Lesson 2 with prerequisite recap, worked numerical updates, Python explanations, experiments, exercises, and separate answers. The learner estimates values; the threshold policy deliberately remains fixed.
-- Verification: 19 tests passed on Python 3.9.19, including all 10 previous environment tests. New tests cover first-visit semantics, numerical averages, zero-return visits, terminal observation exclusion, parameter validation, reproducibility, and preservation of the earlier 10,000-hand baseline. CLI trace, sparse one-hand output, invalid input rejection, and documentation links were checked.
+- Verification: 19 tests passed, including all 10 previous environment tests. The committed-source experiment runtime is recorded in the dated results JSON. New tests cover first-visit semantics, numerical averages, zero-return visits, terminal observation exclusion, parameter validation, reproducibility, and preservation of the earlier 10,000-hand baseline. CLI trace, sparse one-hand output, invalid input rejection, and documentation links were checked.
 - At seed 7 / threshold 17 / 10,000 episodes: 4,009 wins, 4,922 losses, 1,069 pushes; mean return -0.0913. Selected state estimates are paired with visit counts; no claim of policy improvement or statistical significance.
 - This checkpoint prepares exportable data for the future learning lab; no web interface or public deployment is claimed.
 - GitHub checkpoint: implementation and lesson prepared for commit; the subsequent dated experiment record will identify the exact committed source. Push status must be verified before reporting remote completion.
 - Next overnight checkpoint: keep this as the night's central lesson; strengthen the rule/reference verification and presentation rather than racing ahead to unrelated algorithms. M1's Gymnasium cross-check remains pending, and the policy has not learned to choose actions yet.
+
+### 2026-09-21 late finalization
+
+- Latest clock check was 17:20 Europe/Berlin, outside the scheduled work window; stopped development and prepared only the completed-work summary and GitHub checkpoint. The 06:00 delivery deadline was missed.
+- Source checkpoint: [a0fe44b](https://github.com/jiayutee/Reinforcement-Learning-Blackjack/commit/a0fe44b4bd9aedbe6824ab5818a91ba747d75663). Generated seven descriptive experiment records from that committed, clean source; runtime Python 3.9.6.
+- Morning lesson: [21 September](docs/daily/2026-09-21.md). Saved experiment configs/results in `experiments/2026-09-21-monte-carlo.json`. No trained action policy, Gymnasium equivalence, or hosted game is claimed.
+- Summary prepared for this task now; later delayed wakeups should not send a duplicate summary for this date. Push confirmation is recorded by the task's tool result after the documentation commit.

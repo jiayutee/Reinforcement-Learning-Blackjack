@@ -17,6 +17,8 @@ Continue with [Lesson 2: Monte Carlo value prediction](docs/lessons/02-monte-car
 python3 -m foundations.monte_carlo --episodes 10000 --seed 7 --trace
 ```
 
+Daily learning notes: [21 September — Monte Carlo prediction](docs/daily/2026-09-21.md).
+
 See [the project plan](PROJECT_PLAN.md) and [progress](PROGRESS.md). The `foundations/` package uses simplified, explicitly documented rules. The code below is the preserved early prototype; its agents and realistic rules have not yet been fully audited. In particular, the adaptive dealer is an alternative-game experiment.
 
 ## Original prototype
