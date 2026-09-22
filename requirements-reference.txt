@@ -1,0 +1,3 @@
+# Optional verification only; the Foundations lessons need no external packages.
+# Versions used for the reference checkpoint. Install in an isolated environment.
+gymnasium==1.1.1

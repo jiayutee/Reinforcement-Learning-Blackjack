@@ -45,3 +45,11 @@
 - Source checkpoint: [a0fe44b](https://github.com/jiayutee/Reinforcement-Learning-Blackjack/commit/a0fe44b4bd9aedbe6824ab5818a91ba747d75663). Generated seven descriptive experiment records from that committed, clean source; runtime Python 3.9.6.
 - Morning lesson: [21 September](docs/daily/2026-09-21.md). Saved experiment configs/results in `experiments/2026-09-21-monte-carlo.json`. No trained action policy, Gymnasium equivalence, or hosted game is claimed.
 - Summary prepared for this task now; later delayed wakeups should not send a duplicate summary for this date. Push confirmation is recorded by the task's tool result after the documentation commit.
+
+## 2026-09-22, 04:00 checkpoint — verify rules before extending learning
+
+- Preserved the user's uncommitted answers in `docs/lessons/01-agent-environment.md`; they are not part of this automation's commits.
+- Added an optional reference checker against installed Gymnasium 1.1.1 with `natural=False, sab=False`. Core Foundations lessons remain dependency-free; optional installation is documented in `requirements-reference.txt`.
+- Verification: all 21 tests passed, including 8,007 hand-score comparisons for rank combinations of lengths 1–6 and 13 legal transitions across 10 scripted cases. Exact tests compare draw counts and final hands as well as observations, rewards, and termination.
+- Scope of proof: the rank distribution and the tested hand/transition cases match. Random-number streams, reset draw order, rendering, API signatures, and invalid/post-terminal action handling are not claimed equivalent.
+- Next in this bounded checkpoint: run independent seeded samples for random and threshold policies, save descriptive results and the dated teaching note, then push only the automation's changes. Final morning summary remains scheduled for 06:00.
