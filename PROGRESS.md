@@ -60,3 +60,11 @@
 - Largest individual mean-return difference approximately 0.0259, difference SE approximately 0.0094. These are descriptive diagnostics, not a stochastic equivalence gate. Exact fixture checks passed separately.
 - Prepared [the 22 September learning note](docs/daily/2026-09-22.md), with policy/value explanations, feedback on the user's answers, reproduction commands, an exercise, and separate solutions. No final morning summary sent yet; 06:00 checkpoint should deliver it once.
 - Preserved the user's uncommitted Lesson 1 edit. Next: small presentation support for this lesson, then action-value learning in a future lesson. The public web game is still pending.
+
+## 2026-09-22, 05:00 checkpoint — visual value-map preview
+
+- Added a dependency-free offline HTML renderer for the existing Monte Carlo JSON export. It displays hard/soft state values, per-state visit counts, selected-position explanations, and a minimum-visit filter. It explicitly distinguishes unknown/filtered values from zero and fixed-policy actions from learned recommendations.
+- All 26 Python tests passed (including the optional reference checks). New tests verify data preservation, incompatible-rule rejection, invalid/duplicate estimates, summary consistency, and safe embedding of metadata containing HTML delimiters.
+- Automated browser checks passed using installed Chrome in an isolated temporary profile: 180 cells per hand type, displayed values/counts, keyboard selection, hard/soft switching, minimum-visit filtering, unknown states, 390px mobile layout, no page errors, and no network requests. The bundled Playwright browser was absent, so installed Chrome was used. Screenshot files were captured, but the image inspection tool could not display them; visual appearance is not claimed manually reviewed.
+- The user's uncommitted Lesson 1 answers remain untouched and excluded from commits. No changes to game rules, policies, or training behavior were needed. This is a local learning-lab preview, not a hosted game.
+- Next: save the ready-to-open seeded snapshot and instructions in today's learning note, push the checkpoint, and leave the final morning summary for 06:00.
