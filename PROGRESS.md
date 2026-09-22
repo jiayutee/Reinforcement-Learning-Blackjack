@@ -68,3 +68,9 @@
 - Automated browser checks passed using installed Chrome in an isolated temporary profile: 180 cells per hand type, displayed values/counts, keyboard selection, hard/soft switching, minimum-visit filtering, unknown states, 390px mobile layout, no page errors, and no network requests. The bundled Playwright browser was absent, so installed Chrome was used. Screenshot files were captured, but the image inspection tool could not display them; visual appearance is not claimed manually reviewed.
 - The user's uncommitted Lesson 1 answers remain untouched and excluded from commits. No changes to game rules, policies, or training behavior were needed. This is a local learning-lab preview, not a hosted game.
 - Next: save the ready-to-open seeded snapshot and instructions in today's learning note, push the checkpoint, and leave the final morning summary for 06:00.
+
+### 05:00 visual checkpoint prepared
+
+- Source [14fedf6](https://github.com/jiayutee/Reinforcement-Learning-Blackjack/commit/14fedf619dff6cdf2952723a92b1ad8ade85b36b); generated `docs/previews/monte-carlo-values.html` from a clean-source, 10,000-hand seed-7 threshold-17 export. It contains the experiment metadata and source commit.
+- Updated today's daily note and README with local-open instructions, generation commands, interpretation, a hard/soft visit-count exercise, and verification limits.
+- Final summary has not yet been sent for 22 September. At 06:00, link the daily note and local preview, report 26 tests and browser checks, and include the confirmed GitHub checkpoint. Avoid duplicate summaries afterward.
