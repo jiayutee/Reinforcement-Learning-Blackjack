@@ -1,0 +1,253 @@
+{
+  "source": {
+    "python": "3.9.6",
+    "git_commit": "5e50777db550d2c0f63fc2cf69026018249c083b",
+    "foundations_source_dirty": false
+  },
+  "gymnasium": "1.1.1",
+  "numpy": "2.0.2",
+  "rules": {
+    "natural": false,
+    "sab": false,
+    "draws": "with replacement",
+    "dealer": "stand on soft 17"
+  },
+  "hand_scores_checked": 8007,
+  "scripted": {
+    "cases": 10,
+    "transitions": 13
+  },
+  "note": "Statistical differences are descriptive diagnostics, not an equivalence proof. Seeds differ across implementations; reference seed = foundations seed + 1000000.",
+  "comparisons": [
+    {
+      "policy": "random",
+      "foundations": {
+        "seed": 7,
+        "episodes": 20000,
+        "wins": 5695,
+        "losses": 13431,
+        "pushes": 874,
+        "mean_return": -0.3868,
+        "standard_error": 0.00635108690030618
+      },
+      "gymnasium": {
+        "seed": 1000007,
+        "episodes": 20000,
+        "wins": 5647,
+        "losses": 13514,
+        "pushes": 839,
+        "mean_return": -0.39335,
+        "standard_error": 0.00633784642365721
+      },
+      "mean_difference": 0.00655,
+      "difference_standard_error": 0.008972435684088533
+    },
+    {
+      "policy": "random",
+      "foundations": {
+        "seed": 19,
+        "episodes": 20000,
+        "wins": 5590,
+        "losses": 13536,
+        "pushes": 874,
+        "mean_return": -0.3973,
+        "standard_error": 0.0063185941261950495
+      },
+      "gymnasium": {
+        "seed": 1000019,
+        "episodes": 20000,
+        "wins": 5627,
+        "losses": 13539,
+        "pushes": 834,
+        "mean_return": -0.3956,
+        "standard_error": 0.006331827271951604
+      },
+      "mean_difference": -0.0016999999999999793,
+      "difference_standard_error": 0.00894520364963351
+    },
+    {
+      "policy": "random",
+      "foundations": {
+        "seed": 42,
+        "episodes": 20000,
+        "wins": 5659,
+        "losses": 13409,
+        "pushes": 932,
+        "mean_return": -0.3875,
+        "standard_error": 0.006337522837022797
+      },
+      "gymnasium": {
+        "seed": 1000042,
+        "episodes": 20000,
+        "wins": 5798,
+        "losses": 13350,
+        "pushes": 852,
+        "mean_return": -0.3776,
+        "standard_error": 0.006383020378117037
+      },
+      "mean_difference": -0.00990000000000002,
+      "difference_standard_error": 0.008994839901701577
+    },
+    {
+      "policy": "random",
+      "foundations": {
+        "seed": 101,
+        "episodes": 20000,
+        "wins": 5605,
+        "losses": 13519,
+        "pushes": 876,
+        "mean_return": -0.3957,
+        "standard_error": 0.00632321711265181
+      },
+      "gymnasium": {
+        "seed": 1000101,
+        "episodes": 20000,
+        "wins": 5662,
+        "losses": 13482,
+        "pushes": 856,
+        "mean_return": -0.391,
+        "standard_error": 0.006341763232575378
+      },
+      "mean_difference": -0.004699999999999982,
+      "difference_standard_error": 0.008955503087586851
+    },
+    {
+      "policy": "random",
+      "foundations": {
+        "seed": 2026,
+        "episodes": 20000,
+        "wins": 5571,
+        "losses": 13576,
+        "pushes": 853,
+        "mean_return": -0.40025,
+        "standard_error": 0.00631343724523278
+      },
+      "gymnasium": {
+        "seed": 1002026,
+        "episodes": 20000,
+        "wins": 5505,
+        "losses": 13665,
+        "pushes": 830,
+        "mean_return": -0.408,
+        "standard_error": 0.006293153437586713
+      },
+      "mean_difference": 0.007749999999999979,
+      "difference_standard_error": 0.008914217298142442
+    },
+    {
+      "policy": "threshold",
+      "foundations": {
+        "seed": 7,
+        "episodes": 20000,
+        "wins": 8093,
+        "losses": 9754,
+        "pushes": 2153,
+        "mean_return": -0.08305,
+        "standard_error": 0.00665393482215079
+      },
+      "gymnasium": {
+        "seed": 1000007,
+        "episodes": 20000,
+        "wins": 8131,
+        "losses": 9791,
+        "pushes": 2078,
+        "mean_return": -0.083,
+        "standard_error": 0.006668041177036697
+      },
+      "mean_difference": -4.999999999999449e-05,
+      "difference_standard_error": 0.009420064848826033
+    },
+    {
+      "policy": "threshold",
+      "foundations": {
+        "seed": 19,
+        "episodes": 20000,
+        "wins": 8148,
+        "losses": 9718,
+        "pushes": 2134,
+        "mean_return": -0.0785,
+        "standard_error": 0.006660263167118306
+      },
+      "gymnasium": {
+        "seed": 1000019,
+        "episodes": 20000,
+        "wins": 8141,
+        "losses": 9790,
+        "pushes": 2069,
+        "mean_return": -0.08245,
+        "standard_error": 0.006670069292460034
+      },
+      "mean_difference": 0.003949999999999995,
+      "difference_standard_error": 0.009425971028042207
+    },
+    {
+      "policy": "threshold",
+      "foundations": {
+        "seed": 42,
+        "episodes": 20000,
+        "wins": 8268,
+        "losses": 9517,
+        "pushes": 2215,
+        "mean_return": -0.06245,
+        "standard_error": 0.006653548929756814
+      },
+      "gymnasium": {
+        "seed": 1000042,
+        "episodes": 20000,
+        "wins": 8080,
+        "losses": 9846,
+        "pushes": 2074,
+        "mean_return": -0.0883,
+        "standard_error": 0.006665386475579901
+      },
+      "mean_difference": 0.025850000000000005,
+      "difference_standard_error": 0.00941791326300638
+    },
+    {
+      "policy": "threshold",
+      "foundations": {
+        "seed": 101,
+        "episodes": 20000,
+        "wins": 8002,
+        "losses": 9868,
+        "pushes": 2130,
+        "mean_return": -0.0933,
+        "standard_error": 0.006651463568146482
+      },
+      "gymnasium": {
+        "seed": 1000101,
+        "episodes": 20000,
+        "wins": 8156,
+        "losses": 9780,
+        "pushes": 2064,
+        "mean_return": -0.0812,
+        "standard_error": 0.006671772899888109
+      },
+      "mean_difference": -0.0121,
+      "difference_standard_error": 0.009420961799416304
+    },
+    {
+      "policy": "threshold",
+      "foundations": {
+        "seed": 2026,
+        "episodes": 20000,
+        "wins": 8182,
+        "losses": 9777,
+        "pushes": 2041,
+        "mean_return": -0.07975,
+        "standard_error": 0.006676954841939405
+      },
+      "gymnasium": {
+        "seed": 1002026,
+        "episodes": 20000,
+        "wins": 8166,
+        "losses": 9760,
+        "pushes": 2074,
+        "mean_return": -0.0797,
+        "standard_error": 0.006670803585852611
+      },
+      "mean_difference": -5.000000000000837e-05,
+      "difference_standard_error": 0.009438291500177462
+    }
+  ]
+}

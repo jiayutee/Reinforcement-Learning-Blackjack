@@ -53,3 +53,10 @@
 - Verification: all 21 tests passed, including 8,007 hand-score comparisons for rank combinations of lengths 1–6 and 13 legal transitions across 10 scripted cases. Exact tests compare draw counts and final hands as well as observations, rewards, and termination.
 - Scope of proof: the rank distribution and the tested hand/transition cases match. Random-number streams, reset draw order, rendering, API signatures, and invalid/post-terminal action handling are not claimed equivalent.
 - Next in this bounded checkpoint: run independent seeded samples for random and threshold policies, save descriptive results and the dated teaching note, then push only the automation's changes. Final morning summary remains scheduled for 06:00.
+
+### 2026-09-22 reference experiment completed
+
+- Source [5e50777](https://github.com/jiayutee/Reinforcement-Learning-Blackjack/commit/5e50777db550d2c0f63fc2cf69026018249c083b); Python 3.9.6, Gymnasium 1.1.1, NumPy 2.0.2, clean Foundations source. Ran 400,000 total hands covering random and threshold policies, five seeds, and both implementations. Saved results to `experiments/2026-09-22-gymnasium-reference.json`.
+- Largest individual mean-return difference approximately 0.0259, difference SE approximately 0.0094. These are descriptive diagnostics, not a stochastic equivalence gate. Exact fixture checks passed separately.
+- Prepared [the 22 September learning note](docs/daily/2026-09-22.md), with policy/value explanations, feedback on the user's answers, reproduction commands, an exercise, and separate solutions. No final morning summary sent yet; 06:00 checkpoint should deliver it once.
+- Preserved the user's uncommitted Lesson 1 edit. Next: small presentation support for this lesson, then action-value learning in a future lesson. The public web game is still pending.
