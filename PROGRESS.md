@@ -74,3 +74,12 @@
 - Source [14fedf6](https://github.com/jiayutee/Reinforcement-Learning-Blackjack/commit/14fedf619dff6cdf2952723a92b1ad8ade85b36b); generated `docs/previews/monte-carlo-values.html` from a clean-source, 10,000-hand seed-7 threshold-17 export. It contains the experiment metadata and source commit.
 - Updated today's daily note and README with local-open instructions, generation commands, interpretation, a hard/soft visit-count exercise, and verification limits.
 - Final summary has not yet been sent for 22 September. At 06:00, link the daily note and local preview, report 26 tests and browser checks, and include the confirmed GitHub checkpoint. Avoid duplicate summaries afterward.
+
+## 2026-09-25, 03:00 checkpoint — Monte Carlo action learning
+
+- Found no completed source checkpoints for 23–24 September; the last saved checkpoint was 22 September. No cause for the missed work is established.
+- Added first-visit epsilon-greedy Monte Carlo control: separate state-action means/counts, random training tie-breaking, episode-end updates, and a frozen greedy evaluation with deterministic stand ties. Uses existing environment and return calculation.
+- Added Lesson 3 with prerequisites, equations, worked examples, Python walkthrough, exploration probabilities, evaluation limits, and separate solutions. Control exports are distinct from the existing state-value map format.
+- All 33 tests passed. Seven new tests cover state-action updates, exploration/exploitation, tie behavior, reproducibility, parameter checks, and non-mutating evaluation. User Lesson 1 edits remain untouched and excluded.
+- First preview: train 50,000 hands, seed 7, epsilon 0.1; evaluate 20,000 hands per policy at seed 1,000,007. Learned mean -0.06935, threshold -0.08195, random -0.38865. One training seed is preliminary, not proof of superiority or optimality. Reproduce from committed source before saving the result record.
+- Next checkpoint: several independent training seeds at the same prespecified settings; retain this as tonight's main lesson. No 25 September final morning summary has been sent yet.
