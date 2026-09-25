@@ -96,3 +96,11 @@
 - Mean learned return -0.07400; threshold -0.07970; random -0.39771. Learned run means ranged -0.08550 to -0.06375; sample SD 0.00834 mixes training variation and evaluation noise. Learned seed 19 was worse than threshold. No claim of reliable threshold superiority, optimality, or positive profit.
 - Saved `experiments/2026-09-25-control-multiseed.json` and updated the daily note with all rows, interpretation, and exact reproduction commands. Source [45ec0ca](https://github.com/jiayutee/Reinforcement-Learning-Blackjack/commit/45ec0ca3f9773dd31bbd7585d5d651f70efc3338), clean Foundations source. No product code changed; prior 33-test proof remains current.
 - Preserved the user's Lesson 1 answers. Next checkpoint may add a small action-table presentation; final summary remains pending for 06:00 on 25 September.
+
+## 2026-09-25, 05:00 checkpoint — evidence-labelled action table
+
+- Added `foundations/policy_table.py` and the ready-to-read `docs/previews/monte-carlo-policy.md`. This renders a full control export as hard/soft decision tables with per-action evidence for selected states. It is separate from the V(s) heatmap and does not change the agent.
+- Marks a choice when either action has fewer than the requested visit count, distinguishes untried/absent entries, validates stored greedy choices against Q estimates, and preserves unknown source provenance explicitly.
+- All 39 tests passed; six new tests cover evidence handling and validation. CLI output matched the saved seed-7 estimates and the checked Markdown output. No browser behavior or gameplay changes are claimed.
+- Updated today's daily note and README with a soft-18 evidence exercise and reproduction commands. Data provenance remains the original clean-source control checkpoint 4b93436; the renderer is new in this checkpoint.
+- Preserved and excluded the user's local Lesson 1 answers. The 06:00 summary should link Lesson 3, today's five-seed results, and the policy table, report 39 passing tests, and state that advantage over threshold is not established. No final summary for 25 September has been sent yet.
