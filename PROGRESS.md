@@ -83,3 +83,9 @@
 - All 33 tests passed. Seven new tests cover state-action updates, exploration/exploitation, tie behavior, reproducibility, parameter checks, and non-mutating evaluation. User Lesson 1 edits remain untouched and excluded.
 - First preview: train 50,000 hands, seed 7, epsilon 0.1; evaluate 20,000 hands per policy at seed 1,000,007. Learned mean -0.06935, threshold -0.08195, random -0.38865. One training seed is preliminary, not proof of superiority or optimality. Reproduce from committed source before saving the result record.
 - Next checkpoint: several independent training seeds at the same prespecified settings; retain this as tonight's main lesson. No 25 September final morning summary has been sent yet.
+
+### 25 September first control experiment recorded
+
+- Reproduced the first sample from committed source [4b93436](https://github.com/jiayutee/Reinforcement-Learning-Blackjack/commit/4b93436ee3b28707febf9b2c0f099bd8b90177fb); Python 3.9.6, clean Foundations source. Saved compact results in `experiments/2026-09-25-monte-carlo-control.json` and prepared the dated lesson.
+- Learned-policy evaluation selected no unvisited actions in this sample. Near-tied estimates and single-seed uncertainty remain explicit limitations; no optimality claim.
+- 04:00 next: multi-seed replication at unchanged settings. The 25 September morning summary is still pending for 06:00.

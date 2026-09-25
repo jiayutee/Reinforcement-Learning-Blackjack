@@ -23,6 +23,8 @@ Latest: [22 September — policies, values, and reference checks](docs/daily/202
 
 Explore the [offline value-map preview](docs/previews/monte-carlo-values.html) in your browser. On macOS: `open docs/previews/monte-carlo-values.html`. This is a local lesson preview, not the hosted game.
 
+Next: [Lesson 3 — learn hit/stand decisions](docs/lessons/03-monte-carlo-control.md), with [25 September results](docs/daily/2026-09-25.md).
+
 See [the project plan](PROJECT_PLAN.md) and [progress](PROGRESS.md). The `foundations/` package uses simplified, explicitly documented rules. The code below is the preserved early prototype; its agents and realistic rules have not yet been fully audited. In particular, the adaptive dealer is an alternative-game experiment.
 
 ## Original prototype

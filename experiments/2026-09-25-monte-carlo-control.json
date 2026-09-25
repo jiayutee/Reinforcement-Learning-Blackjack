@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "artifact_type": "monte_carlo_control",
+  "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+  "algorithm": "first-visit on-policy epsilon-greedy Monte Carlo control",
+  "gamma": 1.0,
+  "training": {
+    "episodes": 50000,
+    "environment_seed": 7,
+    "agent_seed": 8,
+    "epsilon": 0.1,
+    "outcomes": {
+      "wins": 20103,
+      "losses": 26145,
+      "pushes": 3752,
+      "mean_return": -0.12084
+    }
+  },
+  "evaluation": [
+    {
+      "policy": "greedy",
+      "seed": 1000007,
+      "episodes": 20000,
+      "wins": 8501,
+      "losses": 9888,
+      "pushes": 1611,
+      "mean_return": -0.06935,
+      "standard_error": 0.006762715104954484,
+      "approx_95pct_interval": [
+        -0.08260492160571078,
+        -0.056095078394289205
+      ],
+      "decisions": 28397,
+      "unvisited_selected_actions": 0
+    },
+    {
+      "policy": "threshold",
+      "seed": 1000007,
+      "episodes": 20000,
+      "wins": 8157,
+      "losses": 9796,
+      "pushes": 2047,
+      "mean_return": -0.08195,
+      "standard_error": 0.006674499031527841,
+      "approx_95pct_interval": [
+        -0.09503201810179457,
+        -0.06886798189820542
+      ],
+      "decisions": 32430,
+      "unvisited_selected_actions": null
+    },
+    {
+      "policy": "random",
+      "seed": 1000007,
+      "episodes": 20000,
+      "wins": 5725,
+      "losses": 13498,
+      "pushes": 777,
+      "mean_return": -0.38865,
+      "standard_error": 0.006364517595954265,
+      "approx_95pct_interval": [
+        -0.4011244544880704,
+        -0.3761755455119296
+      ],
+      "decisions": 27430,
+      "unvisited_selected_actions": null
+    }
+  ],
+  "evaluation_note": "Frozen greedy policy; stand on ties; unseen action estimates initialize at zero. Intervals cover game sampling, not training-seed uncertainty. Equal evaluation seeds do not imply paired hands across policies.",
+  "source": {
+    "python": "3.9.6",
+    "git_commit": "4b93436ee3b28707febf9b2c0f099bd8b90177fb",
+    "foundations_source_dirty": false
+  },
+  "observed_state_count": 280,
+  "selected_states": [
+    {
+      "observation": [
+        12,
+        6,
+        false
+      ],
+      "greedy_action": 0,
+      "actions": [
+        {
+          "action": 0,
+          "value": -0.15286624203821653,
+          "visits": 314
+        },
+        {
+          "action": 1,
+          "value": -0.2061855670103094,
+          "visits": 97
+        }
+      ]
+    },
+    {
+      "observation": [
+        16,
+        10,
+        false
+      ],
+      "greedy_action": 0,
+      "actions": [
+        {
+          "action": 0,
+          "value": -0.5698924731182796,
+          "visits": 837
+        },
+        {
+          "action": 1,
+          "value": -0.5831408775981527,
+          "visits": 866
+        }
+      ]
+    },
+    {
+      "observation": [
+        18,
+        9,
+        true
+      ],
+      "greedy_action": 0,
+      "actions": [
+        {
+          "action": 0,
+          "value": -0.10526315789473686,
+          "visits": 57
+        },
+        {
+          "action": 1,
+          "value": -0.2,
+          "visits": 5
+        }
+      ]
+    },
+    {
+      "observation": [
+        20,
+        10,
+        false
+      ],
+      "greedy_action": 0,
+      "actions": [
+        {
+          "action": 0,
+          "value": 0.4367026496565265,
+          "visits": 2038
+        },
+        {
+          "action": 1,
+          "value": -0.7999999999999998,
+          "visits": 130
+        }
+      ]
+    }
+  ],
+  "record_note": "Compact first-seed lesson record. Rerun the documented CLI for the complete action table. Multiple training seeds are still pending."
+}
