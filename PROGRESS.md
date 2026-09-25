@@ -89,3 +89,10 @@
 - Reproduced the first sample from committed source [4b93436](https://github.com/jiayutee/Reinforcement-Learning-Blackjack/commit/4b93436ee3b28707febf9b2c0f099bd8b90177fb); Python 3.9.6, clean Foundations source. Saved compact results in `experiments/2026-09-25-monte-carlo-control.json` and prepared the dated lesson.
 - Learned-policy evaluation selected no unvisited actions in this sample. Near-tied estimates and single-seed uncertainty remain explicit limitations; no optimality claim.
 - 04:00 next: multi-seed replication at unchanged settings. The 25 September morning summary is still pending for 06:00.
+
+## 2026-09-25, 04:00 checkpoint — multi-seed replication
+
+- Repeated unchanged control settings for seeds 7, 19, 42, 101, 2026: 50,000 training hands, epsilon 0.1, and 20,000 evaluation hands per policy at seed 1,000,000 + training seed. Seed 7 repeats the previous sample and is counted once.
+- Mean learned return -0.07400; threshold -0.07970; random -0.39771. Learned run means ranged -0.08550 to -0.06375; sample SD 0.00834 mixes training variation and evaluation noise. Learned seed 19 was worse than threshold. No claim of reliable threshold superiority, optimality, or positive profit.
+- Saved `experiments/2026-09-25-control-multiseed.json` and updated the daily note with all rows, interpretation, and exact reproduction commands. Source [45ec0ca](https://github.com/jiayutee/Reinforcement-Learning-Blackjack/commit/45ec0ca3f9773dd31bbd7585d5d651f70efc3338), clean Foundations source. No product code changed; prior 33-test proof remains current.
+- Preserved the user's Lesson 1 answers. Next checkpoint may add a small action-table presentation; final summary remains pending for 06:00 on 25 September.

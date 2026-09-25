@@ -111,7 +111,7 @@ These large-sample normal intervals describe game-outcome sampling for one froze
 
 All three policies use the same evaluation seed for reproducibility, but their actions consume different numbers of cards. These are not paired identical hands, and individual intervals are not an interval for the difference between policies.
 
-The first seed-7 sample is recorded in [today's note](../daily/2026-09-25.md). Treat it as an initial demonstration; the next checkpoint will repeat training with several seeds before generalizing.
+The first seed-7 sample is recorded in [today's note](../daily/2026-09-25.md). Treat it as an initial demonstration; the same note now includes a five-seed follow-up with mixed results and explicit uncertainty.
 
 ## 7. Inspect or export the result
 

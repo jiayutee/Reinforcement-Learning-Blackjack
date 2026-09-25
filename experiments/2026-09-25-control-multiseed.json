@@ -1,0 +1,702 @@
+{
+  "source": {
+    "python": "3.9.6",
+    "git_commit": "45ec0ca3f9773dd31bbd7585d5d651f70efc3338",
+    "foundations_source_dirty": false
+  },
+  "purpose": "Prespecified five-seed replication, not hyperparameter selection or a final optimality benchmark. Seed 7 repeats the earlier run and is counted only once here.",
+  "training_seeds": [
+    7,
+    19,
+    42,
+    101,
+    2026
+  ],
+  "summary": {
+    "greedy": {
+      "mean_of_run_means": -0.074,
+      "sample_sd_of_run_means": 0.008340188846782788,
+      "min": -0.0855,
+      "max": -0.06375
+    },
+    "threshold": {
+      "mean_of_run_means": -0.0797,
+      "sample_sd_of_run_means": 0.005068283733178319,
+      "min": -0.0851,
+      "max": -0.07215
+    },
+    "random": {
+      "mean_of_run_means": -0.39771,
+      "sample_sd_of_run_means": 0.007871578621852166,
+      "min": -0.4063,
+      "max": -0.38865
+    }
+  },
+  "runs": [
+    {
+      "schema_version": 1,
+      "artifact_type": "monte_carlo_control",
+      "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+      "algorithm": "first-visit on-policy epsilon-greedy Monte Carlo control",
+      "gamma": 1.0,
+      "training": {
+        "episodes": 50000,
+        "environment_seed": 7,
+        "agent_seed": 8,
+        "epsilon": 0.1,
+        "outcomes": {
+          "wins": 20103,
+          "losses": 26145,
+          "pushes": 3752,
+          "mean_return": -0.12084
+        }
+      },
+      "evaluation": [
+        {
+          "policy": "greedy",
+          "seed": 1000007,
+          "episodes": 20000,
+          "wins": 8501,
+          "losses": 9888,
+          "pushes": 1611,
+          "mean_return": -0.06935,
+          "standard_error": 0.006762715104954484,
+          "approx_95pct_interval": [
+            -0.08260492160571078,
+            -0.056095078394289205
+          ],
+          "decisions": 28397,
+          "unvisited_selected_actions": 0
+        },
+        {
+          "policy": "threshold",
+          "seed": 1000007,
+          "episodes": 20000,
+          "wins": 8157,
+          "losses": 9796,
+          "pushes": 2047,
+          "mean_return": -0.08195,
+          "standard_error": 0.006674499031527841,
+          "approx_95pct_interval": [
+            -0.09503201810179457,
+            -0.06886798189820542
+          ],
+          "decisions": 32430,
+          "unvisited_selected_actions": null
+        },
+        {
+          "policy": "random",
+          "seed": 1000007,
+          "episodes": 20000,
+          "wins": 5725,
+          "losses": 13498,
+          "pushes": 777,
+          "mean_return": -0.38865,
+          "standard_error": 0.006364517595954265,
+          "approx_95pct_interval": [
+            -0.4011244544880704,
+            -0.3761755455119296
+          ],
+          "decisions": 27430,
+          "unvisited_selected_actions": null
+        }
+      ],
+      "evaluation_note": "Frozen greedy policy; stand on ties; unseen action estimates initialize at zero. Intervals cover game sampling, not training-seed uncertainty. Equal evaluation seeds do not imply paired hands across policies.",
+      "observed_states": 280,
+      "selected_states": [
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": -0.5698924731182796,
+              "visits": 837
+            },
+            {
+              "action": 1,
+              "value": -0.5831408775981527,
+              "visits": 866
+            }
+          ]
+        },
+        {
+          "observation": [
+            18,
+            9,
+            true
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": -0.10526315789473686,
+              "visits": 57
+            },
+            {
+              "action": 1,
+              "value": -0.2,
+              "visits": 5
+            }
+          ]
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": 0.4367026496565265,
+              "visits": 2038
+            },
+            {
+              "action": 1,
+              "value": -0.7999999999999998,
+              "visits": 130
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "artifact_type": "monte_carlo_control",
+      "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+      "algorithm": "first-visit on-policy epsilon-greedy Monte Carlo control",
+      "gamma": 1.0,
+      "training": {
+        "episodes": 50000,
+        "environment_seed": 19,
+        "agent_seed": 20,
+        "epsilon": 0.1,
+        "outcomes": {
+          "wins": 20166,
+          "losses": 25938,
+          "pushes": 3896,
+          "mean_return": -0.11544
+        }
+      },
+      "evaluation": [
+        {
+          "policy": "greedy",
+          "seed": 1000019,
+          "episodes": 20000,
+          "wins": 8281,
+          "losses": 9991,
+          "pushes": 1728,
+          "mean_return": -0.0855,
+          "standard_error": 0.00673177193149522,
+          "approx_95pct_interval": [
+            -0.09869427298573064,
+            -0.07230572701426938
+          ],
+          "decisions": 28883,
+          "unvisited_selected_actions": 0
+        },
+        {
+          "policy": "threshold",
+          "seed": 1000019,
+          "episodes": 20000,
+          "wins": 8184,
+          "losses": 9729,
+          "pushes": 2087,
+          "mean_return": -0.07725,
+          "standard_error": 0.006669808557395753,
+          "approx_95pct_interval": [
+            -0.09032282477249567,
+            -0.06417717522750432
+          ],
+          "decisions": 32435,
+          "unvisited_selected_actions": null
+        },
+        {
+          "policy": "random",
+          "seed": 1000019,
+          "episodes": 20000,
+          "wins": 5494,
+          "losses": 13620,
+          "pushes": 886,
+          "mean_return": -0.4063,
+          "standard_error": 0.006287526711641667,
+          "approx_95pct_interval": [
+            -0.4186235523548177,
+            -0.3939764476451823
+          ],
+          "decisions": 27541,
+          "unvisited_selected_actions": null
+        }
+      ],
+      "evaluation_note": "Frozen greedy policy; stand on ties; unseen action estimates initialize at zero. Intervals cover game sampling, not training-seed uncertainty. Equal evaluation seeds do not imply paired hands across policies.",
+      "observed_states": 280,
+      "selected_states": [
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": -0.5463442717328725,
+              "visits": 1737
+            },
+            {
+              "action": 1,
+              "value": -0.6818181818181818,
+              "visits": 110
+            }
+          ]
+        },
+        {
+          "observation": [
+            18,
+            9,
+            true
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": -0.2222222222222222,
+              "visits": 45
+            },
+            {
+              "action": 1,
+              "value": -0.6,
+              "visits": 5
+            }
+          ]
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": 0.4436052366565966,
+              "visits": 1986
+            },
+            {
+              "action": 1,
+              "value": -0.864406779661017,
+              "visits": 118
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "artifact_type": "monte_carlo_control",
+      "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+      "algorithm": "first-visit on-policy epsilon-greedy Monte Carlo control",
+      "gamma": 1.0,
+      "training": {
+        "episodes": 50000,
+        "environment_seed": 42,
+        "agent_seed": 43,
+        "epsilon": 0.1,
+        "outcomes": {
+          "wins": 20308,
+          "losses": 25762,
+          "pushes": 3930,
+          "mean_return": -0.10908
+        }
+      },
+      "evaluation": [
+        {
+          "policy": "greedy",
+          "seed": 1000042,
+          "episodes": 20000,
+          "wins": 8440,
+          "losses": 9902,
+          "pushes": 1658,
+          "mean_return": -0.0731,
+          "standard_error": 0.006752044061241769,
+          "approx_95pct_interval": [
+            -0.08633400636003387,
+            -0.05986599363996613
+          ],
+          "decisions": 28608,
+          "unvisited_selected_actions": 0
+        },
+        {
+          "policy": "threshold",
+          "seed": 1000042,
+          "episodes": 20000,
+          "wins": 8162,
+          "losses": 9803,
+          "pushes": 2035,
+          "mean_return": -0.08205,
+          "standard_error": 0.006676684714807121,
+          "approx_95pct_interval": [
+            -0.09513630204102196,
+            -0.06896369795897804
+          ],
+          "decisions": 32644,
+          "unvisited_selected_actions": null
+        },
+        {
+          "policy": "random",
+          "seed": 1000042,
+          "episodes": 20000,
+          "wins": 5543,
+          "losses": 13625,
+          "pushes": 832,
+          "mean_return": -0.4041,
+          "standard_error": 0.006305326903291206,
+          "approx_95pct_interval": [
+            -0.4164584407304508,
+            -0.39174155926954923
+          ],
+          "decisions": 27508,
+          "unvisited_selected_actions": null
+        }
+      ],
+      "evaluation_note": "Frozen greedy policy; stand on ties; unseen action estimates initialize at zero. Intervals cover game sampling, not training-seed uncertainty. Equal evaluation seeds do not imply paired hands across policies.",
+      "observed_states": 280,
+      "selected_states": [
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": -0.5554164057608018,
+              "visits": 1597
+            },
+            {
+              "action": 1,
+              "value": -0.6320754716981132,
+              "visits": 106
+            }
+          ]
+        },
+        {
+          "observation": [
+            18,
+            9,
+            true
+          ],
+          "greedy_action": 1,
+          "actions": [
+            {
+              "action": 0,
+              "value": -0.375,
+              "visits": 24
+            },
+            {
+              "action": 1,
+              "value": -0.2972972972972972,
+              "visits": 37
+            }
+          ]
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": 0.425471698113207,
+              "visits": 2120
+            },
+            {
+              "action": 1,
+              "value": -0.8474576271186443,
+              "visits": 118
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "artifact_type": "monte_carlo_control",
+      "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+      "algorithm": "first-visit on-policy epsilon-greedy Monte Carlo control",
+      "gamma": 1.0,
+      "training": {
+        "episodes": 50000,
+        "environment_seed": 101,
+        "agent_seed": 102,
+        "epsilon": 0.1,
+        "outcomes": {
+          "wins": 19749,
+          "losses": 26473,
+          "pushes": 3778,
+          "mean_return": -0.13448
+        }
+      },
+      "evaluation": [
+        {
+          "policy": "greedy",
+          "seed": 1000101,
+          "episodes": 20000,
+          "wins": 8420,
+          "losses": 9986,
+          "pushes": 1594,
+          "mean_return": -0.0783,
+          "standard_error": 0.006760971900330001,
+          "approx_95pct_interval": [
+            -0.0915515049246468,
+            -0.0650484950753532
+          ],
+          "decisions": 29287,
+          "unvisited_selected_actions": 0
+        },
+        {
+          "policy": "threshold",
+          "seed": 1000101,
+          "episodes": 20000,
+          "wins": 8089,
+          "losses": 9791,
+          "pushes": 2120,
+          "mean_return": -0.0851,
+          "standard_error": 0.006658837474050955,
+          "approx_95pct_interval": [
+            -0.09815132144913986,
+            -0.07204867855086013
+          ],
+          "decisions": 32595,
+          "unvisited_selected_actions": null
+        },
+        {
+          "policy": "random",
+          "seed": 1000101,
+          "episodes": 20000,
+          "wins": 5643,
+          "losses": 13456,
+          "pushes": 901,
+          "mean_return": -0.39065,
+          "standard_error": 0.006333966753286726,
+          "approx_95pct_interval": [
+            -0.403064574836442,
+            -0.378235425163558
+          ],
+          "decisions": 27616,
+          "unvisited_selected_actions": null
+        }
+      ],
+      "evaluation_note": "Frozen greedy policy; stand on ties; unseen action estimates initialize at zero. Intervals cover game sampling, not training-seed uncertainty. Equal evaluation seeds do not imply paired hands across policies.",
+      "observed_states": 280,
+      "selected_states": [
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "greedy_action": 1,
+          "actions": [
+            {
+              "action": 0,
+              "value": -0.6268656716417907,
+              "visits": 134
+            },
+            {
+              "action": 1,
+              "value": -0.5901948460087977,
+              "visits": 1591
+            }
+          ]
+        },
+        {
+          "observation": [
+            18,
+            9,
+            true
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": -0.27777777777777773,
+              "visits": 54
+            },
+            {
+              "action": 1,
+              "value": -0.5,
+              "visits": 8
+            }
+          ]
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": 0.4154429180483188,
+              "visits": 2111
+            },
+            {
+              "action": 1,
+              "value": -0.7767857142857143,
+              "visits": 112
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "artifact_type": "monte_carlo_control",
+      "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+      "algorithm": "first-visit on-policy epsilon-greedy Monte Carlo control",
+      "gamma": 1.0,
+      "training": {
+        "episodes": 50000,
+        "environment_seed": 2026,
+        "agent_seed": 2027,
+        "epsilon": 0.1,
+        "outcomes": {
+          "wins": 19823,
+          "losses": 26344,
+          "pushes": 3833,
+          "mean_return": -0.13042
+        }
+      },
+      "evaluation": [
+        {
+          "policy": "greedy",
+          "seed": 1002026,
+          "episodes": 20000,
+          "wins": 8511,
+          "losses": 9786,
+          "pushes": 1703,
+          "mean_return": -0.06375,
+          "standard_error": 0.0067484497444744804,
+          "approx_95pct_interval": [
+            -0.07697696149916998,
+            -0.05052303850083002
+          ],
+          "decisions": 28987,
+          "unvisited_selected_actions": 0
+        },
+        {
+          "policy": "threshold",
+          "seed": 1002026,
+          "episodes": 20000,
+          "wins": 8255,
+          "losses": 9698,
+          "pushes": 2047,
+          "mean_return": -0.07215,
+          "standard_error": 0.00668015344864958,
+          "approx_95pct_interval": [
+            -0.08524310075935318,
+            -0.05905689924064683
+          ],
+          "decisions": 32473,
+          "unvisited_selected_actions": null
+        },
+        {
+          "policy": "random",
+          "seed": 1002026,
+          "episodes": 20000,
+          "wins": 5578,
+          "losses": 13555,
+          "pushes": 867,
+          "mean_return": -0.39885,
+          "standard_error": 0.006315095240484883,
+          "approx_95pct_interval": [
+            -0.41122758667135034,
+            -0.3864724133286496
+          ],
+          "decisions": 27309,
+          "unvisited_selected_actions": null
+        }
+      ],
+      "evaluation_note": "Frozen greedy policy; stand on ties; unseen action estimates initialize at zero. Intervals cover game sampling, not training-seed uncertainty. Equal evaluation seeds do not imply paired hands across policies.",
+      "observed_states": 280,
+      "selected_states": [
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": -0.5728274173806625,
+              "visits": 1634
+            },
+            {
+              "action": 1,
+              "value": -0.6395348837209303,
+              "visits": 86
+            }
+          ]
+        },
+        {
+          "observation": [
+            18,
+            9,
+            true
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": -0.19999999999999996,
+              "visits": 15
+            },
+            {
+              "action": 1,
+              "value": -0.27659574468085113,
+              "visits": 47
+            }
+          ]
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "greedy_action": 0,
+          "actions": [
+            {
+              "action": 0,
+              "value": 0.41563146997929523,
+              "visits": 1932
+            },
+            {
+              "action": 1,
+              "value": -0.8839285714285714,
+              "visits": 112
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
