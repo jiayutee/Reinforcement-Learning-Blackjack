@@ -120,3 +120,10 @@
 - Asserted identical outcomes across estimators within each seed. 50,000 distinct seeded hands replayed three ways, not 150,000 independent observations. Hard-20 estimates demonstrate constant-alpha weighting even without bootstrapping; rare soft-state counts were 6–14.
 - Updated today's note and separate exercise answers. No accuracy ranking or policy improvement claimed; no algorithm code changed. Previous 45-test proof remains applicable; comparison assertions passed.
 - Preserved Lesson 1 user edits. Next: a bounded browser explanation of one TD update, then the 06:00 summary. September 26 final summary remains pending.
+
+## 2026-09-26, 05:00 checkpoint — interactive TD arithmetic
+
+- Added `docs/previews/td-update.html`, an offline responsive learning exercise showing target, error, and one updated value. Terminal transitions visibly disable the next-state estimate; nonzero blackjack rewards force termination. No server or game deployment.
+- Headless Chrome checks passed: default/terminal arithmetic, bootstrap restore, invalid alpha, reset, keyboard Space, 390px no horizontal page overflow, no JS errors or HTTP requests. No full accessibility audit or manual visual review claimed. Python source unchanged; prior 45-test proof remains current.
+- Updated README and today's note with opening instructions and a terminal-zero-reward exercise. User Lesson 1 answers preserved and excluded.
+- At 06:00 link Lesson 4, today's comparison, and the browser exercise; explain bootstrapping and constant-alpha limitations, include confirmed commits. September 26 morning summary has not yet been sent.
