@@ -1,0 +1,531 @@
+{
+  "source": {
+    "python": "3.9.6",
+    "git_commit": "73f8723b207c098d939324d75eaf9295f92efb62",
+    "foundations_source_dirty": false
+  },
+  "episodes_per_run": 10000,
+  "threshold": 17,
+  "gamma": 1,
+  "seeds": [
+    7,
+    19,
+    42,
+    101,
+    2026
+  ],
+  "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+  "runs": [
+    {
+      "seed": 7,
+      "estimator": "MC",
+      "mean_return": -0.0913,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 14,
+          "value": -0.42857142857142855
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 407,
+          "value": -0.6167076167076166
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 507,
+          "value": 0.4220907297830371
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "estimator": "TD alpha=0.1",
+      "mean_return": -0.0913,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 14,
+          "value": -0.07206226706618615
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 407,
+          "value": -0.48932488642213007
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 507,
+          "value": 0.41344900281854957
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "estimator": "TD alpha=0.05",
+      "mean_return": -0.0913,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 14,
+          "value": -0.05875332012923414
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 407,
+          "value": -0.5419067623773866
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 507,
+          "value": 0.45618656587032547
+        }
+      ]
+    },
+    {
+      "seed": 19,
+      "estimator": "MC",
+      "mean_return": -0.0803,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 6,
+          "value": 0.6666666666666666
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 370,
+          "value": -0.49459459459459426
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 518,
+          "value": 0.46525096525096554
+        }
+      ]
+    },
+    {
+      "seed": 19,
+      "estimator": "TD alpha=0.1",
+      "mean_return": -0.0803,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 6,
+          "value": 0.026397171316520737
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 370,
+          "value": -0.6552992536553638
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 518,
+          "value": 0.6276589902306939
+        }
+      ]
+    },
+    {
+      "seed": 19,
+      "estimator": "TD alpha=0.05",
+      "mean_return": -0.0803,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 6,
+          "value": 0.0002602469961604072
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 370,
+          "value": -0.5599093681862733
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 518,
+          "value": 0.5721048804183214
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "estimator": "MC",
+      "mean_return": -0.0627,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 13,
+          "value": -0.0769230769230769
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 375,
+          "value": -0.5653333333333331
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 533,
+          "value": 0.43714821763602263
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "estimator": "TD alpha=0.1",
+      "mean_return": -0.0627,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 13,
+          "value": -0.07775415038524057
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 375,
+          "value": -0.599397753120961
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 533,
+          "value": 0.18701901834405918
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "estimator": "TD alpha=0.05",
+      "mean_return": -0.0627,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 13,
+          "value": -0.04719643077674256
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 375,
+          "value": -0.5512688611910361
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 533,
+          "value": 0.2987119916965605
+        }
+      ]
+    },
+    {
+      "seed": 101,
+      "estimator": "MC",
+      "mean_return": -0.0894,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 11,
+          "value": 0.18181818181818182
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 435,
+          "value": -0.593103448275862
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 529,
+          "value": 0.43667296786389403
+        }
+      ]
+    },
+    {
+      "seed": 101,
+      "estimator": "TD alpha=0.1",
+      "mean_return": -0.0894,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 11,
+          "value": -0.08566502169174313
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 435,
+          "value": -0.7456705335224623
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 529,
+          "value": 0.08661020895612886
+        }
+      ]
+    },
+    {
+      "seed": 101,
+      "estimator": "TD alpha=0.05",
+      "mean_return": -0.0894,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 11,
+          "value": -0.045177929201000666
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 435,
+          "value": -0.6775609665432882
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 529,
+          "value": 0.2811088860261949
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "estimator": "MC",
+      "mean_return": -0.0839,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 10,
+          "value": 0.19999999999999998
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 384,
+          "value": -0.5755208333333337
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 508,
+          "value": 0.40551181102362194
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "estimator": "TD alpha=0.1",
+      "mean_return": -0.0839,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 10,
+          "value": 0.023937969282082232
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 384,
+          "value": -0.6147428221635731
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 508,
+          "value": 0.24931414635222948
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "estimator": "TD alpha=0.05",
+      "mean_return": -0.0839,
+      "states": [
+        {
+          "observation": [
+            13,
+            2,
+            true
+          ],
+          "visits": 10,
+          "value": -0.011971847541870959
+        },
+        {
+          "observation": [
+            16,
+            10,
+            false
+          ],
+          "visits": 384,
+          "value": -0.6266807250333715
+        },
+        {
+          "observation": [
+            20,
+            10,
+            false
+          ],
+          "visits": 508,
+          "value": 0.2379414775486104
+        }
+      ]
+    }
+  ],
+  "limitations": "Descriptive comparison only: no ground-truth values or accuracy ranking. Same fixed policy and seed produce identical games across estimators; these are not 15 independent samples. TD uses constant alpha; MC uses first-visit sample means. Visit meanings differ in general."
+}

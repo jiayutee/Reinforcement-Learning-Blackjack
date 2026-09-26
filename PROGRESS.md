@@ -113,3 +113,10 @@
 - Preserved user Lesson 1 edits. Commit and reproduce from clean source next; later checkpoints should keep this as tonight's coherent lesson. No September 26 morning summary sent yet.
 
 - TD source checkpoint `b7fadb6` successfully pushed. Reproduced the stated 10,000-hand results from clean committed source and saved `experiments/2026-09-26-td-prediction.json` with provenance. Next: a bounded estimator comparison/presentation checkpoint at 04:00; do not interpret equal policy returns as equal value accuracy.
+
+## 2026-09-26, 04:00 checkpoint — compare prediction updates
+
+- Ran fixed MC/TD(0) comparisons with 10,000 hands per seed for seeds 7, 19, 42, 101, 2026 and TD alpha 0.1/0.05. Saved the runnable script and selected-state record with clean-source provenance (73f8723).
+- Asserted identical outcomes across estimators within each seed. 50,000 distinct seeded hands replayed three ways, not 150,000 independent observations. Hard-20 estimates demonstrate constant-alpha weighting even without bootstrapping; rare soft-state counts were 6–14.
+- Updated today's note and separate exercise answers. No accuracy ranking or policy improvement claimed; no algorithm code changed. Previous 45-test proof remains applicable; comparison assertions passed.
+- Preserved Lesson 1 user edits. Next: a bounded browser explanation of one TD update, then the 06:00 summary. September 26 final summary remains pending.
