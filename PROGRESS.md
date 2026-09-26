@@ -104,3 +104,10 @@
 - All 39 tests passed; six new tests cover evidence handling and validation. CLI output matched the saved seed-7 estimates and the checked Markdown output. No browser behavior or gameplay changes are claimed.
 - Updated today's daily note and README with a soft-18 evidence exercise and reproduction commands. Data provenance remains the original clean-source control checkpoint 4b93436; the renderer is new in this checkpoint.
 - Preserved and excluded the user's local Lesson 1 answers. The 06:00 summary should link Lesson 3, today's five-seed results, and the policy table, report 39 passing tests, and state that advantage over threshold is not established. No final summary for 25 September has been sent yet.
+
+## 2026-09-26, 03:00 checkpoint — TD(0) prediction
+
+- Added `foundations/td.py`: online fixed-policy prediction, explicit terminal masking, constant alpha, per-transition counts, and a first-hand arithmetic trace. Kept the artifact distinct from MC exports.
+- Added Lesson 4, separate solutions, README entry, and today's daily note. Recaps foundations and distinguishes prediction from control, sample means from constant-alpha estimates, and terminal pushes from unfinished zero rewards.
+- All 45 tests passed, including six new TD tests. Seed-7/10,000 preview outcomes match MC exactly, as expected for the same fixed policy; value estimates differ. No accuracy or policy-improvement claim.
+- Preserved user Lesson 1 edits. Commit and reproduce from clean source next; later checkpoints should keep this as tonight's coherent lesson. No September 26 morning summary sent yet.

@@ -27,6 +27,8 @@ Next: [Lesson 3 — learn hit/stand decisions](docs/lessons/03-monte-carlo-contr
 
 Inspect the [learned hit/stand table](docs/previews/monte-carlo-policy.md), including low-visit warnings.
 
+Continue with [Lesson 4 — temporal-difference prediction](docs/lessons/04-temporal-difference-prediction.md): `python3 -m foundations.td --trace`. [26 September notes](docs/daily/2026-09-26.md).
+
 See [the project plan](PROJECT_PLAN.md) and [progress](PROGRESS.md). The `foundations/` package uses simplified, explicitly documented rules. The code below is the preserved early prototype; its agents and realistic rules have not yet been fully audited. In particular, the adaptive dealer is an alternative-game experiment.
 
 ## Original prototype
