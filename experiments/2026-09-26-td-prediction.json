@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "artifact_type": "td_prediction",
+  "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+  "estimator": "online TD(0) state-value prediction",
+  "gamma": 1.0,
+  "alpha": 0.1,
+  "initial_value": 0.0,
+  "policy": {
+    "name": "threshold",
+    "hit_below": 17,
+    "learned": false
+  },
+  "episodes": 10000,
+  "seed": 7,
+  "wins": 4009,
+  "losses": 4922,
+  "pushes": 1069,
+  "mean_return": -0.0913,
+  "first_episode": [
+    {
+      "observation": [
+        9,
+        7,
+        false
+      ],
+      "action": 1,
+      "reward": 0.0,
+      "next_observation": [
+        20,
+        7,
+        true
+      ],
+      "done": false,
+      "old_value": 0.0,
+      "bootstrap": 0.0,
+      "target": 0.0,
+      "td_error": 0.0,
+      "new_value": 0.0
+    },
+    {
+      "observation": [
+        20,
+        7,
+        true
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "next_observation": [
+        20,
+        7,
+        true
+      ],
+      "done": true,
+      "old_value": 0.0,
+      "bootstrap": 0.0,
+      "target": 1.0,
+      "td_error": 1.0,
+      "new_value": 0.1
+    }
+  ],
+  "states": [
+    {
+      "observation": [
+        13,
+        2,
+        true
+      ],
+      "visits": 14,
+      "value": -0.07206226706618615
+    },
+    {
+      "observation": [
+        16,
+        10,
+        false
+      ],
+      "visits": 407,
+      "value": -0.48932488642213007
+    },
+    {
+      "observation": [
+        20,
+        10,
+        false
+      ],
+      "visits": 507,
+      "value": 0.41344900281854957
+    }
+  ],
+  "source": {
+    "python": "3.9.6",
+    "git_commit": "b7fadb672065ac5f0a5e7c7a19edc5587e3e187a",
+    "foundations_source_dirty": false
+  },
+  "record_note": "Selected states only; regenerate full export using the command in the daily note. No accuracy benchmark or improved playing policy is claimed."
+}

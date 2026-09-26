@@ -111,3 +111,5 @@
 - Added Lesson 4, separate solutions, README entry, and today's daily note. Recaps foundations and distinguishes prediction from control, sample means from constant-alpha estimates, and terminal pushes from unfinished zero rewards.
 - All 45 tests passed, including six new TD tests. Seed-7/10,000 preview outcomes match MC exactly, as expected for the same fixed policy; value estimates differ. No accuracy or policy-improvement claim.
 - Preserved user Lesson 1 edits. Commit and reproduce from clean source next; later checkpoints should keep this as tonight's coherent lesson. No September 26 morning summary sent yet.
+
+- TD source checkpoint `b7fadb6` successfully pushed. Reproduced the stated 10,000-hand results from clean committed source and saved `experiments/2026-09-26-td-prediction.json` with provenance. Next: a bounded estimator comparison/presentation checkpoint at 04:00; do not interpret equal policy returns as equal value accuracy.
