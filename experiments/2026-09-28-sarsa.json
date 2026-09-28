@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "artifact_type": "sarsa_control",
+  "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+  "algorithm": "one-step on-policy SARSA",
+  "gamma": 1.0,
+  "training": {
+    "episodes": 50000,
+    "environment_seed": 7,
+    "agent_seed": 8,
+    "alpha": 0.1,
+    "epsilon": 0.1,
+    "outcomes": {
+      "wins": 20213,
+      "losses": 25676,
+      "pushes": 4111,
+      "mean_return": -0.10926
+    }
+  },
+  "first_episode": [
+    {
+      "state": [
+        9,
+        7,
+        false
+      ],
+      "action": 1,
+      "reward": 0.0,
+      "next_state": [
+        20,
+        7,
+        true
+      ],
+      "next_action": 0,
+      "done": false,
+      "old_value": 0.0,
+      "bootstrap": 0.0,
+      "target": 0.0,
+      "td_error": 0.0,
+      "new_value": 0.0
+    },
+    {
+      "state": [
+        20,
+        7,
+        true
+      ],
+      "action": 0,
+      "reward": 1.0,
+      "next_state": [
+        20,
+        7,
+        true
+      ],
+      "next_action": null,
+      "done": true,
+      "old_value": 0.0,
+      "bootstrap": 0.0,
+      "target": 1.0,
+      "td_error": 1.0,
+      "new_value": 0.1
+    }
+  ],
+  "evaluation": [
+    {
+      "policy": "greedy",
+      "seed": 1000007,
+      "episodes": 20000,
+      "wins": 8534,
+      "losses": 9642,
+      "pushes": 1824,
+      "mean_return": -0.0554,
+      "standard_error": 0.006729695865365835,
+      "approx_95pct_interval": [
+        -0.06859020389611703,
+        -0.04220979610388296
+      ],
+      "decisions": 31325,
+      "unvisited_selected_actions": 0
+    },
+    {
+      "policy": "threshold",
+      "seed": 1000007,
+      "episodes": 20000,
+      "wins": 8157,
+      "losses": 9796,
+      "pushes": 2047,
+      "mean_return": -0.08195,
+      "standard_error": 0.006674499031527841,
+      "approx_95pct_interval": [
+        -0.09503201810179457,
+        -0.06886798189820542
+      ],
+      "decisions": 32430,
+      "unvisited_selected_actions": null
+    },
+    {
+      "policy": "random",
+      "seed": 1000007,
+      "episodes": 20000,
+      "wins": 5725,
+      "losses": 13498,
+      "pushes": 777,
+      "mean_return": -0.38865,
+      "standard_error": 0.006364517595954265,
+      "approx_95pct_interval": [
+        -0.4011244544880704,
+        -0.3761755455119296
+      ],
+      "decisions": 27430,
+      "unvisited_selected_actions": null
+    }
+  ],
+  "evaluation_note": "Frozen greedy policy differs from exploratory training behavior. Stand on ties; unseen Q initializes at zero. Intervals cover game sampling only. Equal evaluation seeds do not imply paired hands across policies.",
+  "states": [
+    {
+      "observation": [
+        12,
+        6,
+        false
+      ],
+      "greedy_action": 1,
+      "actions": [
+        {
+          "action": 0,
+          "visits": 138,
+          "value": -0.3870172716743573
+        },
+        {
+          "action": 1,
+          "visits": 312,
+          "value": -0.3650510381612213
+        }
+      ]
+    },
+    {
+      "observation": [
+        16,
+        10,
+        false
+      ],
+      "greedy_action": 1,
+      "actions": [
+        {
+          "action": 0,
+          "visits": 609,
+          "value": -0.8105150985240631
+        },
+        {
+          "action": 1,
+          "visits": 1215,
+          "value": -0.6022675599712155
+        }
+      ]
+    },
+    {
+      "observation": [
+        18,
+        9,
+        true
+      ],
+      "greedy_action": 1,
+      "actions": [
+        {
+          "action": 0,
+          "visits": 28,
+          "value": -0.3598458081325658
+        },
+        {
+          "action": 1,
+          "visits": 44,
+          "value": -0.1583507595246035
+        }
+      ]
+    },
+    {
+      "observation": [
+        20,
+        10,
+        false
+      ],
+      "greedy_action": 0,
+      "actions": [
+        {
+          "action": 0,
+          "visits": 2167,
+          "value": 0.48901604507183405
+        },
+        {
+          "action": 1,
+          "visits": 112,
+          "value": -0.8430403684904102
+        }
+      ]
+    }
+  ],
+  "source": {
+    "python": "3.9.6",
+    "git_commit": "176a2ab4d6cb64995d2b166ed0f570da52df5cea",
+    "foundations_source_dirty": false
+  },
+  "record_note": "Selected states only; regenerate full export with the daily command and --output."
+}
