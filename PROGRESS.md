@@ -127,3 +127,10 @@
 - Headless Chrome checks passed: default/terminal arithmetic, bootstrap restore, invalid alpha, reset, keyboard Space, 390px no horizontal page overflow, no JS errors or HTTP requests. No full accessibility audit or manual visual review claimed. Python source unchanged; prior 45-test proof remains current.
 - Updated README and today's note with opening instructions and a terminal-zero-reward exercise. User Lesson 1 answers preserved and excluded.
 - At 06:00 link Lesson 4, today's comparison, and the browser exercise; explain bootstrapping and constant-alpha limitations, include confirmed commits. September 26 morning summary has not yet been sent.
+
+## 2026-09-28, first checkpoint — SARSA
+
+- No completed September 27 checkpoint found; cause unknown. September 26 summary was delivered in the task (superseding its pending-summary notes).
+- Added one-step on-policy SARSA with selected-action targets, terminal masking, carried-forward next actions, separate evaluation seeds, trace and distinct export type. Reused existing exploration and frozen evaluator.
+- Added Lesson 5, separate solutions, daily note, README link. All 50 tests passed, including five SARSA tests. Preliminary seed-7 greedy mean -0.05540; no general superiority claim from a single training run.
+- Preserved the user’s Lesson 1 edits. Next: record clean-source results, then replicate unchanged settings at the next checkpoint. No September 28 morning summary sent yet.
