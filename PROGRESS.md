@@ -136,3 +136,10 @@
 - Preserved the user’s Lesson 1 edits. Next: record clean-source results, then replicate unchanged settings at the next checkpoint. No September 28 morning summary sent yet.
 
 - Source `176a2ab` pushed successfully; clean-source reproduction matched the preview. Saved `experiments/2026-09-28-sarsa.json`.
+
+## 2026-09-29, 03:00 checkpoint — SARSA replication
+
+- Repeated unchanged alpha/epsilon=0.1, 50,000 training hands and 20,000 evaluation hands per policy for seeds 7,19,42,101,2026. Saved compact records and a beginner-friendly daily lesson with equations, reproduction commands and separate answers.
+- Greedy mean -0.06249, threshold -0.07970, random -0.39771. Greedy run-mean sample SD 0.006905 combines training and evaluation noise. All five greedy runs exceeded threshold, but this small reused-seed experiment is not proof of optimality or a fresh final benchmark.
+- Source b150217 had clean Foundations code; seed 7 reproduced the earlier result. Algorithm code unchanged, prior 50-test proof remains applicable. User Lesson 1 edits preserved.
+- September 28 summary was delivered late; September 29 summary pending for 06:00. Next: inspect SARSA action evidence in the learning interface.

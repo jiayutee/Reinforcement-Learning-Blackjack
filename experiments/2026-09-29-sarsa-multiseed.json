@@ -1,0 +1,379 @@
+{
+  "source": {
+    "python": "3.9.6",
+    "git_commit": "b15021707ed87755b7a2ffb9a3a33f25e9987133",
+    "foundations_source_dirty": false
+  },
+  "runs": [
+    {
+      "schema_version": 1,
+      "artifact_type": "sarsa_control",
+      "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+      "algorithm": "one-step on-policy SARSA",
+      "gamma": 1.0,
+      "training": {
+        "episodes": 50000,
+        "environment_seed": 7,
+        "agent_seed": 8,
+        "alpha": 0.1,
+        "epsilon": 0.1,
+        "outcomes": {
+          "wins": 20213,
+          "losses": 25676,
+          "pushes": 4111,
+          "mean_return": -0.10926
+        }
+      },
+      "evaluation": [
+        {
+          "policy": "greedy",
+          "seed": 1000007,
+          "episodes": 20000,
+          "wins": 8534,
+          "losses": 9642,
+          "pushes": 1824,
+          "mean_return": -0.0554,
+          "standard_error": 0.006729695865365835,
+          "approx_95pct_interval": [
+            -0.06859020389611703,
+            -0.04220979610388296
+          ],
+          "decisions": 31325,
+          "unvisited_selected_actions": 0
+        },
+        {
+          "policy": "threshold",
+          "seed": 1000007,
+          "episodes": 20000,
+          "wins": 8157,
+          "losses": 9796,
+          "pushes": 2047,
+          "mean_return": -0.08195,
+          "standard_error": 0.006674499031527841,
+          "approx_95pct_interval": [
+            -0.09503201810179457,
+            -0.06886798189820542
+          ],
+          "decisions": 32430,
+          "unvisited_selected_actions": null
+        },
+        {
+          "policy": "random",
+          "seed": 1000007,
+          "episodes": 20000,
+          "wins": 5725,
+          "losses": 13498,
+          "pushes": 777,
+          "mean_return": -0.38865,
+          "standard_error": 0.006364517595954265,
+          "approx_95pct_interval": [
+            -0.4011244544880704,
+            -0.3761755455119296
+          ],
+          "decisions": 27430,
+          "unvisited_selected_actions": null
+        }
+      ],
+      "evaluation_note": "Frozen greedy policy differs from exploratory training behavior. Stand on ties; unseen Q initializes at zero. Intervals cover game sampling only. Equal evaluation seeds do not imply paired hands across policies."
+    },
+    {
+      "schema_version": 1,
+      "artifact_type": "sarsa_control",
+      "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+      "algorithm": "one-step on-policy SARSA",
+      "gamma": 1.0,
+      "training": {
+        "episodes": 50000,
+        "environment_seed": 19,
+        "agent_seed": 20,
+        "alpha": 0.1,
+        "epsilon": 0.1,
+        "outcomes": {
+          "wins": 20260,
+          "losses": 25540,
+          "pushes": 4200,
+          "mean_return": -0.1056
+        }
+      },
+      "evaluation": [
+        {
+          "policy": "greedy",
+          "seed": 1000019,
+          "episodes": 20000,
+          "wins": 8468,
+          "losses": 9679,
+          "pushes": 1853,
+          "mean_return": -0.06055,
+          "standard_error": 0.006722086297959128,
+          "approx_95pct_interval": [
+            -0.0737252891439999,
+            -0.047374710856000105
+          ],
+          "decisions": 31246,
+          "unvisited_selected_actions": 0
+        },
+        {
+          "policy": "threshold",
+          "seed": 1000019,
+          "episodes": 20000,
+          "wins": 8184,
+          "losses": 9729,
+          "pushes": 2087,
+          "mean_return": -0.07725,
+          "standard_error": 0.006669808557395753,
+          "approx_95pct_interval": [
+            -0.09032282477249567,
+            -0.06417717522750432
+          ],
+          "decisions": 32435,
+          "unvisited_selected_actions": null
+        },
+        {
+          "policy": "random",
+          "seed": 1000019,
+          "episodes": 20000,
+          "wins": 5494,
+          "losses": 13620,
+          "pushes": 886,
+          "mean_return": -0.4063,
+          "standard_error": 0.006287526711641667,
+          "approx_95pct_interval": [
+            -0.4186235523548177,
+            -0.3939764476451823
+          ],
+          "decisions": 27541,
+          "unvisited_selected_actions": null
+        }
+      ],
+      "evaluation_note": "Frozen greedy policy differs from exploratory training behavior. Stand on ties; unseen Q initializes at zero. Intervals cover game sampling only. Equal evaluation seeds do not imply paired hands across policies."
+    },
+    {
+      "schema_version": 1,
+      "artifact_type": "sarsa_control",
+      "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+      "algorithm": "one-step on-policy SARSA",
+      "gamma": 1.0,
+      "training": {
+        "episodes": 50000,
+        "environment_seed": 42,
+        "agent_seed": 43,
+        "alpha": 0.1,
+        "epsilon": 0.1,
+        "outcomes": {
+          "wins": 20308,
+          "losses": 25444,
+          "pushes": 4248,
+          "mean_return": -0.10272
+        }
+      },
+      "evaluation": [
+        {
+          "policy": "greedy",
+          "seed": 1000042,
+          "episodes": 20000,
+          "wins": 8418,
+          "losses": 9849,
+          "pushes": 1733,
+          "mean_return": -0.07155,
+          "standard_error": 0.006738976225290326,
+          "approx_95pct_interval": [
+            -0.08475839340156904,
+            -0.05834160659843096
+          ],
+          "decisions": 31006,
+          "unvisited_selected_actions": 0
+        },
+        {
+          "policy": "threshold",
+          "seed": 1000042,
+          "episodes": 20000,
+          "wins": 8162,
+          "losses": 9803,
+          "pushes": 2035,
+          "mean_return": -0.08205,
+          "standard_error": 0.006676684714807121,
+          "approx_95pct_interval": [
+            -0.09513630204102196,
+            -0.06896369795897804
+          ],
+          "decisions": 32644,
+          "unvisited_selected_actions": null
+        },
+        {
+          "policy": "random",
+          "seed": 1000042,
+          "episodes": 20000,
+          "wins": 5543,
+          "losses": 13625,
+          "pushes": 832,
+          "mean_return": -0.4041,
+          "standard_error": 0.006305326903291206,
+          "approx_95pct_interval": [
+            -0.4164584407304508,
+            -0.39174155926954923
+          ],
+          "decisions": 27508,
+          "unvisited_selected_actions": null
+        }
+      ],
+      "evaluation_note": "Frozen greedy policy differs from exploratory training behavior. Stand on ties; unseen Q initializes at zero. Intervals cover game sampling only. Equal evaluation seeds do not imply paired hands across policies."
+    },
+    {
+      "schema_version": 1,
+      "artifact_type": "sarsa_control",
+      "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+      "algorithm": "one-step on-policy SARSA",
+      "gamma": 1.0,
+      "training": {
+        "episodes": 50000,
+        "environment_seed": 101,
+        "agent_seed": 102,
+        "alpha": 0.1,
+        "epsilon": 0.1,
+        "outcomes": {
+          "wins": 20019,
+          "losses": 25779,
+          "pushes": 4202,
+          "mean_return": -0.1152
+        }
+      },
+      "evaluation": [
+        {
+          "policy": "greedy",
+          "seed": 1000101,
+          "episodes": 20000,
+          "wins": 8321,
+          "losses": 9675,
+          "pushes": 2004,
+          "mean_return": -0.0677,
+          "standard_error": 0.006690521179525754,
+          "approx_95pct_interval": [
+            -0.08081342151187047,
+            -0.05458657848812952
+          ],
+          "decisions": 31746,
+          "unvisited_selected_actions": 0
+        },
+        {
+          "policy": "threshold",
+          "seed": 1000101,
+          "episodes": 20000,
+          "wins": 8089,
+          "losses": 9791,
+          "pushes": 2120,
+          "mean_return": -0.0851,
+          "standard_error": 0.006658837474050955,
+          "approx_95pct_interval": [
+            -0.09815132144913986,
+            -0.07204867855086013
+          ],
+          "decisions": 32595,
+          "unvisited_selected_actions": null
+        },
+        {
+          "policy": "random",
+          "seed": 1000101,
+          "episodes": 20000,
+          "wins": 5643,
+          "losses": 13456,
+          "pushes": 901,
+          "mean_return": -0.39065,
+          "standard_error": 0.006333966753286726,
+          "approx_95pct_interval": [
+            -0.403064574836442,
+            -0.378235425163558
+          ],
+          "decisions": 27616,
+          "unvisited_selected_actions": null
+        }
+      ],
+      "evaluation_note": "Frozen greedy policy differs from exploratory training behavior. Stand on ties; unseen Q initializes at zero. Intervals cover game sampling only. Equal evaluation seeds do not imply paired hands across policies."
+    },
+    {
+      "schema_version": 1,
+      "artifact_type": "sarsa_control",
+      "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+      "algorithm": "one-step on-policy SARSA",
+      "gamma": 1.0,
+      "training": {
+        "episodes": 50000,
+        "environment_seed": 2026,
+        "agent_seed": 2027,
+        "alpha": 0.1,
+        "epsilon": 0.1,
+        "outcomes": {
+          "wins": 20198,
+          "losses": 25711,
+          "pushes": 4091,
+          "mean_return": -0.11026
+        }
+      },
+      "evaluation": [
+        {
+          "policy": "greedy",
+          "seed": 1002026,
+          "episodes": 20000,
+          "wins": 8472,
+          "losses": 9617,
+          "pushes": 1911,
+          "mean_return": -0.05725,
+          "standard_error": 0.006712739747580412,
+          "approx_95pct_interval": [
+            -0.0704069699052576,
+            -0.04409303009474239
+          ],
+          "decisions": 32111,
+          "unvisited_selected_actions": 0
+        },
+        {
+          "policy": "threshold",
+          "seed": 1002026,
+          "episodes": 20000,
+          "wins": 8255,
+          "losses": 9698,
+          "pushes": 2047,
+          "mean_return": -0.07215,
+          "standard_error": 0.00668015344864958,
+          "approx_95pct_interval": [
+            -0.08524310075935318,
+            -0.05905689924064683
+          ],
+          "decisions": 32473,
+          "unvisited_selected_actions": null
+        },
+        {
+          "policy": "random",
+          "seed": 1002026,
+          "episodes": 20000,
+          "wins": 5578,
+          "losses": 13555,
+          "pushes": 867,
+          "mean_return": -0.39885,
+          "standard_error": 0.006315095240484883,
+          "approx_95pct_interval": [
+            -0.41122758667135034,
+            -0.3864724133286496
+          ],
+          "decisions": 27309,
+          "unvisited_selected_actions": null
+        }
+      ],
+      "evaluation_note": "Frozen greedy policy differs from exploratory training behavior. Stand on ties; unseen Q initializes at zero. Intervals cover game sampling only. Equal evaluation seeds do not imply paired hands across policies."
+    }
+  ],
+  "summary": {
+    "greedy": {
+      "mean": -0.06249,
+      "sample_sd": 0.006905016292522416
+    },
+    "threshold": {
+      "mean": -0.0797,
+      "sample_sd": 0.005068283733178319
+    },
+    "random": {
+      "mean": -0.39771,
+      "sample_sd": 0.007871578621852166
+    }
+  },
+  "limitations": "Five training seeds, fixed alpha and epsilon 0.1. Run variation combines training and evaluation randomness. Seed 7 repeats the first experiment, counted once. No parameter tuning or superiority claim."
+}
