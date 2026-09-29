@@ -150,3 +150,9 @@
 - Generated `docs/previews/sarsa-policy.md` from the original clean-source seed-7 export (176a2ab), not an aggregate policy. Linked the snapshot and added an evidence exercise and separate answer.
 - All 52 tests passed; actual export rendered successfully. No browser behavior or game deployment changes. User Lesson 1 edits preserved and excluded.
 - Next checkpoint can improve lesson navigation/presentation; keep replication and evidence interpretation as tonight's focus. September 29 morning summary remains pending.
+
+## 2026-09-29, 05:00 checkpoint — learning hub
+
+- Added a static local learning hub linking ordered GitHub lessons, offline HTML exercises, and evidence tables. Clearly distinguishes online reading from offline interaction and unfinished public gameplay.
+- Verified all 10 links map to existing project files; no remote availability, visual or accessibility audit claimed. Algorithm code unchanged; prior 52-test result remains current.
+- Updated README and daily note. User Lesson 1 answers untouched. At 06:00 summarize replication, policy evidence, hub opening command, and confirmed commits. No September 29 morning summary sent yet.

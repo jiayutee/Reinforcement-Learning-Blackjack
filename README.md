@@ -1,5 +1,7 @@
 # Blackjack RL Framework
 
+Open the [learning hub](docs/previews/index.html) locally with `open docs/previews/index.html`. It links browser exercises and readable GitHub lessons.
+
 ## Start the guided course
 
 This project is being developed into a step-by-step RL course and a public blackjack web game. The web game is not deployed yet.
