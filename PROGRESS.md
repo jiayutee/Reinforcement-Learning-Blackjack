@@ -143,3 +143,10 @@
 - Greedy mean -0.06249, threshold -0.07970, random -0.39771. Greedy run-mean sample SD 0.006905 combines training and evaluation noise. All five greedy runs exceeded threshold, but this small reused-seed experiment is not proof of optimality or a fresh final benchmark.
 - Source b150217 had clean Foundations code; seed 7 reproduced the earlier result. Algorithm code unchanged, prior 50-test proof remains applicable. User Lesson 1 edits preserved.
 - September 28 summary was delivered late; September 29 summary pending for 06:00. Next: inspect SARSA action evidence in the learning interface.
+
+## 2026-09-29, 04:00 checkpoint — SARSA policy evidence
+
+- Extended the existing policy-table renderer to accept explicit SARSA exports with validated alpha and algorithm-specific explanations, preserving MC support and unknown/low-count warnings.
+- Generated `docs/previews/sarsa-policy.md` from the original clean-source seed-7 export (176a2ab), not an aggregate policy. Linked the snapshot and added an evidence exercise and separate answer.
+- All 52 tests passed; actual export rendered successfully. No browser behavior or game deployment changes. User Lesson 1 edits preserved and excluded.
+- Next checkpoint can improve lesson navigation/presentation; keep replication and evidence interpretation as tonight's focus. September 29 morning summary remains pending.

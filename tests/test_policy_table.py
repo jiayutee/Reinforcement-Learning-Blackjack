@@ -50,6 +50,22 @@ class PolicyTableTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             render_policy_table(self.report)
 
+    def test_sarsa_label_alpha_and_evidence(self):
+        self.report['artifact_type'] = 'sarsa_control'
+        self.report['training']['alpha'] = 0.1
+        text = render_policy_table(self.report)
+        self.assertIn('one-step SARSA, constant alpha 0.1', text)
+        self.assertIn('not sample means', text)
+        self.assertIn('+0.40000 / 50', text)
+        self.assertNotIn('Algorithm: first-visit Monte Carlo', text)
+        for alpha in (None, 0, 1.1, float('nan'), True):
+            self.report['training']['alpha'] = alpha
+            with self.assertRaises(ValueError):
+                render_policy_table(self.report)
+
+    def test_mc_algorithm_label(self):
+        self.assertIn('Algorithm: first-visit Monte Carlo', render_policy_table(self.report))
+
 
 if __name__ == '__main__':
     unittest.main()

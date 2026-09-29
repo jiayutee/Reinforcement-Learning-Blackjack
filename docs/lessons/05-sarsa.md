@@ -55,7 +55,7 @@ python3 -m unittest discover -s tests -v
 
 The trace shows the first hand's numbers at update time. Early nonterminal targets may be zero because initialization is zero. Evaluation freezes Q and uses a greedy policy on a separate seed, with stand on ties. This differs from exploratory training behavior. Evaluation reuses the established [control evaluator](../../foundations/control.py), so it never updates Q.
 
-The JSON is labelled `sarsa_control`; existing MC-only renderers should reject it rather than mislabel the algorithm. Unvisited actions export null and zero visits, although action selection uses their initial value zero.
+The JSON is labelled `sarsa_control`; the policy-table renderer now accepts it with an explicit SARSA label and alpha. The state-value map remains incompatible. Unvisited actions export null and zero visits, although action selection uses their initial value zero.
 
 Seed 7's preliminary frozen-greedy mean was -0.05540 over 20,000 evaluation hands; threshold was -0.08195 and random -0.38865. These are net reward units per hand. The approximate 95% interval for greedy was [-0.06859, -0.04221], reflecting evaluation sampling only, not variation in training. Equal evaluation seeds do not create identical hands across different policies. Several independent training seeds are needed before generalizing. Do not tune parameters on these results and then call the same evaluation a held-out test.
 
