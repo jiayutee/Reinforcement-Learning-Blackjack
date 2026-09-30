@@ -66,6 +66,20 @@ class PolicyTableTests(unittest.TestCase):
     def test_mc_algorithm_label(self):
         self.assertIn('Algorithm: first-visit Monte Carlo', render_policy_table(self.report))
 
+    def test_q_learning_label_and_alpha(self):
+        self.report['artifact_type'] = 'q_learning_control'
+        self.report['training']['alpha'] = 0.1
+        text = render_policy_table(self.report)
+        self.assertIn('Algorithm: one-step Q-learning, constant alpha 0.1', text)
+        self.assertIn('largest next Q estimate', text)
+        self.assertIn('+0.40000 / 50', text)
+        self.assertNotIn('Algorithm: one-step SARSA', text)
+        self.assertNotIn('Algorithm: first-visit Monte Carlo', text)
+        for alpha in (None, 0, 1.1, float('nan'), True):
+            self.report['training']['alpha'] = alpha
+            with self.assertRaises(ValueError):
+                render_policy_table(self.report)
+
 
 if __name__ == '__main__':
     unittest.main()

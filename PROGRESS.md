@@ -172,3 +172,9 @@
 - Greedy mean -0.06923 versus threshold -0.07970; three runs better, two worse. Greedy run-mean SD 0.009453 mixes training and evaluation noise. No superiority or algorithm-ranking claim; reused evaluation seeds are not a fresh final benchmark.
 - Seed 7 reproduced the earlier result. No algorithm changes; prior 57-test proof remains current. User Lesson 1 edits preserved.
 - Next: Q-learning-labelled policy evidence. September 30 morning summary pending for 06:00.
+
+## 2026-09-30, 05:00 checkpoint — Q-learning policy evidence
+
+- Extended the existing policy renderer with explicit Q-learning labels and alpha validation; preserved MC/SARSA behavior. Generated a seed-7 snapshot from clean source 8124f26 and linked it and Lesson 6 in the learning hub.
+- All 58 tests passed; real-export CLI rendering succeeded. Checked hub links against project files; no browser visual audit claimed. Added count-warning exercise with separate answer.
+- User Lesson 1 edits excluded. At 06:00 link Lesson 6, replication, snapshot/hub; report five-seed mean -0.06923 vs threshold -0.07970 without established superiority, tests and commits. September 30 summary remains pending.

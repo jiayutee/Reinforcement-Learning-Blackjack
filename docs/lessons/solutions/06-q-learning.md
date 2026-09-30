@@ -9,3 +9,7 @@
 ## Replication exercise
 
 Seed 42: -0.05755 - (-0.08205) = **+0.02450** reward units per hand. A relative improvement can still leave both policies with negative returns; the sampled Q-learning average is -0.06923. Expected profit is not established by these samples. Keeping unfavorable seeds avoids selecting only favorable evidence and exposes sensitivity to training/evaluation randomness.
+
+## Policy evidence exercise
+
+The cell changes from `S` to `S*`: stand has 97 updates, below 100. Both actions must meet the cutoff to avoid a warning. The action remains stand because the cutoff changes only presentation, not estimates or decisions. An unmarked cell is not a confidence guarantee.

@@ -10,18 +10,18 @@ RULES = "foundations-v1: replacement draws, S17, no natural bonus, hit/stand"
 
 
 def index_states(report):
-    if not isinstance(report, dict) or report.get("schema_version") != 1 or report.get("artifact_type") not in ("monte_carlo_control", "sarsa_control") or report.get("rules") != RULES or report.get("gamma") != 1:
-        raise ValueError("Expected a Foundations MC or SARSA control export, not a V(s) export.")
+    if not isinstance(report, dict) or report.get("schema_version") != 1 or report.get("artifact_type") not in ("monte_carlo_control", "sarsa_control", "q_learning_control") or report.get("rules") != RULES or report.get("gamma") != 1:
+        raise ValueError("Expected a Foundations MC, SARSA or Q-learning control export, not a V(s) export.")
     training = report.get("training", {})
     if not isinstance(training, dict) or type(training.get("episodes")) is not int or training["episodes"] < 1 or type(training.get("environment_seed")) is not int:
         raise ValueError("Invalid training metadata.")
     epsilon = training.get("epsilon")
     if type(epsilon) not in (int, float) or not math.isfinite(epsilon) or not 0 <= epsilon <= 1:
         raise ValueError("Invalid epsilon.")
-    if report["artifact_type"] == "sarsa_control":
+    if report["artifact_type"] in ("sarsa_control", "q_learning_control"):
         alpha = training.get("alpha")
         if type(alpha) not in (int, float) or not math.isfinite(alpha) or not 0 < alpha <= 1:
-            raise ValueError("Invalid SARSA alpha.")
+            raise ValueError("Invalid TD-control alpha.")
     if not isinstance(report.get("states"), list):
         raise ValueError("Expected the full states list, not a compact experiment record.")
     indexed = {}
@@ -81,6 +81,9 @@ def render_policy_table(report, minimum_visits=20):
     if report["artifact_type"] == "sarsa_control":
         lines += [f"Algorithm: one-step SARSA, constant alpha {training['alpha']}. Counts are updates; Q values are not sample means.",
                   "Training explores; this table shows frozen greedy choices. These estimates need not equal returns under the final greedy policy.", ""]
+    elif report["artifact_type"] == "q_learning_control":
+        lines += [f"Algorithm: one-step Q-learning, constant alpha {training['alpha']}. Counts are updates; Q values are not sample means.",
+                  "Training explores but targets the largest next Q estimate. This table shows frozen greedy choices, not proof of optimal play.", ""]
     else:
         lines += ["Algorithm: first-visit Monte Carlo control. Counts are first visits per state-action pair per hand.", ""]
     for soft in (False, True):

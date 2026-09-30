@@ -56,7 +56,7 @@ python3 -m foundations.q_learning --episodes 50000 --eval-episodes 20000 --seed 
 python3 -m unittest discover -s tests -v
 ```
 
-Evaluation freezes Q, removes exploration and uses a separate environment seed; ties prefer stand. It shares the established evaluator with SARSA and MC. The export is `q_learning_control`; existing policy-table renderers currently reject that type rather than silently mislabel it.
+Evaluation freezes Q, removes exploration and uses a separate environment seed; ties prefer stand. It shares the established evaluator with SARSA and MC. The export is `q_learning_control`; the policy-table renderer accepts that type with an explicit Q-learning label and validates its alpha. State-value exports remain separate.
 
 First seed-7 run: greedy mean **-0.08295** over 20,000 evaluation hands, approximate interval [-0.09615, -0.06975]; threshold -0.08195; random -0.38865. The greedy-minus-threshold difference is -0.00100 in this sample. This is not an established performance difference. The interval reflects evaluation game sampling only, not training variability. Equal seeds across policies do not guarantee identical hands, and these evaluation seeds have appeared in earlier experiments.
 
