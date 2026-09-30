@@ -163,3 +163,5 @@
 - Added Lesson 6, separate answers, daily record and README link. All 57 tests passed, including five new Q-learning tests.
 - Seed-7 preview greedy mean -0.08295 versus threshold -0.08195. No superiority/inferiority inference from one seed. Next: clean-source reproduction, multi-seed replication, correctly labelled evidence.
 - User Lesson 1 edits preserved. September 29 summary delivered; September 30 summary pending for 06:00.
+
+- Source `8124f26` successfully pushed. Clean-source results reproduced and recorded in `experiments/2026-09-30-q-learning.json`.
