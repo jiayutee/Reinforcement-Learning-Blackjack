@@ -165,3 +165,10 @@
 - User Lesson 1 edits preserved. September 29 summary delivered; September 30 summary pending for 06:00.
 
 - Source `8124f26` successfully pushed. Clean-source results reproduced and recorded in `experiments/2026-09-30-q-learning.json`.
+
+## 2026-09-30, 04:00 checkpoint — Q-learning replication
+
+- Ran unchanged settings across seeds 7,19,42,101,2026; saved compact records with clean-source provenance (36bbe25), reproduction commands and an interpretation exercise with separate answers.
+- Greedy mean -0.06923 versus threshold -0.07970; three runs better, two worse. Greedy run-mean SD 0.009453 mixes training and evaluation noise. No superiority or algorithm-ranking claim; reused evaluation seeds are not a fresh final benchmark.
+- Seed 7 reproduced the earlier result. No algorithm changes; prior 57-test proof remains current. User Lesson 1 edits preserved.
+- Next: Q-learning-labelled policy evidence. September 30 morning summary pending for 06:00.
