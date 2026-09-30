@@ -156,3 +156,10 @@
 - Added a static local learning hub linking ordered GitHub lessons, offline HTML exercises, and evidence tables. Clearly distinguishes online reading from offline interaction and unfinished public gameplay.
 - Verified all 10 links map to existing project files; no remote availability, visual or accessibility audit claimed. Algorithm code unchanged; prior 52-test result remains current.
 - Updated README and daily note. User Lesson 1 answers untouched. At 06:00 summarize replication, policy evidence, hub opening command, and confirmed commits. No September 29 morning summary sent yet.
+
+## 2026-09-30, 03:00 checkpoint — Q-learning
+
+- Added explicit off-policy Q-learning with max-next-Q targets, terminal masking, epsilon-greedy behavior, trace and a distinct export type. Reused environment/exploration/evaluation; no existing algorithm changes.
+- Added Lesson 6, separate answers, daily record and README link. All 57 tests passed, including five new Q-learning tests.
+- Seed-7 preview greedy mean -0.08295 versus threshold -0.08195. No superiority/inferiority inference from one seed. Next: clean-source reproduction, multi-seed replication, correctly labelled evidence.
+- User Lesson 1 edits preserved. September 29 summary delivered; September 30 summary pending for 06:00.
