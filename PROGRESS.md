@@ -185,3 +185,9 @@
 - Added a beginner lesson in today's daily note connecting internal state, RL observation and browser disclosure, with runnable experiment, worked ace scoring and separate answers.
 - All 62 tests passed. New checks cover hidden-card noninterference, reveal, copy isolation and unchanged seeded transitions. User Lesson 1 edits preserved.
 - This is an in-process Foundations view, not a web API, full public rules or deployment. Next: a bounded local playable teaching interface. September 30 summary delivered; October 1 summary pending.
+
+## 2026-10-01, 04:00 checkpoint — round controller
+
+- Added transport-independent GameSession owning the environment, phase validation, revision checks, visible snapshots and final reward. Repeated/stale commands fail before mutation; no client-supplied cards or settlement.
+- Added runnable terminal game and daily explanations connecting revisions, duplicate intent and observations. All 66 tests passed; seed-7 deal/hit/stand produces soft 20 against 17, reward +1 at revision 3.
+- Explicitly not yet concurrent, authenticated, persisted or served over HTTP. Browser connection remains next. User Lesson 1 edits preserved; October 1 summary pending.
