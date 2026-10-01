@@ -42,6 +42,26 @@ class Blackjack:
         self._done = False
         return self._observation()
 
+    def visible_hand(self) -> dict:
+        """Return a detached, JSON-ready view; reveal the dealer only at termination.
+
+        These are card values, not ranks or suits. This is the Foundations profile.
+        Never serialize the environment object itself for a browser.
+        """
+        if not self._player:
+            raise RuntimeError("Call reset() before requesting a hand view.")
+        player_total, usable_ace = score_hand(self._player)
+        return {
+            "rules": "foundations-v1: replacement draws, S17, no natural bonus, hit/stand",
+            "player_cards": list(self._player),
+            "player_total": player_total,
+            "player_usable_ace": usable_ace,
+            "dealer_cards": list(self._dealer) if self._done else [self._dealer[0], None],
+            "dealer_total": score_hand(self._dealer)[0] if self._done else None,
+            "done": self._done,
+            "legal_actions": [] if self._done else [STAND, HIT],
+        }
+
     def step(self, action: int) -> Tuple[Observation, float, bool]:
         """Return next observation, immediate reward, and episode termination."""
         if self._done:

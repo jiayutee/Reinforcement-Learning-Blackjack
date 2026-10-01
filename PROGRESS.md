@@ -178,3 +178,10 @@
 - Extended the existing policy renderer with explicit Q-learning labels and alpha validation; preserved MC/SARSA behavior. Generated a seed-7 snapshot from clean source 8124f26 and linked it and Lesson 6 in the learning hub.
 - All 58 tests passed; real-export CLI rendering succeeded. Checked hub links against project files; no browser visual audit claimed. Added count-warning exercise with separate answer.
 - User Lesson 1 edits excluded. At 06:00 link Lesson 6, replication, snapshot/hub; report five-seed mean -0.06923 vs threshold -0.07970 without established superiority, tests and commits. September 30 summary remains pending.
+
+## 2026-10-01, 03:00 checkpoint — visible hand boundary
+
+- Started the web-game bridge with `Blackjack.visible_hand()`: detached JSON-ready visible values, hidden dealer card/total before termination, reveal afterward, and legal actions/rule label. No changes to training observations or transitions.
+- Added a beginner lesson in today's daily note connecting internal state, RL observation and browser disclosure, with runnable experiment, worked ace scoring and separate answers.
+- All 62 tests passed. New checks cover hidden-card noninterference, reveal, copy isolation and unchanged seeded transitions. User Lesson 1 edits preserved.
+- This is an in-process Foundations view, not a web API, full public rules or deployment. Next: a bounded local playable teaching interface. September 30 summary delivered; October 1 summary pending.
