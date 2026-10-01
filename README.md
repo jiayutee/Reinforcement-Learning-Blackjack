@@ -2,6 +2,10 @@
 
 Open the [learning hub](docs/previews/index.html) locally with `open docs/previews/index.html`. It links browser exercises and readable GitHub lessons.
 
+## Play the local teaching preview
+
+Run `python3 -m foundations.local_game`, then open `http://127.0.0.1:8765`. One local session, simplified hit/stand rules, no wagers or bot yet. Stop with Ctrl-C. This is not the deployed public game.
+
 ## Start the guided course
 
 This project is being developed into a step-by-step RL course and a public blackjack web game. The web game is not deployed yet.

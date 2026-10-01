@@ -191,3 +191,10 @@
 - Added transport-independent GameSession owning the environment, phase validation, revision checks, visible snapshots and final reward. Repeated/stale commands fail before mutation; no client-supplied cards or settlement.
 - Added runnable terminal game and daily explanations connecting revisions, duplicate intent and observations. All 66 tests passed; seed-7 deal/hit/stand produces soft 20 against 17, reward +1 at revision 3.
 - Explicitly not yet concurrent, authenticated, persisted or served over HTTP. Browser connection remains next. User Lesson 1 edits preserved; October 1 summary pending.
+
+## 2026-10-01, 05:00 checkpoint — local playable browser
+
+- Added a loopback-only single-session standard-library server and responsive value-card table over the existing GameSession. Explicit local teaching scope; production React/FastAPI architecture remains planned.
+- Server owns cards/actions/results, serializes commands, validates Host/origin/token and revision, and exposes only visible-hand snapshots. Browser disables in-flight actions and does not retry stale commands automatically.
+- Browser checks passed for a complete seed-7 win, response-level concealment, reveal, keyboard Enter, unauthorized POST rejection, mobile width and JS errors. All 66 Python tests passed. Temporary browser check only; no permanent browser gate/manual visual audit claimed. Test server stopped.
+- User Lesson 1 edits excluded. At 06:00 summarize visible information, session revisions, local launch command, limitations, tests and confirmed commits. No October 1 morning summary sent yet.

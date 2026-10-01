@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blackjack teaching table</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#071e19;color:#eff9f0}*{box-sizing:border-box}body{margin:0}main{max-width:850px;margin:auto;padding:30px 20px}h1{font-size:clamp(2rem,7vw,3rem)}p{line-height:1.6;color:#c9dfd2}.table{background:radial-gradient(ellipse at top,#235a40,#103d2f);border:8px solid #745335;border-radius:36px;padding:24px;margin:24px 0}.cards{display:flex;gap:10px;flex-wrap:wrap;min-height:96px}.card{background:#fff9e9;color:#17251f;border-radius:9px;width:65px;height:90px;display:grid;place-items:center;font-size:1.8rem;box-shadow:0 3px 5px #0005}.hidden{background:repeating-linear-gradient(45deg,#26473f,#26473f 5px,#416756 5px,#416756 10px);color:white;border:2px solid #e9edd0}button{font:inherit;font-weight:600;padding:14px 22px;border:0;border-radius:9px;background:#d6edaf;color:#11251b;cursor:pointer;margin:5px}button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:3px solid #ffda82;outline-offset:4px}#status{min-height:3em;font-size:1.15rem}small{line-height:1.5;display:block;color:#c9dfd2}
+</style>
+<main><p>FOUNDATIONS · LOCAL TEACHING TABLE</p><h1>Play one hand. See what changes.</h1>
+<p>Draws with replacement · Dealer stands on soft 17 · Hit/stand only · No natural bonus or wagers</p>
+<div class="table"><h2 id="dealer-title">Dealer</h2><div id="dealer" class="cards" aria-labelledby="dealer-title"></div><p id="dealer-total"></p>
+<h2 id="player-title">Your hand</h2><div id="player" class="cards" aria-labelledby="player-title"></div><p id="player-total"></p></div>
+<div><button id="deal" disabled>Deal</button><button id="hit" disabled>Hit</button><button id="stand" disabled>Stand</button><button id="refresh">Refresh</button></div>
+<p id="status" role="status" aria-live="polite">Loading table…</p>
+<small>Card values only: A means 1 or 11; 10 includes ten, jack, queen and king. Suits and face ranks are not represented. All tabs share this one session. Restarting the server resets it. This local preview has no bot, sound, accounts or public hosting.</small></main>
+<script>
+let state=null,busy=false;const el=id=>document.getElementById(id);
+function controls(){const active=state?.hand&&!state.hand.done;el('deal').disabled=busy||!state||active;el('hit').disabled=el('stand').disabled=busy||!active;el('refresh').disabled=busy;}
+function cards(id,values){el(id).replaceChildren();for(const value of values){const card=document.createElement('span');card.className='card'+(value===null?' hidden':'');card.textContent=value===null?'?':value===1?'A':String(value);card.setAttribute('aria-label',value===null?'Hidden card':value===1?'Ace':`Card value ${value}`);el(id).append(card);}}
+function render(){const h=state.hand;cards('player',h?.player_cards||[]);cards('dealer',h?.dealer_cards||[]);el('player-total').textContent=h?`Total ${h.player_total}${h.player_usable_ace?' · usable ace':''}`:'';el('dealer-total').textContent=h?(h.done?`Total ${h.dealer_total}`:'Hole card and total hidden'):'';el('status').textContent=!h?'Deal to begin.':!h.done?'Choose hit or stand.':state.reward>0?'You win · reward +1':state.reward<0?'You lose · reward −1':'Push · reward 0';controls();}
+async function request(command){if(busy)return;busy=true;controls();try{const response=await fetch(command?'/command':'/state',command?{method:'POST',headers:{'Content-Type':'application/json','X-Game-Token':'__TOKEN__'},body:JSON.stringify({command,revision:state.revision})}:{cache:'no-store'});const data=await response.json();if(!response.ok){if(data.state){state=data.state;render();}throw new Error(data.error||'Request failed');}state=data;render();}catch(error){el('status').textContent=`${error.message} Use Refresh to check the current hand before choosing another action.`;}finally{busy=false;controls();}}
+for(const name of ['deal','hit','stand'])el(name).addEventListener('click',()=>request(name));el('refresh').addEventListener('click',()=>request());request();
+</script></html>
