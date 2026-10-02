@@ -198,3 +198,10 @@
 - Server owns cards/actions/results, serializes commands, validates Host/origin/token and revision, and exposes only visible-hand snapshots. Browser disables in-flight actions and does not retry stale commands automatically.
 - Browser checks passed for a complete seed-7 win, response-level concealment, reveal, keyboard Enter, unauthorized POST rejection, mobile width and JS errors. All 66 Python tests passed. Temporary browser check only; no permanent browser gate/manual visual audit claimed. Test server stopped.
 - User Lesson 1 edits excluded. At 06:00 summarize visible information, session revisions, local launch command, limitations, tests and confirmed commits. No October 1 morning summary sent yet.
+
+## 2026-10-02, 03:00 checkpoint — frozen-policy inference
+
+- Added validated frozen control-export loader and CLI advice using the existing rule/artifact checks. Copies internal data, returns both values/counts, withholds absent/unvisited comparisons, and never trains or reads environment internals.
+- Added today's lesson with decision arithmetic, runnable export/inference commands, limitations, exercises and separate answers. Explicitly distinguishes advice withholding from evaluator zero-initialization fallback.
+- All 70 tests passed; real saved Q-learning export reproduced hard-20 stand advice and counts. No quality improvement claim. User Lesson 1 edits preserved.
+- Next: connect optional advice to local visible observations, without exposing hidden cards or changing training. October 1 summary delivered; October 2 summary pending.
