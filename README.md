@@ -4,7 +4,7 @@ Open the [learning hub](docs/previews/index.html) locally with `open docs/previe
 
 ## Play the local teaching preview
 
-Run `python3 -m foundations.local_game`, then open `http://127.0.0.1:8765`. One local session, simplified hit/stand rules, no wagers or bot yet. Stop with Ctrl-C. This is not the deployed public game.
+Run `python3 -m foundations.local_game`, then open `http://127.0.0.1:8765`. One local session, simplified hit/stand rules, no wagers. Add `--policy /path/to/control-export.json` for optional frozen-agent advice. Stop with Ctrl-C. This is not the deployed public game.
 
 ## Start the guided course
 

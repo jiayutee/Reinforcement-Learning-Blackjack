@@ -9,12 +9,21 @@
 <h2 id="player-title">Your hand</h2><div id="player" class="cards" aria-labelledby="player-title"></div><p id="player-total"></p></div>
 <div><button id="deal" disabled>Deal</button><button id="hit" disabled>Hit</button><button id="stand" disabled>Stand</button><button id="refresh">Refresh</button></div>
 <p id="status" role="status" aria-live="polite">Loading table…</p>
-<small>Card values only: A means 1 or 11; 10 includes ten, jack, queen and king. Suits and face ranks are not represented. All tabs share this one session. Restarting the server resets it. This local preview has no bot, sound, accounts or public hosting.</small></main>
+<section aria-labelledby="advisor-title"><h2 id="advisor-title">Saved agent advice</h2><p id="advice" aria-live="polite"></p></section>
+<small>Card values only: A means 1 or 11; 10 includes ten, jack, queen and king. Suits and face ranks are not represented. All tabs share this one session. Restarting the server resets it. This local preview has optional read-only advice, no automatic bot play, sound, accounts or public hosting.</small></main>
 <script>
 let state=null,busy=false;const el=id=>document.getElementById(id);
 function controls(){const active=state?.hand&&!state.hand.done;el('deal').disabled=busy||!state||active;el('hit').disabled=el('stand').disabled=busy||!active;el('refresh').disabled=busy;}
 function cards(id,values){el(id).replaceChildren();for(const value of values){const card=document.createElement('span');card.className='card'+(value===null?' hidden':'');card.textContent=value===null?'?':value===1?'A':String(value);card.setAttribute('aria-label',value===null?'Hidden card':value===1?'Ace':`Card value ${value}`);el(id).append(card);}}
-function render(){const h=state.hand;cards('player',h?.player_cards||[]);cards('dealer',h?.dealer_cards||[]);el('player-total').textContent=h?`Total ${h.player_total}${h.player_usable_ace?' · usable ace':''}`:'';el('dealer-total').textContent=h?(h.done?`Total ${h.dealer_total}`:'Hole card and total hidden'):'';el('status').textContent=!h?'Deal to begin.':!h.done?'Choose hit or stand.':state.reward>0?'You win · reward +1':state.reward<0?'You lose · reward −1':'Push · reward 0';controls();}
+function renderAdvice(){
+ const advice=state.advice;
+ if(!state.advisor_loaded){el('advice').textContent='No advisor loaded. Start the server with --policy and a saved control export to inspect decisions.';return;}
+ if(!advice){el('advice').textContent='Deal an active hand to inspect the saved agent. No advice is given after a hand ends.';return;}
+ const label=advice.action===null?'No recommendation: an action has no recorded experience.':`Estimated choice: ${advice.action===0?'Stand':'Hit'}.`;
+ const evidence=advice.actions.map(a=>`${a.action===0?'Stand':'Hit'} Q: ${a.value===null?'unknown':a.value.toFixed(4)}; updates/visits: ${a.visits}`).join(' | ');
+ el('advice').textContent=`${label} ${evidence}. Algorithm: ${advice.algorithm}. Estimates are not win probabilities or guarantees; even visited actions may have little evidence. You choose the action.`;
+}
+function render(){renderAdvice();const h=state.hand;cards('player',h?.player_cards||[]);cards('dealer',h?.dealer_cards||[]);el('player-total').textContent=h?`Total ${h.player_total}${h.player_usable_ace?' · usable ace':''}`:'';el('dealer-total').textContent=h?(h.done?`Total ${h.dealer_total}`:'Hole card and total hidden'):'';el('status').textContent=!h?'Deal to begin.':!h.done?'Choose hit or stand.':state.reward>0?'You win · reward +1':state.reward<0?'You lose · reward −1':'Push · reward 0';controls();}
 async function request(command){if(busy)return;busy=true;controls();try{const response=await fetch(command?'/command':'/state',command?{method:'POST',headers:{'Content-Type':'application/json','X-Game-Token':'__TOKEN__'},body:JSON.stringify({command,revision:state.revision})}:{cache:'no-store'});const data=await response.json();if(!response.ok){if(data.state){state=data.state;render();}throw new Error(data.error||'Request failed');}state=data;render();}catch(error){el('status').textContent=`${error.message} Use Refresh to check the current hand before choosing another action.`;}finally{busy=false;controls();}}
 for(const name of ['deal','hit','stand'])el(name).addEventListener('click',()=>request(name));el('refresh').addEventListener('click',()=>request());request();
 </script></html>

@@ -205,3 +205,9 @@
 - Added today's lesson with decision arithmetic, runnable export/inference commands, limitations, exercises and separate answers. Explicitly distinguishes advice withholding from evaluator zero-initialization fallback.
 - All 70 tests passed; real saved Q-learning export reproduced hard-20 stand advice and counts. No quality improvement claim. User Lesson 1 edits preserved.
 - Next: connect optional advice to local visible observations, without exposing hidden cards or changing training. October 1 summary delivered; October 2 summary pending.
+
+## 2026-10-02, 04:00 checkpoint — optional browser advisor
+
+- Added --policy loading at local-server startup, visible-observation-only table advice, and a browser evidence panel. No retraining, automatic action or game mutation on reads; terminal hands suppress advice.
+- All 72 tests passed. Headless browser verified initial/active/terminal advice, concealed dealer response, unchanged state on refresh and no JS errors. Test server stopped. Manual play remains available without a policy.
+- Updated daily instructions and README; user Lesson 1 edits preserved. Next: repeatable browser checks including optional/missing evidence paths. October 2 summary pending.

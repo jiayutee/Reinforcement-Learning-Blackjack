@@ -6,11 +6,24 @@ from pathlib import Path
 import secrets
 
 from foundations.session import GameSession
+from foundations.policy import load_policy
 
 PAGE = Path(__file__).with_name('local_game.html')
 
 
-def make_server(port=8765, seed=7):
+def table_view(session, policy=None):
+    """Advice is computed only from the same visible information sent to the player."""
+    view = session.view()
+    hand = view['hand']
+    view['advice'] = None
+    view['advisor_loaded'] = policy is not None
+    if policy is not None and hand is not None and not hand['done']:
+        observation = (hand['player_total'], hand['dealer_cards'][0], hand['player_usable_ace'])
+        view['advice'] = policy.advise(observation)
+    return view
+
+
+def make_server(port=8765, seed=7, policy=None):
     session = GameSession(seed)
     token = secrets.token_urlsafe(32)
 
@@ -37,7 +50,7 @@ def make_server(port=8765, seed=7):
             elif self.path == '/':
                 self.reply(200, PAGE.read_text().replace('__TOKEN__', token), 'text/html; charset=utf-8')
             elif self.path == '/state':
-                self.reply(200, session.view())
+                self.reply(200, table_view(session, policy))
             else:
                 self.reply(404, {'error': 'Not found'})
 
@@ -60,9 +73,10 @@ def make_server(port=8765, seed=7):
                 self.reply(400, {'error': 'Invalid request.'})
                 return
             try:
-                view = session.command(payload['command'], payload['revision'])
+                session.command(payload['command'], payload['revision'])
+                view = table_view(session, policy)
             except ValueError as error:
-                self.reply(409, {'error': str(error), 'state': session.view()})
+                self.reply(409, {'error': str(error), 'state': table_view(session, policy)})
                 return
             self.reply(200, view)
 
@@ -74,10 +88,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=8765)
     parser.add_argument('--seed', type=int, default=7)
+    parser.add_argument('--policy', type=Path, help='Optional saved Foundations control export; no training at startup')
     args = parser.parse_args()
     if not 0 <= args.port <= 65535:
         parser.error('port must be in [0, 65535]')
-    with make_server(args.port, args.seed) as server:
+    try:
+        policy = load_policy(args.policy) if args.policy else None
+    except (OSError, ValueError, TypeError) as error:
+        parser.error(str(error))
+    with make_server(args.port, args.seed, policy) as server:
         print(f'Open http://127.0.0.1:{server.server_port} — one shared local session; Ctrl-C to stop.', flush=True)
         try:
             server.serve_forever()
