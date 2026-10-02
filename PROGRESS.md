@@ -211,3 +211,9 @@
 - Added --policy loading at local-server startup, visible-observation-only table advice, and a browser evidence panel. No retraining, automatic action or game mutation on reads; terminal hands suppress advice.
 - All 72 tests passed. Headless browser verified initial/active/terminal advice, concealed dealer response, unchanged state on refresh and no JS errors. Test server stopped. Manual play remains available without a policy.
 - Updated daily instructions and README; user Lesson 1 edits preserved. Next: repeatable browser checks including optional/missing evidence paths. October 2 summary pending.
+
+## 2026-10-02, 05:00 checkpoint — repeatable browser gate
+
+- Saved an optional Playwright integration script with temporary synthetic policy fixtures and isolated loopback servers. Documented external runtime requirements; no installation or CI provisioning implied.
+- All three manual/known/missing-advice scenarios passed complete play, evidence/terminal states, concealed responses, nonmutating refresh, stale duplicate rejection, unauthorized POST, keyboard, mobile overflow and JS-error checks. Test resources cleaned up.
+- No product-code changes; prior 72 Python tests remain current. User Lesson 1 edits preserved. At 06:00 summarize frozen inference, launch commands, browser gate and confirmed commits. October 2 summary pending.
