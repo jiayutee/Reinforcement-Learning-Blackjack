@@ -217,3 +217,9 @@
 - Saved an optional Playwright integration script with temporary synthetic policy fixtures and isolated loopback servers. Documented external runtime requirements; no installation or CI provisioning implied.
 - All three manual/known/missing-advice scenarios passed complete play, evidence/terminal states, concealed responses, nonmutating refresh, stale duplicate rejection, unauthorized POST, keyboard, mobile overflow and JS-error checks. Test resources cleaned up.
 - No product-code changes; prior 72 Python tests remain current. User Lesson 1 edits preserved. At 06:00 summarize frozen inference, launch commands, browser gate and confirmed commits. October 2 summary pending.
+
+## 2026-10-03, 03:00 checkpoint — one-action bot execution
+
+- Added server-side bot command dispatch using visible frozen advice and the same revision-checked session path as manual actions. Rejects stale, missing-evidence and terminal bot commands without mutation; executes at most one action.
+- Added today's lesson connecting observation/action/reward to frozen inference, deterministic worked example and separate exercise answers. All 75 tests passed; no new agent-quality claim.
+- Browser button and repeatable browser coverage are next. User Lesson 1 edits preserved. October 2 summary delivered; October 3 summary pending for 06:00.

@@ -23,6 +23,20 @@ def table_view(session, policy=None):
     return view
 
 
+def apply_table_command(session, policy, command, revision):
+    """Execute at most one action; the client never supplies the bot's choice."""
+    if command == 'bot':
+        current = session.view()
+        if type(revision) is not int or revision != current['revision']:
+            raise ValueError('Stale or invalid revision; fetch the current view.')
+        advice = table_view(session, policy)['advice']
+        if advice is None or advice['action'] not in (0, 1):
+            raise ValueError('No supported bot action. Deal an active hand with a loaded policy and recorded action evidence.')
+        command = 'stand' if advice['action'] == 0 else 'hit'
+    session.command(command, revision)
+    return table_view(session, policy)
+
+
 def make_server(port=8765, seed=7, policy=None):
     session = GameSession(seed)
     token = secrets.token_urlsafe(32)
@@ -73,8 +87,7 @@ def make_server(port=8765, seed=7, policy=None):
                 self.reply(400, {'error': 'Invalid request.'})
                 return
             try:
-                session.command(payload['command'], payload['revision'])
-                view = table_view(session, policy)
+                view = apply_table_command(session, policy, payload['command'], payload['revision'])
             except ValueError as error:
                 self.reply(409, {'error': str(error), 'state': table_view(session, policy)})
                 return
