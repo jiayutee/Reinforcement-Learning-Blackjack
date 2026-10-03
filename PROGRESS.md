@@ -223,3 +223,9 @@
 - Added server-side bot command dispatch using visible frozen advice and the same revision-checked session path as manual actions. Rejects stale, missing-evidence and terminal bot commands without mutation; executes at most one action.
 - Added today's lesson connecting observation/action/reward to frozen inference, deterministic worked example and separate exercise answers. All 75 tests passed; no new agent-quality claim.
 - Browser button and repeatable browser coverage are next. User Lesson 1 edits preserved. October 2 summary delivered; October 3 summary pending for 06:00.
+
+## 2026-10-03, 04:00 checkpoint — browser Bot step
+
+- Added Bot step with active-hand/evidence/in-flight gating and clear one-action behavior. Server computes the action; manual play remains available.
+- All 75 Python tests and three repeatable browser scenarios passed. Known fixture uses keyboard Bot step, confirms one transition, stops on unknown next-state evidence, and rejects replayed stale bot revision without mutation. Test resources cleaned up.
+- Updated lesson, README and gate documentation. User Lesson 1 edits preserved. Next possible checkpoint: make the last executed action visible so new-state advice is not confused with the previous choice. October 3 summary pending.
