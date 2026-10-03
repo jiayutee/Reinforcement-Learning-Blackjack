@@ -5,7 +5,7 @@ from foundations.session import GameSession
 class SessionTests(unittest.TestCase):
     def test_lifecycle_and_reveal(self):
         session = GameSession(7)
-        self.assertEqual(session.view(), {'revision': 0, 'hand': None, 'reward': None})
+        self.assertEqual(session.view(), {'revision': 0, 'hand': None, 'reward': None, 'last_command': None})
         dealt = session.command('deal', 0)
         self.assertEqual(dealt['hand']['dealer_cards'][1], None)
         self.assertIsNone(dealt['reward'])
@@ -50,3 +50,13 @@ class SessionTests(unittest.TestCase):
         self.assertEqual(first.view()['revision'], 1)
         self.assertEqual(len(first.view()['hand']['player_cards']), 2)
         self.assertEqual(second.view()['revision'], 0)
+
+    def test_last_command_tracks_only_accepted_actions(self):
+        session = GameSession(7)
+        self.assertIsNone(session.view()['last_command'])
+        self.assertEqual(session.command('deal', 0)['last_command'], 'deal')
+        self.assertEqual(session.command('hit', 1)['last_command'], 'hit')
+        with self.assertRaises(ValueError): session.command('stand', 1)
+        self.assertEqual(session.view()['last_command'], 'hit')
+        self.assertEqual(session.command('stand', 2)['last_command'], 'stand')
+        self.assertEqual(session.command('deal', 3)['last_command'], 'deal')

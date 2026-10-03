@@ -45,14 +45,14 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
     // Replay the old revision after an accepted hit: must reject without mutation.
     if(name==='known'){assert.equal(await page.locator('#bot').isDisabled(),false);await page.locator('#bot').focus();await page.keyboard.press('Enter');}else{assert.equal(await page.locator('#bot').isDisabled(),true);await page.click('#hit');}await page.waitForFunction(()=>document.querySelector('#player-total').textContent.includes('20'));
     const after=await(await page.request.get(url+'/state')).json();
-    assert.equal(after.revision,2);assert.equal(after.hand.player_cards.length,3);assert.equal(await page.locator('#bot').isDisabled(),true);
+    assert.equal(after.last_command,'hit');assert.match(await page.locator('#last-action').textContent(),/Last accepted action: hit/);assert.equal(after.revision,2);assert.equal(after.hand.player_cards.length,3);assert.equal(await page.locator('#bot').isDisabled(),true);
     const token=(await page.content()).match(/'X-Game-Token':'([^']+)'/)[1];
     const stale=await page.request.post(url+'/command',{headers:{Origin:url,'X-Game-Token':token},data:{command:name==='known'?'bot':'hit',revision:1}});
     assert.equal(stale.status(),409);assert.deepEqual(await(await page.request.get(url+'/state')).json(),after);
     assert.equal((await page.request.post(url+'/command',{data:{command:'stand',revision:2}})).status(),403);
     await page.locator('#stand').focus();await page.keyboard.press('Enter');await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('You win'));
     assert.equal(await page.locator('#dealer .hidden').count(),0);assert.equal(await page.locator('#hit').isDisabled(),true);
-    const terminal=await(await page.request.get(url+'/state')).json();assert.equal(terminal.advice,null);assert.equal(await page.locator('#bot').isDisabled(),true);
+    const terminal=await(await page.request.get(url+'/state')).json();assert.equal(terminal.last_command,'stand');assert.match(await page.locator('#last-action').textContent(),/Last accepted action: stand/);assert.equal(terminal.advice,null);assert.equal(await page.locator('#bot').isDisabled(),true);
     await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     assert.deepEqual(errors,[]);console.log(`PASS ${name}: complete hand, evidence state, hidden card, refresh, stale/unauthorized requests, keyboard, mobile`);
    }finally{if(page)await page.close();await stop(child)}

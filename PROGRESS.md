@@ -229,3 +229,9 @@
 - Added Bot step with active-hand/evidence/in-flight gating and clear one-action behavior. Server computes the action; manual play remains available.
 - All 75 Python tests and three repeatable browser scenarios passed. Known fixture uses keyboard Bot step, confirms one transition, stops on unknown next-state evidence, and rejects replayed stale bot revision without mutation. Test resources cleaned up.
 - Updated lesson, README and gate documentation. User Lesson 1 edits preserved. Next possible checkpoint: make the last executed action visible so new-state advice is not confused with the previous choice. October 3 summary pending.
+
+## 2026-10-03, 05:00 checkpoint — last accepted action
+
+- Session now exposes last accepted deal/hit/stand; browser labels it separately from current advice. Rejected requests do not rewrite history; new deals reset the label to deal. No full log or actor attribution claimed.
+- All 76 Python tests and three browser scenarios passed, including history and bot/manual hit/stand labels. Initial review timed out before execution; one permitted retry succeeded. User Lesson 1 edits preserved.
+- At 06:00 link today's lesson, explain frozen one-step execution, provide policy/server commands, report checks and confirmed commits. October 3 summary pending.

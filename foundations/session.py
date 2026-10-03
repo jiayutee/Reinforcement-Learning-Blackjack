@@ -10,12 +10,13 @@ class GameSession:
         self._game = Blackjack(seed)
         self._revision = 0
         self._started = False
+        self._last_command = None
         self._reward = None
 
     def view(self):
         return {"revision": self._revision,
                 "hand": self._game.visible_hand() if self._started else None,
-                "reward": self._reward}
+                "reward": self._reward, "last_command": self._last_command}
 
     def command(self, name, expected_revision):
         """Apply one valid command. Rejected requests leave game and revision intact.
@@ -38,6 +39,7 @@ class GameSession:
                 raise ValueError("Deal a new hand before acting.")
             _, reward, done = self._game.step(HIT if name == "hit" else STAND)
             self._reward = reward if done else None
+        self._last_command = name
         self._revision += 1
         return self.view()
 
