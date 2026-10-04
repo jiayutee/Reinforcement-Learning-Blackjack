@@ -12,6 +12,7 @@
 <p id="status" role="status" aria-live="polite">Loading table…</p>
 <p id="last-action" aria-live="polite"></p>
 <section aria-labelledby="advisor-title"><h2 id="advisor-title">Saved agent advice</h2><p id="advice" aria-live="polite"></p></section>
+<details id="trace-panel"><summary>Inspect this hand’s learning steps</summary><p>Observations show player total, dealer upcard and usable ace. Rewards are immediate; returns are shown only after the hand ends. A new deal clears this trace.</p><ol id="trace"></ol><p id="trace-status"></p></details>
 <small>Card values only: A means 1 or 11; 10 includes ten, jack, queen and king. Suits and face ranks are not represented. All tabs share this one session. Restarting the server resets it. This local preview has optional advice and one-step bot play; no continuous autoplay, sound, accounts or public hosting.</small></main>
 <script>
 let state=null,busy=false;const el=id=>document.getElementById(id);
@@ -25,7 +26,15 @@ function renderAdvice(){
  const evidence=advice.actions.map(a=>`${a.action===0?'Stand':'Hit'} Q: ${a.value===null?'unknown':a.value.toFixed(4)}; updates/visits: ${a.visits}`).join(' | ');
  el('advice').textContent=`${label} ${evidence}. Algorithm: ${advice.algorithm}. Estimates are not win probabilities or guarantees; even visited actions may have little evidence. You choose the action.`;
 }
-function render(){renderAdvice();el('last-action').textContent=state.last_command?`Last accepted action: ${state.last_command} · revision ${state.revision}. Advice below describes the current hand.`:'No action taken yet.';const h=state.hand;cards('player',h?.player_cards||[]);cards('dealer',h?.dealer_cards||[]);el('player-total').textContent=h?`Total ${h.player_total}${h.player_usable_ace?' · usable ace':''}`:'';el('dealer-total').textContent=h?(h.done?`Total ${h.dealer_total}`:'Hole card and total hidden'):'';el('status').textContent=!h?'Deal to begin.':!h.done?'Choose hit or stand.':state.reward>0?'You win · reward +1':state.reward<0?'You lose · reward −1':'Push · reward 0';controls();}
+function renderTrace(){
+ const rows=state.transitions||[];el('trace').replaceChildren();
+ const complete=Boolean(state.hand?.done);let total=0;const returns=[];
+ if(complete){for(let i=rows.length-1;i>=0;i--){total+=rows[i].reward;returns[i]=total;}}
+ const observation=o=>`total ${o[0]}, dealer ${o[1]===1?'A':o[1]}, usable ace ${o[2]?'yes':'no'}`;
+ rows.forEach((row,i)=>{const item=document.createElement('li');item.textContent=`${observation(row.observation)} → ${row.action===0?'Stand':'Hit'} → reward ${row.reward} → ${observation(row.next_observation)}. ${row.done?'Terminal':'Continues'}. Return: ${complete?returns[i]:'pending'}.`;el('trace').append(item);});
+ el('trace-status').textContent=!rows.length?'No learning actions yet.':complete?'Completed episode: returns sum the remaining rewards with discount 1. This does not update the saved agent.':'Hand in progress: final returns are not known yet.';
+}
+function render(){renderAdvice();renderTrace();el('last-action').textContent=state.last_command?`Last accepted action: ${state.last_command} · revision ${state.revision}. Advice below describes the current hand.`:'No action taken yet.';const h=state.hand;cards('player',h?.player_cards||[]);cards('dealer',h?.dealer_cards||[]);el('player-total').textContent=h?`Total ${h.player_total}${h.player_usable_ace?' · usable ace':''}`:'';el('dealer-total').textContent=h?(h.done?`Total ${h.dealer_total}`:'Hole card and total hidden'):'';el('status').textContent=!h?'Deal to begin.':!h.done?'Choose hit or stand.':state.reward>0?'You win · reward +1':state.reward<0?'You lose · reward −1':'Push · reward 0';controls();}
 async function request(command){if(busy)return;busy=true;controls();try{const response=await fetch(command?'/command':'/state',command?{method:'POST',headers:{'Content-Type':'application/json','X-Game-Token':'__TOKEN__'},body:JSON.stringify({command,revision:state.revision})}:{cache:'no-store'});const data=await response.json();if(!response.ok){if(data.state){state=data.state;render();}throw new Error(data.error||'Request failed');}state=data;render();}catch(error){el('status').textContent=`${error.message} Use Refresh to check the current hand before choosing another action.`;}finally{busy=false;controls();}}
 for(const name of ['deal','hit','stand','bot'])el(name).addEventListener('click',()=>request(name));el('refresh').addEventListener('click',()=>request());request();
 </script></html>

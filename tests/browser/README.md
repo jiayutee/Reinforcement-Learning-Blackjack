@@ -15,3 +15,5 @@ The gate launches three independent loopback servers on OS-assigned ports, check
 Successful output contains PASS for manual, known and missing. This is a focused integration check, not a full accessibility, visual, security or load audit. The local game remains single-session and unsuitable for public hosting.
 
 The known-policy scenario now uses keyboard Bot step, verifies one-action execution and disabling at a missing next-state estimate, and replays a stale bot command to check nonmutation. Other scenarios retain manual play.
+
+The trace panel is checked for pending returns during play, two completed +1 returns for the seed-7 win, terminal labelling, and clearing on the next deal.

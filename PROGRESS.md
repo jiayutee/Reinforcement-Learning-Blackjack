@@ -241,3 +241,9 @@
 - Session now records detached visible-observation/action/reward/next-observation/done rows for accepted learning actions. New deal clears rows; rejected commands and reads leave them unchanged. No hidden dealer data or training updates included.
 - Added beginner lesson, return arithmetic, runnable exact seed-7 example and separate answers. All 77 tests passed, including trace/reset/copy/terminal checks; user Lesson 1 edits preserved.
 - Next: browser trace presentation and focused verification. October 3 summary delivered; October 4 summary pending.
+
+## 2026-10-04, 04:00 checkpoint — browser episode trace
+
+- Added an expandable readable current-hand trace. Returns are pending while active and computed backward with gamma=1 only after termination; no agent updates. New deal clears it.
+- All 77 Python tests and three browser scenarios passed, including pending/completed return labels, two winning transitions and reset, plus existing gates. User Lesson 1 edits preserved.
+- Next: negative/zero-return examples and focused tests. October 4 morning summary pending.
