@@ -6,8 +6,8 @@ const fs=require('node:fs/promises');
 const os=require('node:os');
 const path=require('node:path');
 const root=path.resolve(__dirname,'../..');
-async function start(policy){
- const child=spawn(process.env.PYTHON||'python3',['-m','foundations.local_game','--port','0',...(policy?['--policy',policy]:[])],{cwd:root,env:{...process.env,PYTHONDONTWRITEBYTECODE:'1'},stdio:['ignore','pipe','pipe']});
+async function start(policy,seed=7){
+ const child=spawn(process.env.PYTHON||'python3',['-m','foundations.local_game','--port','0','--seed',String(seed),...(policy?['--policy',policy]:[])],{cwd:root,env:{...process.env,PYTHONDONTWRITEBYTECODE:'1'},stdio:['ignore','pipe','pipe']});
  try{
   const url=await new Promise((resolve,reject)=>{
    const timer=setTimeout(()=>reject(new Error('Server startup timed out')),10000);
@@ -55,6 +55,21 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
     const terminal=await(await page.request.get(url+'/state')).json();assert.equal(await page.locator('#trace li').count(),2);assert.match(await page.locator('#trace li').first().textContent(),/Return: 1/);assert.match(await page.locator('#trace li').last().textContent(),/Terminal.*Return: 1/);assert.equal(terminal.last_command,'stand');assert.match(await page.locator('#last-action').textContent(),/Last accepted action: stand/);assert.equal(terminal.advice,null);assert.equal(await page.locator('#bot').isDisabled(),true);
     await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     await page.click('#deal');await page.waitForFunction(()=>document.querySelectorAll('#trace li').length===0);assert.match(await page.locator('#trace-status').textContent(),/No learning actions/);assert.deepEqual(errors,[]);console.log(`PASS ${name}: complete hand, evidence state, hidden card, refresh, stale/unauthorized requests, keyboard, mobile`);
+   }finally{if(page)await page.close();await stop(child)}
+  }
+  for(const [seed,reward,label] of [[0,-1,'You lose'],[6,0,'Push']]){
+   const {child,url}=await start(null,seed);let page;
+   try{
+    page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+    await page.goto(url);await page.waitForFunction(()=>!document.querySelector('#deal').disabled);
+    await page.click('#deal');await page.waitForFunction(()=>!document.querySelector('#stand').disabled);
+    await page.click('#stand');await page.waitForFunction(text=>document.querySelector('#status').textContent.includes(text),label);
+    await page.locator('#trace-panel summary').click();
+    const state=await(await page.request.get(url+'/state')).json();
+    assert.equal(state.reward,reward);assert.equal(state.transitions.length,1);assert.equal(state.transitions[0].done,true);
+    assert.match(await page.locator('#trace li').textContent(),new RegExp(`reward ${reward}.*Terminal.*Return: ${reward}`));
+    assert.equal(await page.locator('#hit').isDisabled(),true);assert.deepEqual(errors,[]);
+    console.log(`PASS terminal ${label}: reward and completed return ${reward}`);
    }finally{if(page)await page.close();await stop(child)}
   }
  }finally{if(browser)await browser.close();await fs.rm(dir,{recursive:true,force:true})}

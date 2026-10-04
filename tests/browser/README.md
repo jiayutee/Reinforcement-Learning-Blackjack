@@ -17,3 +17,5 @@ Successful output contains PASS for manual, known and missing. This is a focused
 The known-policy scenario now uses keyboard Bot step, verifies one-action execution and disabling at a missing next-state estimate, and replays a stale bot command to check nonmutation. Other scenarios retain manual play.
 
 The trace panel is checked for pending returns during play, two completed +1 returns for the seed-7 win, terminal labelling, and clearing on the next deal.
+
+Two additional seeded manual scenarios verify terminal loss (seed 0, stand, return -1) and push (seed 6, stand, return 0). Successful output now contains five PASS lines. These seeds are deterministic outcome fixtures, not performance samples.

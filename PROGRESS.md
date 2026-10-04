@@ -247,3 +247,9 @@
 - Added an expandable readable current-hand trace. Returns are pending while active and computed backward with gamma=1 only after termination; no agent updates. New deal clears it.
 - All 77 Python tests and three browser scenarios passed, including pending/completed return labels, two winning transitions and reset, plus existing gates. User Lesson 1 edits preserved.
 - Next: negative/zero-return examples and focused tests. October 4 morning summary pending.
+
+## 2026-10-04, 05:00 checkpoint — terminal loss/push coverage
+
+- Extended the repeatable browser gate with seed-0 standing loss and seed-6 standing push. Checks final reward, one terminal trace row, negative/zero completed return, disabled actions and JS errors.
+- All five browser scenarios passed; resources cleaned up. No product changes; prior 77-test Python proof remains current. Documented runnable examples and why outcome-selected seeds are not evaluation evidence.
+- User Lesson 1 edits preserved. At 06:00 link today's reward-vs-return lesson, give local-game command and trace-panel instructions, report tests and commits. October 4 summary pending.
