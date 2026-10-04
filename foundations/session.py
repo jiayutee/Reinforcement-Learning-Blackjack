@@ -1,5 +1,6 @@
 """One in-memory Foundations game session; transport-independent teaching example."""
 import argparse
+import copy
 import json
 
 from foundations.blackjack import Blackjack, HIT, STAND
@@ -11,12 +12,14 @@ class GameSession:
         self._revision = 0
         self._started = False
         self._last_command = None
+        self._transitions = []
         self._reward = None
 
     def view(self):
         return {"revision": self._revision,
                 "hand": self._game.visible_hand() if self._started else None,
-                "reward": self._reward, "last_command": self._last_command}
+                "reward": self._reward, "last_command": self._last_command,
+                "transitions": copy.deepcopy(self._transitions)}
 
     def command(self, name, expected_revision):
         """Apply one valid command. Rejected requests leave game and revision intact.
@@ -32,12 +35,19 @@ class GameSession:
             if self._started and not self._game.visible_hand()["done"]:
                 raise ValueError("Finish the active hand before dealing again.")
             self._game.reset()
+            self._transitions = []
             self._started = True
             self._reward = None
         else:
             if not self._started or self._game.visible_hand()["done"]:
                 raise ValueError("Deal a new hand before acting.")
-            _, reward, done = self._game.step(HIT if name == "hit" else STAND)
+            visible = self._game.visible_hand()
+            before = [visible['player_total'], visible['dealer_cards'][0], visible['player_usable_ace']]
+            action = HIT if name == "hit" else STAND
+            observation, reward, done = self._game.step(action)
+            self._transitions.append({'observation': before, 'action': action,
+                                      'reward': reward, 'next_observation': list(observation),
+                                      'done': done})
             self._reward = reward if done else None
         self._last_command = name
         self._revision += 1

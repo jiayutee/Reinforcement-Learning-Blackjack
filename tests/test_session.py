@@ -5,7 +5,7 @@ from foundations.session import GameSession
 class SessionTests(unittest.TestCase):
     def test_lifecycle_and_reveal(self):
         session = GameSession(7)
-        self.assertEqual(session.view(), {'revision': 0, 'hand': None, 'reward': None, 'last_command': None})
+        self.assertEqual(session.view(), {'revision': 0, 'hand': None, 'reward': None, 'last_command': None, 'transitions': []})
         dealt = session.command('deal', 0)
         self.assertEqual(dealt['hand']['dealer_cards'][1], None)
         self.assertIsNone(dealt['reward'])
@@ -60,3 +60,19 @@ class SessionTests(unittest.TestCase):
         self.assertEqual(session.view()['last_command'], 'hit')
         self.assertEqual(session.command('stand', 2)['last_command'], 'stand')
         self.assertEqual(session.command('deal', 3)['last_command'], 'deal')
+
+    def test_current_episode_trace_is_visible_detached_and_resets(self):
+        session = GameSession(7)
+        session.command('deal', 0)
+        hit = session.command('hit', 1)
+        self.assertEqual(hit['transitions'], [{'observation': [9, 7, False],
+            'action': 1, 'reward': 0.0, 'next_observation': [20, 7, True], 'done': False}])
+        hit['transitions'][0]['observation'][0] = 99
+        self.assertEqual(session.view()['transitions'][0]['observation'][0], 9)
+        ended = session.command('stand', 2)
+        self.assertEqual(len(ended['transitions']), 2)
+        self.assertEqual(ended['transitions'][1], {'observation': [20, 7, True],
+            'action': 0, 'reward': 1.0, 'next_observation': [20, 7, True], 'done': True})
+        with self.assertRaises(ValueError): session.command('stand', 2)
+        self.assertEqual(session.view(), ended)
+        self.assertEqual(session.command('deal', 3)['transitions'], [])

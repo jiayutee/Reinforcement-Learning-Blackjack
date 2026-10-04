@@ -235,3 +235,9 @@
 - Session now exposes last accepted deal/hit/stand; browser labels it separately from current advice. Rejected requests do not rewrite history; new deals reset the label to deal. No full log or actor attribution claimed.
 - All 76 Python tests and three browser scenarios passed, including history and bot/manual hit/stand labels. Initial review timed out before execution; one permitted retry succeeded. User Lesson 1 edits preserved.
 - At 06:00 link today's lesson, explain frozen one-step execution, provide policy/server commands, report checks and confirmed commits. October 3 summary pending.
+
+## 2026-10-04, 03:00 checkpoint — current-hand episode trace
+
+- Session now records detached visible-observation/action/reward/next-observation/done rows for accepted learning actions. New deal clears rows; rejected commands and reads leave them unchanged. No hidden dealer data or training updates included.
+- Added beginner lesson, return arithmetic, runnable exact seed-7 example and separate answers. All 77 tests passed, including trace/reset/copy/terminal checks; user Lesson 1 edits preserved.
+- Next: browser trace presentation and focused verification. October 3 summary delivered; October 4 summary pending.
