@@ -259,3 +259,9 @@
 - Added pure presentation-only transitionCue helper for deal/hit/terminal outcomes, with silence for initial/repeated/stale/skipped states and no mutation. Bust selects loss, not two overlapping cues.
 - Deterministic Node gate passed all event/silence/nonmutation checks. No game/learning changes; prior 77 Python tests and five browser scenarios remain applicable. No audible playback yet.
 - Added beginner lesson distinguishing human feedback from reward with examples, commands and separate answers. Next: opt-in playback and controls; invoke cues only after successful local commands. User Lesson 1 edits preserved. October 4 summary delivered; October 5 summary pending.
+
+## 2026-10-05, 04:00 checkpoint — opt-in sound playback
+
+- Added original synthesized cues, explicit enable/mute, volume and local preferences with per-page gesture requirement. Invoked only after confirmed successful local commands; refresh/error responses silent. Audio failures do not stop gameplay.
+- All 77 Python tests, sound classifier gate and five browser scenarios passed. Actual oscillator instrumentation verified silent default, deal/hit cues, refresh silence and mute. No listening review claimed.
+- User Lesson 1 edits preserved. Next: preference/volume/unsupported-audio edge checks. October 5 summary pending.

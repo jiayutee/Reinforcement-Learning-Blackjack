@@ -33,18 +33,22 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
    const {child,url}=await start(policy);let page;
    try{
     page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+    if(name==='manual')await page.addInitScript(()=>{window.audioStarts=0;const original=AudioContext.prototype.createOscillator;AudioContext.prototype.createOscillator=function(...args){window.audioStarts++;return original.apply(this,args)};});
     await page.goto(url);await page.waitForFunction(()=>!document.querySelector('#deal').disabled);
+    if(name==='manual'){assert.equal(await page.evaluate(()=>window.audioStarts),0);await page.click('#sound-toggle');await page.waitForFunction(()=>document.querySelector('#sound-toggle').getAttribute('aria-pressed')==='true');}
     if(name==='manual')assert.match(await page.locator('#advice').textContent(),/No advisor loaded/);
     await page.click('#deal');await page.waitForFunction(()=>!document.querySelector('#hit').disabled);
     const state=await(await page.request.get(url+'/state')).json();
+    if(name==='manual')assert.equal(await page.evaluate(()=>window.audioStarts),1);
     assert.deepEqual(state.hand.dealer_cards,[7,null]);assert.equal(state.hand.dealer_total,null);
     if(name==='known'){assert.equal(state.advice.action,1);assert.match(await page.locator('#advice').textContent(),/Estimated choice: Hit/)}
     if(name==='missing'){assert.equal(state.advice.action,null);assert.match(await page.locator('#advice').textContent(),/No recommendation/)}
     await page.click('#refresh');await page.waitForFunction(()=>!document.querySelector('#refresh').disabled);
-    assert.deepEqual(await(await page.request.get(url+'/state')).json(),state);
+    assert.deepEqual(await(await page.request.get(url+'/state')).json(),state);if(name==='manual')assert.equal(await page.evaluate(()=>window.audioStarts),1);
     // Replay the old revision after an accepted hit: must reject without mutation.
     if(name==='known'){assert.equal(await page.locator('#bot').isDisabled(),false);await page.locator('#bot').focus();await page.keyboard.press('Enter');}else{assert.equal(await page.locator('#bot').isDisabled(),true);await page.click('#hit');}await page.waitForFunction(()=>document.querySelector('#player-total').textContent.includes('20'));
     const after=await(await page.request.get(url+'/state')).json();
+    if(name==='manual'){assert.equal(await page.evaluate(()=>window.audioStarts),2);await page.click('#sound-toggle');assert.equal(await page.locator('#sound-toggle').getAttribute('aria-pressed'),'false');}
     await page.locator('#trace-panel summary').click();assert.equal(await page.locator('#trace li').count(),1);assert.match(await page.locator('#trace li').textContent(),/reward 0.*Return: pending/);assert.equal(after.last_command,'hit');assert.match(await page.locator('#last-action').textContent(),/Last accepted action: hit/);assert.equal(after.revision,2);assert.equal(after.hand.player_cards.length,3);assert.equal(await page.locator('#bot').isDisabled(),true);
     const token=(await page.content()).match(/'X-Game-Token':'([^']+)'/)[1];
     const stale=await page.request.post(url+'/command',{headers:{Origin:url,'X-Game-Token':token},data:{command:name==='known'?'bot':'hit',revision:1}});
@@ -52,7 +56,7 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
     assert.equal((await page.request.post(url+'/command',{data:{command:'stand',revision:2}})).status(),403);
     await page.locator('#stand').focus();await page.keyboard.press('Enter');await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('You win'));
     assert.equal(await page.locator('#dealer .hidden').count(),0);assert.equal(await page.locator('#hit').isDisabled(),true);
-    const terminal=await(await page.request.get(url+'/state')).json();assert.equal(await page.locator('#trace li').count(),2);assert.match(await page.locator('#trace li').first().textContent(),/Return: 1/);assert.match(await page.locator('#trace li').last().textContent(),/Terminal.*Return: 1/);assert.equal(terminal.last_command,'stand');assert.match(await page.locator('#last-action').textContent(),/Last accepted action: stand/);assert.equal(terminal.advice,null);assert.equal(await page.locator('#bot').isDisabled(),true);
+    const terminal=await(await page.request.get(url+'/state')).json();assert.equal(await page.locator('#trace li').count(),2);assert.match(await page.locator('#trace li').first().textContent(),/Return: 1/);assert.match(await page.locator('#trace li').last().textContent(),/Terminal.*Return: 1/);assert.equal(terminal.last_command,'stand');assert.match(await page.locator('#last-action').textContent(),/Last accepted action: stand/);if(name==='manual')assert.equal(await page.evaluate(()=>window.audioStarts),2);assert.equal(terminal.advice,null);assert.equal(await page.locator('#bot').isDisabled(),true);
     await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     await page.click('#deal');await page.waitForFunction(()=>document.querySelectorAll('#trace li').length===0);assert.match(await page.locator('#trace-status').textContent(),/No learning actions/);assert.deepEqual(errors,[]);console.log(`PASS ${name}: complete hand, evidence state, hidden card, refresh, stale/unauthorized requests, keyboard, mobile`);
    }finally{if(page)await page.close();await stop(child)}

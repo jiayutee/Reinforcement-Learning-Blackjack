@@ -63,6 +63,8 @@ def make_server(port=8765, seed=7, policy=None):
                 self.reply(403, {'error': 'Use the printed loopback address.'})
             elif self.path == '/':
                 self.reply(200, PAGE.read_text().replace('__TOKEN__', token), 'text/html; charset=utf-8')
+            elif self.path in ('/sound-events.js', '/sound-player.js'):
+                self.reply(200, PAGE.with_name(self.path[1:]).read_text(), 'text/javascript; charset=utf-8')
             elif self.path == '/state':
                 self.reply(200, table_view(session, policy))
             else:
