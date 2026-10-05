@@ -21,3 +21,12 @@ The trace panel is checked for pending returns during play, two completed +1 ret
 Two additional seeded manual scenarios verify terminal loss (seed 0, stand, return -1) and push (seed 6, stand, return 0). Successful output now contains five PASS lines. These seeds are deterministic outcome fixtures, not performance samples.
 
 The manual scenario instruments actual Web Audio oscillator creation: silent default, enable gesture, deal/hit scheduling, no replay on refresh and muted terminal silence. This is not an acoustic listening test. Run the independent classifier checks with `node tests/browser/sound-events.cjs`.
+
+Sound-control edge cases can run without Playwright:
+
+```sh
+node tests/browser/sound-events.cjs
+node tests/browser/sound-player.cjs
+```
+
+The second script uses Node's VM with simulated DOM, storage and audio objects. It checks zero volume, mute, persisted volume/enabled preference, fresh gesture after reload, unsupported/resume-failing audio and denied/corrupt storage. It verifies control logic, not browser permission implementation or audible quality. The main Playwright gate separately verifies real Web Audio scheduling.

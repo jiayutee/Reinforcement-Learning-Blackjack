@@ -265,3 +265,9 @@
 - Added original synthesized cues, explicit enable/mute, volume and local preferences with per-page gesture requirement. Invoked only after confirmed successful local commands; refresh/error responses silent. Audio failures do not stop gameplay.
 - All 77 Python tests, sound classifier gate and five browser scenarios passed. Actual oscillator instrumentation verified silent default, deal/hit cues, refresh silence and mute. No listening review claimed.
 - User Lesson 1 edits preserved. Next: preference/volume/unsupported-audio edge checks. October 5 summary pending.
+
+## 2026-10-05, 05:00 checkpoint — sound edge checks
+
+- Added no-dependency Node/VM tests for zero volume, mute, preference persistence, required reload activation, unavailable/blocked audio and denied/corrupt storage. Both sound suites passed.
+- Explicitly simulated controls, complementing earlier real-browser scheduling checks; no listening review claimed. No product changes; prior 77 Python tests/five browser scenarios remain current.
+- User Lesson 1 edits preserved. At 06:00 link today's feedback-vs-reward lesson, explain opt-in cues and controls, give local launch command, verification limits and commits. October 5 summary pending.
