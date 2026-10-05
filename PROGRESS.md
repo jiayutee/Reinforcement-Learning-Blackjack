@@ -253,3 +253,9 @@
 - Extended the repeatable browser gate with seed-0 standing loss and seed-6 standing push. Checks final reward, one terminal trace row, negative/zero completed return, disabled actions and JS errors.
 - All five browser scenarios passed; resources cleaned up. No product changes; prior 77-test Python proof remains current. Documented runnable examples and why outcome-selected seeds are not evaluation evidence.
 - User Lesson 1 edits preserved. At 06:00 link today's reward-vs-return lesson, give local-game command and trace-panel instructions, report tests and commits. October 4 summary pending.
+
+## 2026-10-05, 03:00 checkpoint — sound event semantics
+
+- Added pure presentation-only transitionCue helper for deal/hit/terminal outcomes, with silence for initial/repeated/stale/skipped states and no mutation. Bust selects loss, not two overlapping cues.
+- Deterministic Node gate passed all event/silence/nonmutation checks. No game/learning changes; prior 77 Python tests and five browser scenarios remain applicable. No audible playback yet.
+- Added beginner lesson distinguishing human feedback from reward with examples, commands and separate answers. Next: opt-in playback and controls; invoke cues only after successful local commands. User Lesson 1 edits preserved. October 4 summary delivered; October 5 summary pending.
