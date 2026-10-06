@@ -284,3 +284,9 @@
 - Added rank-preserving hand facts using existing ace scoring: total/usable ace/bust, unsplit two-card natural, equal-rank pair. No payouts or legal-action claims.
 - All 86 Python tests passed. New coverage distinguishes split 21 from natural and J+K from Q+Q, plus multi-ace, bust and validation. Existing learning/browser rules unchanged.
 - Expanded today's observation lesson with runnable examples showing why total alone loses decision-relevant information. User Lesson 1 edits preserved. Next: explicit round transitions and settlement contract; October 6 summary pending.
+
+## 2026-10-06, 05:00 checkpoint — public round contract
+
+- Specified phases, natural checks, double/split restrictions, virtual half-chip arithmetic, settlement/net reward, information boundary and compatibility gates in docs/decisions/public-round-v1.md.
+- Explicitly requires a shoe-reserve proof and safe exhaustion handling before full engine completion; does not claim the primitives satisfy round safety already. No implementation or game-rule changes in this checkpoint.
+- Reviewed against planned profile and checked payout examples; prior 86-test result remains current. User Lesson 1 edits preserved. At 06:00 summarize finite shoe, state/natural distinctions, contract, tests and commits. October 6 summary pending.
