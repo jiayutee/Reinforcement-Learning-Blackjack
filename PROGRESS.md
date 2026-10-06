@@ -271,3 +271,10 @@
 - Added no-dependency Node/VM tests for zero volume, mute, preference persistence, required reload activation, unavailable/blocked audio and denied/corrupt storage. Both sound suites passed.
 - Explicitly simulated controls, complementing earlier real-browser scheduling checks; no listening review claimed. No product changes; prior 77 Python tests/five browser scenarios remain current.
 - User Lesson 1 edits preserved. At 06:00 link today's feedback-vs-reward lesson, explain opt-in cues and controls, give local launch command, verification limits and commits. October 5 summary pending.
+
+## 2026-10-06, 03:00 checkpoint — separate finite shoe
+
+- Added immutable rank/suit cards and finite Shoe under public_game, separate from replacement-draw Foundations. Default six decks, 75% cut threshold, seeded shuffle stream, explicit between-round preparation, no draw-time refill.
+- All 82 Python tests passed. Exact composition: 312 cards, 24/rank, six/rank-suit, 96 ten-valued. Tests cover threshold, exhaustion, reproducibility and validation. No browser/agent rule changes.
+- Added beginner probability/state-observation lesson with equations, runnable counts and separate answers. Future engine must enforce round boundaries and card sufficiency; primitive alone is not full public gameplay.
+- User Lesson 1 edits preserved. October 5 summary delivered; October 6 summary pending. Next: round-boundary requirements and visible rank/suit groundwork.
