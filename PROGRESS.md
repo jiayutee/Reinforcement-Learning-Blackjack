@@ -278,3 +278,9 @@
 - All 82 Python tests passed. Exact composition: 312 cards, 24/rank, six/rank-suit, 96 ten-valued. Tests cover threshold, exhaustion, reproducibility and validation. No browser/agent rule changes.
 - Added beginner probability/state-observation lesson with equations, runnable counts and separate answers. Future engine must enforce round boundaries and card sufficiency; primitive alone is not full public gameplay.
 - User Lesson 1 edits preserved. October 5 summary delivered; October 6 summary pending. Next: round-boundary requirements and visible rank/suit groundwork.
+
+## 2026-10-06, 04:00 checkpoint — public hand facts
+
+- Added rank-preserving hand facts using existing ace scoring: total/usable ace/bust, unsplit two-card natural, equal-rank pair. No payouts or legal-action claims.
+- All 86 Python tests passed. New coverage distinguishes split 21 from natural and J+K from Q+Q, plus multi-ace, bust and validation. Existing learning/browser rules unchanged.
+- Expanded today's observation lesson with runnable examples showing why total alone loses decision-relevant information. User Lesson 1 edits preserved. Next: explicit round transitions and settlement contract; October 6 summary pending.
