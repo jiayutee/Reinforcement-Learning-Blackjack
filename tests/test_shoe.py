@@ -46,3 +46,22 @@ class ShoeTests(unittest.TestCase):
             with self.assertRaises(ValueError): Shoe(**kwargs)
         with self.assertRaises(ValueError): Card('11', 'spades')
         with self.assertRaises(ValueError): Card('A', 'stars')
+
+    def test_public_round_reserve_boundary(self):
+        from public_game.cards import PUBLIC_ROUND_RESERVE
+        self.assertEqual(PUBLIC_ROUND_RESERVE, 101)
+        shoe = Shoe(decks=6, penetration=0.75)
+        for _ in range(211): shoe.draw()
+        self.assertEqual(shoe.remaining, 101)
+        self.assertFalse(shoe.prepare_round(PUBLIC_ROUND_RESERVE))
+        shoe.draw()
+        self.assertFalse(shoe.needs_shuffle)
+        self.assertTrue(shoe.prepare_round(PUBLIC_ROUND_RESERVE))
+        self.assertEqual(shoe.remaining, 312)
+
+    def test_invalid_reserve_does_not_mutate_shoe(self):
+        first, reference = Shoe(seed=7), Shoe(seed=7)
+        for minimum in (-1, 313, True, 1.5):
+            with self.assertRaises(ValueError): first.prepare_round(minimum)
+        self.assertEqual([first.draw() for _ in range(20)], [reference.draw() for _ in range(20)])
+        with self.assertRaises(ValueError): Shoe(decks=1).prepare_round(101)

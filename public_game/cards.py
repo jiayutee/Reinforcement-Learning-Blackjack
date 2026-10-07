@@ -5,6 +5,8 @@ import random
 
 RANKS = ('A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K')
 SUITS = ('clubs', 'diamonds', 'hearts', 'spades')
+# Conservative bound for one player, <=4 final hands, automatic stop at 21, S17.
+PUBLIC_ROUND_RESERVE = 4 * 21 + 17
 
 
 @dataclass(frozen=True)
@@ -46,13 +48,15 @@ class Shoe:
     def needs_shuffle(self):
         return (52 * self.decks - self.remaining) / (52 * self.decks) >= self.penetration
 
-    def prepare_round(self):
+    def prepare_round(self, minimum_cards=0):
         """Caller must invoke only between rounds. Return whether a rebuild occurred.
 
         This primitive does not know round state; the future engine must enforce
         this boundary. There is no automatic shuffle during draw().
         """
-        if self.needs_shuffle:
+        if type(minimum_cards) is not int or not 0 <= minimum_cards <= 52 * self.decks:
+            raise ValueError('minimum_cards must fit within a full shoe')
+        if self.needs_shuffle or self.remaining < minimum_cards:
             self._rebuild()
             return True
         return False

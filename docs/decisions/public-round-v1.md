@@ -45,7 +45,7 @@ Use exact integer arithmetic in half-chip units: natural profit is 3*w/2, which 
 
 Persistent shoe across rounds; 75% penetration triggers preparation before the next round only. No draw-time refill. The current Shoe primitive does not enforce phase, so the engine must own that boundary and never call prepare_round during play.
 
-Before implementation completion, prove a conservative maximum-card requirement for the allowed hand/split rules, then enforce a between-round reserve sufficient for it in addition to penetration. Do not assume the 78 cards left at the cut threshold suffice without the proof. Exhaustion is an explicit error; it must never silently replace the shoe or partially settle a round. Handling an unexpected invariant failure requires transactional rollback or an explicit void-and-refund path preserving the starting balance; implement and test that path before enabling the profile.
+Use the conservative 101-card reserve derived below in addition to penetration. The engine must call `prepare_round(PUBLIC_ROUND_RESERVE)` only between rounds; the default zero reserve remains available for generic shoe experiments. Do not treat the 78 cards at the nominal cut point as sufficient. Exhaustion is an explicit error; it must never silently replace the shoe or partially settle a round. Handling an unexpected invariant failure requires transactional rollback or an explicit void-and-refund path preserving the starting balance; implement and test that path before enabling the profile.
 
 ## Visible information and agent compatibility
 
@@ -56,3 +56,15 @@ A new observation schema must include decision-relevant split/double/natural con
 ## Implementation gates
 
 Implement in small slices: round lifecycle and natural check; exact settlement; double; split and split aces; persistent shoe/reserve; visible snapshots and compatible policy integration. Each slice needs deterministic cases, invalid/stale command nonmutation, hidden-information checks and balance conservation before browser connection. The current Card, Shoe and hand_facts primitives are groundwork only; this contract is not a claim that the engine is complete.
+
+## Reserve derivation (7 October)
+
+Assumptions: one player, at most four final hands, hit only below 21, each card has minimum value 1, no discarded cards during splitting, and dealer hits only below 17 (S17).
+
+Before a player's last hit, its total is at most 20. The sum counting aces as 1 is no greater than that total, so at most 20 cards can be present before the hit. One further card gives at most 21 cards in a final player hand. Automatically standing on 21 prevents further hits. Initial/split deals and doubles use at most three cards per such hand, within the same bound. Resplitting partitions existing cards into final hands; it does not discard them. Thus all player cards are bounded by 4×21=84.
+
+Before the dealer's last draw, total is at most 16, hence at most 16 cards. One final card gives at most 17. Initial dealer naturals also fit the bound. Total cards consumed in a round are therefore at most 84+17=101, including initial cards. This loose bound ignores finite rank counts, which can only reduce reachable maxima; it is not a claim that a 101-card hand sequence is possible.
+
+For six decks, preparation allows exactly 101 remaining cards and rebuilds below 101, or when penetration requires it. This may reshuffle before 75% is consumed, trading penetration for a simple deterministic reserve guarantee. If player count, maximum hands or stopping rules change, rederive the bound. Single-deck shoes cannot satisfy this conservative reserve and are rejected by that preparation request; this does not imply single-deck blackjack itself is impossible.
+
+The reserve primitive is implemented and boundary-tested. The future round engine still must enforce legal actions, between-round preparation and atomic/void handling for unexpected failures.

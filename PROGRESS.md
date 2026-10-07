@@ -297,3 +297,9 @@
 - All 91 Python tests passed, including five new settlement tests with split/double conservation and invalid/incomplete inputs. Foundations/browser rules unchanged.
 - Added beginner lesson distinguishing stake, credit, profit and normalized RL reward with runnable examples and separate answers. User Lesson 1 edits preserved.
 - Next: finite-shoe reserve and round lifecycle. October 6 summary delivered; October 7 summary pending.
+
+## 2026-10-07, 04:00 checkpoint — conservative round reserve
+
+- Derived 101-card upper bound (four player hands ×21 plus dealer17) under explicit stop/split assumptions. Updated contract; reserve may reshuffle earlier than nominal75%.
+- Added optional minimum_cards to between-round preparation, default unchanged. All 93 tests passed including exact101/100 boundary, capacity validation and invalid-input nonmutation.
+- Engine must still enforce round phases, assumptions and atomic failure handling; no full-game claim. User Lesson1 edits preserved. Next: bounded round lifecycle work; October7 summary pending.
