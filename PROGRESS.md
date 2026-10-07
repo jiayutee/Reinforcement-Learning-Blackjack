@@ -303,3 +303,10 @@
 - Derived 101-card upper bound (four player hands ×21 plus dealer17) under explicit stop/split assumptions. Updated contract; reserve may reshuffle earlier than nominal75%.
 - Added optional minimum_cards to between-round preparation, default unchanged. All 93 tests passed including exact101/100 boundary, capacity validation and invalid-input nonmutation.
 - Engine must still enforce round phases, assumptions and atomic failure handling; no full-game claim. User Lesson1 edits preserved. Next: bounded round lifecycle work; October7 summary pending.
+
+## 2026-10-07, 05:00 checkpoint — pure opening transition
+
+- Added private immutable opening state: strict wager/funds validation, player/dealer/player/dealer ordering, debit and immediate natural settlement using existing arithmetic. Ordinary openings enter player_turn with no completed result.
+- All 98 Python tests passed. Runnable examples produced settled/balance230/profit30 and player_turn/balance180/no settlement. Added step-by-step explanation and separate exercise answer; diff whitespace check passed.
+- This is a pure transition, not the complete session: transactional shoe ownership, revision/phase checks, actions, visible snapshots and committing balance once remain next. No browser changes. User Lesson1 edits preserved.
+- At 06:00 summarize today's stake/credit/profit lesson, opening and reserve work, 98-test proof and GitHub commits. October7 morning summary pending.
