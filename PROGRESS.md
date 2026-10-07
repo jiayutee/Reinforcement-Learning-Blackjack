@@ -290,3 +290,10 @@
 - Specified phases, natural checks, double/split restrictions, virtual half-chip arithmetic, settlement/net reward, information boundary and compatibility gates in docs/decisions/public-round-v1.md.
 - Explicitly requires a shoe-reserve proof and safe exhaustion handling before full engine completion; does not claim the primitives satisfy round safety already. No implementation or game-rule changes in this checkpoint.
 - Reviewed against planned profile and checked payout examples; prior 86-test result remains current. User Lesson 1 edits preserved. At 06:00 summarize finite shoe, state/natural distinctions, contract, tests and commits. October 6 summary pending.
+
+## 2026-10-07, 03:00 checkpoint — exact hand settlement
+
+- Added pure completed-hand settlement in half-chip integers, respecting natural/dealer-natural precedence, split ordinary 21, bust and ordinary comparisons. Returns immutable credit/profit facts; no balance mutation or round-lifecycle claim.
+- All 91 Python tests passed, including five new settlement tests with split/double conservation and invalid/incomplete inputs. Foundations/browser rules unchanged.
+- Added beginner lesson distinguishing stake, credit, profit and normalized RL reward with runnable examples and separate answers. User Lesson 1 edits preserved.
+- Next: finite-shoe reserve and round lifecycle. October 6 summary delivered; October 7 summary pending.
