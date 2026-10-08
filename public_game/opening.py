@@ -18,8 +18,8 @@ def validate_wager(balance: int, stake: int) -> None:
 @dataclass(frozen=True)
 class OpeningRound:
     phase: str
-    player: Tuple[Card, Card]
-    dealer: Tuple[Card, Card]
+    player: Tuple[Card, ...]
+    dealer: Tuple[Card, ...]
     stake: int
     balance: int
     settlement: Optional[Settlement]

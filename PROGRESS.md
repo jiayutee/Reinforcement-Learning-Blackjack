@@ -317,3 +317,9 @@
 - All 102 Python tests passed. Four new cases cover rejected requests, failure after tentative shuffle with full future-stream preservation, hidden snapshots, active redeal rejection and natural crediting once.
 - Added beginner atomic-transition lesson, state equations, runnable test experiment and separate answers. No player actions/browser integration yet; next slice is round progression using the same transaction boundary.
 - October7 morning summary delivered. October8 summary pending. User Lesson1 edits preserved.
+
+## 2026-10-08, 04:00 checkpoint — transactional hit/stand completion
+
+- Added hit/stand progression, automatic completion at 21/bust, S17 dealer play, one-time settlement credit and complete revealed dealer snapshots. All draws remain tentative until successful commit; no mid-round shuffle.
+- All 105 Python tests passed, including terminal accounting, soft17, dealer bust, player bust without dealer draws, action rejection and injected dealer-draw failure preserving authoritative state. Seed7 stand example ends balance180/profit-20/dealer20.
+- Expanded today's atomic-transition lesson and separate answers. Double/split, action masks, browser and agent integration remain incomplete. User Lesson1 edits preserved. October8 morning summary pending.
