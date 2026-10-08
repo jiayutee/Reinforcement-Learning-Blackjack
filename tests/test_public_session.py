@@ -104,7 +104,7 @@ class PublicSessionTests(unittest.TestCase):
     def test_action_failure_and_rejections_preserve_private_state(self):
         session = self.active(('10','2','7','3'))
         before, bundle = session.view(), session._state
-        for action, revision in [('double',1), ('hit',0), ('stand',True)]:
+        for action, revision in [('split',1), ('hit',0), ('stand',True)]:
             with self.assertRaises(ValueError): session.act(action, revision)
             self.assertIs(session._state, bundle)
         with patch.object(Shoe, 'draw', side_effect=[Card('2','clubs'), RuntimeError('failure')]):
@@ -112,3 +112,43 @@ class PublicSessionTests(unittest.TestCase):
         self.assertIs(session._state, bundle)
         self.assertEqual(session.view(), before)
         with self.assertRaises(ValueError): PublicSession().act('hit', 0)
+
+    def test_double_one_card_and_conservation(self):
+        for ranks, drawn, profit in [
+            (('5','10','6','7'), 'K', 40),
+            (('5','10','6','7'), '6', 0),
+            (('5','10','6','7'), '2', -40),
+            (('10','2','9','3'), 'K', -40),
+        ]:
+            with self.subTest(ranks=ranks, drawn=drawn):
+                session = self.active(ranks)
+                with patch.object(Shoe, 'draw', side_effect=[Card(drawn,'clubs')]) as draw:
+                    view = session.act('double', 1)
+                    self.assertEqual(draw.call_count, 1)
+                self.assertEqual((view['phase'],view['stake']), ('settled',40))
+                self.assertEqual(len(view['player']), 3)
+                self.assertEqual((view['profit'],view['balance']), (profit,200+profit))
+                with self.assertRaises(ValueError): session.act('double', 2)
+
+    def test_double_rejects_insufficient_funds_and_after_hit(self):
+        session = PublicSession(balance=20)
+        with patch.object(Shoe,'draw',side_effect=[Card(r,'hearts') for r in ('5','10','6','7')]):
+            session.deal(20,0)
+        before = session._state
+        with patch.object(Shoe,'draw') as draw:
+            with self.assertRaises(ValueError): session.act('double',1)
+            draw.assert_not_called()
+        self.assertIs(session._state,before)
+        session = self.active(('5','10','6','7'))
+        with patch.object(Shoe,'draw',return_value=Card('2','clubs')): session.act('hit',1)
+        before = session._state
+        with self.assertRaises(ValueError): session.act('double',2)
+        self.assertIs(session._state,before)
+
+    def test_double_failure_restores_additional_debit_and_cards(self):
+        session = self.active(('5','2','6','3'))
+        before = session._state
+        with patch.object(Shoe,'draw',side_effect=[Card('K','clubs'), RuntimeError('dealer failure')]):
+            with self.assertRaises(RuntimeError): session.act('double',1)
+        self.assertIs(session._state,before)
+        self.assertEqual(session.view()['balance'],180)

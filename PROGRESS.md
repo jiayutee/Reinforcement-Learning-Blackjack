@@ -323,3 +323,9 @@
 - Added hit/stand progression, automatic completion at 21/bust, S17 dealer play, one-time settlement credit and complete revealed dealer snapshots. All draws remain tentative until successful commit; no mid-round shuffle.
 - All 105 Python tests passed, including terminal accounting, soft17, dealer bust, player bust without dealer draws, action rejection and injected dealer-draw failure preserving authoritative state. Seed7 stand example ends balance180/profit-20/dealer20.
 - Expanded today's atomic-transition lesson and separate answers. Double/split, action masks, browser and agent integration remain incomplete. User Lesson1 edits preserved. October8 morning summary pending.
+
+## 2026-10-08, 05:00 checkpoint — transactional double
+
+- Added two-card/funds validation, tentative extra stake, exactly one player draw and automatic completion for double. Rollback includes the extra debit if subsequent draws fail.
+- All 108 Python tests passed: double outcome conservation, one-card completion, insufficient/post-hit rejection and injected dealer failure. Updated lesson with ±2 normalized reward examples and separate answers; diff check passed.
+- Split rules, action masks, concurrency, browser and compatible agent integration remain unfinished. User Lesson1 edits preserved. At 06:00 summarize atomic transitions, opening/hit/stand/double, 108-test proof and pushed commits. October8 summary pending.

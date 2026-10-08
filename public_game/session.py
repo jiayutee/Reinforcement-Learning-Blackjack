@@ -1,4 +1,4 @@
-"""Incremental public session: transactional single-hand hit/stand; double/split pending."""
+"""Incremental public session: transactional single-hand hit/stand/double; split pending."""
 from copy import deepcopy
 from dataclasses import replace
 
@@ -35,25 +35,31 @@ class PublicSession:
             raise ValueError('stale or invalid revision')
         if previous is None or previous.phase != 'player_turn':
             raise ValueError('no active player hand')
-        if action not in ('hit', 'stand'):
-            raise ValueError('supported actions are hit and stand')
+        if action not in ('hit', 'stand', 'double'):
+            raise ValueError('supported actions are hit, stand and double')
+        stake = previous.stake
+        if action == 'double':
+            if len(previous.player) != 2 or balance < stake:
+                raise ValueError('double requires two cards and enough balance')
+            balance -= stake
+            stake *= 2
         candidate = deepcopy(shoe)
         player, dealer = previous.player, previous.dealer
-        if action == 'hit':
+        if action in ('hit', 'double'):
             player = player + (candidate.draw(),)
         facts = hand_facts(player)
-        finished = action == 'stand' or facts.total >= 21
+        finished = action in ('stand', 'double') or facts.total >= 21
         settlement = None
         if finished:
             # A busted player loses without consuming additional dealer cards.
             if not facts.bust:
                 while hand_facts(dealer).total < 17:
                     dealer = dealer + (candidate.draw(),)
-            settlement = settle_hand(player, dealer, previous.stake)
+            settlement = settle_hand(player, dealer, stake)
             balance += settlement.credit
         result = replace(previous, player=player, dealer=dealer,
                          phase='settled' if finished else 'player_turn',
-                         balance=balance, settlement=settlement)
+                         balance=balance, stake=stake, settlement=settlement)
         self._state = (candidate, balance, revision + 1, result)
         return self.view()
 

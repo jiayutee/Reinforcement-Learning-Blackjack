@@ -7,3 +7,7 @@
 ## Hit/stand accounting
 
 An ordinary win credits 2×20=40 units, making final balance 180+40=220. Net profit is 220-200=20. The credit includes the stake that was previously debited.
+
+## Double accounting
+
+You lose 20 chips in total, including the original 10 and additional 10. Normalized reward is -20/10=-2. The original stake is not subtracted a third time at settlement.
