@@ -310,3 +310,10 @@
 - All 98 Python tests passed. Runnable examples produced settled/balance230/profit30 and player_turn/balance180/no settlement. Added step-by-step explanation and separate exercise answer; diff whitespace check passed.
 - This is a pure transition, not the complete session: transactional shoe ownership, revision/phase checks, actions, visible snapshots and committing balance once remain next. No browser changes. User Lesson1 edits preserved.
 - At 06:00 summarize today's stake/credit/profit lesson, opening and reserve work, 98-test proof and GitHub commits. October7 morning summary pending.
+
+## 2026-10-08, 03:00 checkpoint — transactional opening session
+
+- Added opening-only PublicSession with revision/phase/funds checks before candidate shoe preparation, copied RNG/card state, and a single authoritative commit after successful opening resolution. Active snapshots conceal dealer hole/total and are detached.
+- All 102 Python tests passed. Four new cases cover rejected requests, failure after tentative shuffle with full future-stream preservation, hidden snapshots, active redeal rejection and natural crediting once.
+- Added beginner atomic-transition lesson, state equations, runnable test experiment and separate answers. No player actions/browser integration yet; next slice is round progression using the same transaction boundary.
+- October7 morning summary delivered. October8 summary pending. User Lesson1 edits preserved.
