@@ -336,3 +336,9 @@
 - All 110 Python tests passed, including phase/funds/card-count changes, detached masks, rejected-action nonmutation and identical active snapshots across different nonnatural dealer hole cards.
 - Added beginner action-mask lesson, constrained greedy/epsilon-greedy equations, runnable tests and separate answers. No trained-policy or browser changes; full split rules remain unfinished. User Lesson1 edits preserved.
 - October8 summary delivered; October9 summary pending. Commit source/docs/tests together and push this bounded checkpoint.
+
+## 2026-10-09, 05:00 checkpoint — real-shoe mask integration proof
+
+- Added 300-round integration test across three seeds, sampling supported legal actions with an independent RNG and using actual persistent shoes. Checks concealment/reveal, stale-action nonmutation, per-round balance conservation, card consumption and between-round reshuffles.
+- All 111 Python tests passed. No product behavior changes; expanded lesson with experiment limits and separate RNG exercise answer. This is rule verification, not trained-policy evaluation.
+- User Lesson1 edits preserved. At 06:00 summarize action masks, 300-round proof, 111 tests and commits; explicitly note no saved 03:00 work. October9 summary pending.

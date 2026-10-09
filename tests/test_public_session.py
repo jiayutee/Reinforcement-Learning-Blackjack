@@ -178,3 +178,36 @@ class PublicSessionTests(unittest.TestCase):
         for action in ('split', 'surrender', '', None):
             with self.assertRaises(ValueError): first.act(action,1)
             self.assertIs(first._state,before)
+
+    def test_seeded_legal_play_conserves_balance_across_shoes(self):
+        # Integration proof with real shoes: no patched draw or scripted outcomes.
+        import random
+        for seed in (7, 19, 42):
+            session = PublicSession(balance=100000, seed=seed)
+            chooser = random.Random(seed + 1000)
+            reshuffles = 0
+            for _ in range(100):
+                start = session.view()['balance']
+                remaining = session._state[0].remaining
+                view = session.deal(20, session.view()['revision'])
+                if session._state[0].remaining > remaining:
+                    reshuffles += 1
+                draws_after_deal = session._state[0].remaining
+                accepted = 0
+                while view['phase'] == 'player_turn':
+                    self.assertIsNone(view['dealer'][1])
+                    self.assertIsNone(view['dealer_total'])
+                    action = chooser.choice(view['legal_actions'])
+                    revision = view['revision']
+                    view = session.act(action, revision)
+                    accepted += 1
+                    self.assertLessEqual(accepted, 21)
+                    committed = session._state
+                    with self.assertRaises(ValueError): session.act(action, revision)
+                    self.assertIs(session._state, committed)
+                self.assertEqual(view['legal_actions'], [])
+                self.assertEqual(view['balance'] - start, view['profit'])
+                self.assertEqual(len(view['player']) + len(view['dealer']) - 4,
+                                 draws_after_deal - session._state[0].remaining)
+                self.assertTrue(all(card is not None for card in view['dealer']))
+            self.assertGreater(reshuffles, 0)
