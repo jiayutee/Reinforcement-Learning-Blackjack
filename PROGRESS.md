@@ -329,3 +329,10 @@
 - Added two-card/funds validation, tentative extra stake, exactly one player draw and automatic completion for double. Rollback includes the extra debit if subsequent draws fail.
 - All 108 Python tests passed: double outcome conservation, one-card completion, insufficient/post-hit rejection and injected dealer failure. Updated lesson with ±2 normalized reward examples and separate answers; diff check passed.
 - Split rules, action masks, concurrency, browser and compatible agent integration remain unfinished. User Lesson1 edits preserved. At 06:00 summarize atomic transitions, opening/hit/stand/double, 108-test proof and pushed commits. October8 summary pending.
+
+## 2026-10-09, 04:00 checkpoint — shared action mask
+
+- No completed 03:00 work found for today. Added supported legal-action lists to public snapshots and reused their eligibility in authoritative command validation. Ready/terminal lists are empty; deal remains a separate command.
+- All 110 Python tests passed, including phase/funds/card-count changes, detached masks, rejected-action nonmutation and identical active snapshots across different nonnatural dealer hole cards.
+- Added beginner action-mask lesson, constrained greedy/epsilon-greedy equations, runnable tests and separate answers. No trained-policy or browser changes; full split rules remain unfinished. User Lesson1 edits preserved.
+- October8 summary delivered; October9 summary pending. Commit source/docs/tests together and push this bounded checkpoint.

@@ -35,12 +35,10 @@ class PublicSession:
             raise ValueError('stale or invalid revision')
         if previous is None or previous.phase != 'player_turn':
             raise ValueError('no active player hand')
-        if action not in ('hit', 'stand', 'double'):
-            raise ValueError('supported actions are hit, stand and double')
+        if action not in self.legal_actions():
+            raise ValueError('action is not legal in the current state')
         stake = previous.stake
         if action == 'double':
-            if len(previous.player) != 2 or balance < stake:
-                raise ValueError('double requires two cards and enough balance')
             balance -= stake
             stake *= 2
         candidate = deepcopy(shoe)
@@ -63,6 +61,16 @@ class PublicSession:
         self._state = (candidate, balance, revision + 1, result)
         return self.view()
 
+    def legal_actions(self):
+        """Supported player actions only; no hidden-card-dependent decisions."""
+        _, balance, _, result = self._state
+        if result is None or result.phase != 'player_turn':
+            return []
+        actions = ['hit', 'stand']
+        if len(result.player) == 2 and balance >= result.stake:
+            actions.append('double')
+        return actions
+
     def view(self):
         _, balance, revision, result = self._state
         def card(c):
@@ -71,6 +79,7 @@ class PublicSession:
         return {
             'phase': result.phase if result else 'ready',
             'revision': revision,
+            'legal_actions': self.legal_actions(),
             'balance': balance,
             'stake': result.stake if result else None,
             'player': [card(c) for c in result.player] if result else [],

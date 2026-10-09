@@ -152,3 +152,29 @@ class PublicSessionTests(unittest.TestCase):
             with self.assertRaises(RuntimeError): session.act('double',1)
         self.assertIs(session._state,before)
         self.assertEqual(session.view()['balance'],180)
+
+    def test_action_mask_tracks_phase_cards_and_balance(self):
+        self.assertEqual(PublicSession().view()['legal_actions'], [])
+        session = self.active(('5','10','6','7'))
+        self.assertEqual(session.view()['legal_actions'], ['hit','stand','double'])
+        detached = session.legal_actions()
+        detached.clear()
+        self.assertEqual(session.legal_actions(), ['hit','stand','double'])
+        with patch.object(Shoe,'draw',return_value=Card('2','clubs')):
+            session.act('hit',1)
+        self.assertEqual(session.legal_actions(), ['hit','stand'])
+        view = session.act('stand',2)
+        self.assertEqual(view['legal_actions'], [])
+        poor = PublicSession(balance=20)
+        with patch.object(Shoe,'draw',side_effect=[Card(r,'hearts') for r in ('5','10','6','7')]):
+            poor.deal(20,0)
+        self.assertEqual(poor.legal_actions(), ['hit','stand'])
+
+    def test_mask_does_not_leak_nonnatural_hole_card(self):
+        first = self.active(('5','10','6','7'))
+        second = self.active(('5','10','6','9'))
+        self.assertEqual(first.view(), second.view())
+        before = first._state
+        for action in ('split', 'surrender', '', None):
+            with self.assertRaises(ValueError): first.act(action,1)
+            self.assertIs(first._state,before)
