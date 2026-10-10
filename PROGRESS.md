@@ -342,3 +342,10 @@
 - Added 300-round integration test across three seeds, sampling supported legal actions with an independent RNG and using actual persistent shoes. Checks concealment/reveal, stale-action nonmutation, per-round balance conservation, card consumption and between-round reshuffles.
 - All 111 Python tests passed. No product behavior changes; expanded lesson with experiment limits and separate RNG exercise answer. This is rule verification, not trained-policy evaluation.
 - User Lesson1 edits preserved. At 06:00 summarize action masks, 300-round proof, 111 tests and commits; explicitly note no saved 03:00 work. October9 summary pending.
+
+## 2026-10-10, 03:00 checkpoint — fixed initial wager for normalization
+
+- Preserve initial_stake independently of doubled stake; expose completed normalized_profit=profit/initial_stake, with None before settlement. Snapshot reads do not emit reward events.
+- All 112 Python tests passed, including double ±2/0, ordinary loss -1, natural +1.5, pending/repeated reads and next-deal denominator reset. Existing 300-round proof remains passing.
+- Added beginner equations, worked accounting, coding explanation, runnable tests and separate answers. No RL adapter/browser changes; split work remains unfinished. User Lesson1 edits preserved.
+- October9 summary delivered; October10 summary pending. Save this verified checkpoint to GitHub.

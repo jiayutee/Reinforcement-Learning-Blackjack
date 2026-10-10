@@ -21,6 +21,7 @@ class OpeningRound:
     player: Tuple[Card, ...]
     dealer: Tuple[Card, ...]
     stake: int
+    initial_stake: int
     balance: int
     settlement: Optional[Settlement]
 
@@ -43,7 +44,7 @@ def opening_round(dealt: Sequence[Card], balance: int, stake: int) -> OpeningRou
         settlement = settle_hand(player, dealer, stake)
     return OpeningRound(
         phase='settled' if settlement is not None else 'player_turn',
-        player=player, dealer=dealer, stake=stake,
+        player=player, dealer=dealer, stake=stake, initial_stake=stake,
         balance=balance - stake + (settlement.credit if settlement else 0),
         settlement=settlement,
     )

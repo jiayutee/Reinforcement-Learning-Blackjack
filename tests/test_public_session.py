@@ -211,3 +211,27 @@ class PublicSessionTests(unittest.TestCase):
                                  draws_after_deal - session._state[0].remaining)
                 self.assertTrue(all(card is not None for card in view['dealer']))
             self.assertGreater(reshuffles, 0)
+
+    def test_initial_wager_normalizes_completed_profit(self):
+        ready = PublicSession().view()
+        self.assertIsNone(ready['initial_stake'])
+        self.assertIsNone(ready['normalized_profit'])
+        for action, card, expected in [('double','K',2.0), ('double','2',-2.0),
+                                      ('double','6',0.0), ('stand',None,-1.0)]:
+            session = self.active(('5','10','6','7'))
+            self.assertEqual(session.view()['initial_stake'],20)
+            self.assertIsNone(session.view()['normalized_profit'])
+            with patch.object(Shoe,'draw',side_effect=[Card(card,'clubs')] if card else []):
+                result = session.act(action,1)
+            self.assertEqual(result['initial_stake'],20)
+            self.assertEqual(result['normalized_profit'],expected)
+            self.assertEqual(result['stake'],40 if action=='double' else 20)
+            self.assertEqual(session.view(),result)
+        session = PublicSession()
+        with patch.object(Shoe,'draw',side_effect=[Card(r,'hearts') for r in ('A','10','K','6')]):
+            result = session.deal(2,0)
+        self.assertEqual(result['normalized_profit'],1.5)
+        with patch.object(Shoe,'draw',side_effect=[Card(r,'hearts') for r in ('5','10','6','7')]):
+            new = session.deal(10,1)
+        self.assertEqual(new['initial_stake'],10)
+        self.assertIsNone(new['normalized_profit'])

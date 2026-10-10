@@ -82,6 +82,10 @@ class PublicSession:
             'legal_actions': self.legal_actions(),
             'balance': balance,
             'stake': result.stake if result else None,
+            'initial_stake': result.initial_stake if result else None,
+            # Completed round metric, not a reward emitted on every read.
+            'normalized_profit': (result.settlement.profit / result.initial_stake
+                                  if settled else None),
             'player': [card(c) for c in result.player] if result else [],
             'dealer': ([card(c) for c in result.dealer] if settled else
                        [card(result.dealer[0]), None] if result else []),
