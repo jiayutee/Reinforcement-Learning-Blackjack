@@ -349,3 +349,9 @@
 - All 112 Python tests passed, including double ±2/0, ordinary loss -1, natural +1.5, pending/repeated reads and next-deal denominator reset. Existing 300-round proof remains passing.
 - Added beginner equations, worked accounting, coding explanation, runnable tests and separate answers. No RL adapter/browser changes; split work remains unfinished. User Lesson1 edits preserved.
 - October9 summary delivered; October10 summary pending. Save this verified checkpoint to GitHub.
+
+## 2026-10-10, 04:00 checkpoint — pure split construction
+
+- Added immutable split-hand construction with ordered additional cards, equal-rank/funds/hand-count validation, one extra debit and split-ace automatic completion. Supplied cards only; split remains unavailable in session masks pending integration.
+- All 115 Python tests passed, including three new split tests for ordering/accounting, aces/ordinary21 payout, rank/funds/count restrictions and detached inputs. Expanded normalized-round-profit lesson and separate answers.
+- Next: multi-hand session integration with pre-draw legality, transaction safety and aggregate settlement; no browser changes. User Lesson1 edits preserved. October10 morning summary pending.
