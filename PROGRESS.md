@@ -355,3 +355,9 @@
 - Added immutable split-hand construction with ordered additional cards, equal-rank/funds/hand-count validation, one extra debit and split-ace automatic completion. Supplied cards only; split remains unavailable in session masks pending integration.
 - All 115 Python tests passed, including three new split tests for ordering/accounting, aces/ordinary21 payout, rank/funds/count restrictions and detached inputs. Expanded normalized-round-profit lesson and separate answers.
 - Next: multi-hand session integration with pre-draw legality, transaction safety and aggregate settlement; no browser changes. User Lesson1 edits preserved. October10 morning summary pending.
+
+## 2026-10-10, 05:00 checkpoint — pre-draw split validation
+
+- Extracted shared validate_split for eligibility before future transactional draws; split construction reuses it. Session phase/revision and full multi-hand integration remain pending; split is still not advertised.
+- All 116 Python tests passed. Added 1,352 rank/count/funds combinations comparing eligibility and construction with the declared rule, plus resplit-ace rejection. Updated lesson with rationale and coverage limits; diff check passed.
+- User Lesson1 edits preserved. At 06:00 summarize fixed initial-wager normalization, split groundwork, 116 tests and commits; explicitly distinguish groundwork from enabled split gameplay. October10 summary pending.

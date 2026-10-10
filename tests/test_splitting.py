@@ -39,3 +39,24 @@ class SplitTests(unittest.TestCase):
         hands, balance = split_hand(cards('8','8'),cards('8','2'),20,20,3)
         self.assertEqual(balance,0)
         self.assertTrue(hand_facts(hands[0].cards).equal_rank_pair)
+
+    def test_predraw_eligibility_matches_construction(self):
+        from public_game.splitting import validate_split
+        from public_game.cards import RANKS
+        # All rank pairs, 1-4 hands, and affordable/unaffordable extra stakes.
+        for first in RANKS:
+            for second in RANKS:
+                for count in range(1,5):
+                    for balance in (19,20):
+                        pair = cards(first,second)
+                        allowed = first == second and count < 4 and balance >= 20
+                        if allowed:
+                            validate_split(pair,20,balance,count)
+                            hands, remaining = split_hand(pair,cards('2','3'),20,balance,count)
+                            self.assertEqual(remaining,balance-20)
+                            self.assertEqual(len(hands),2)
+                        else:
+                            with self.assertRaises(ValueError): validate_split(pair,20,balance,count)
+                            with self.assertRaises(ValueError): split_hand(pair,cards('2','3'),20,balance,count)
+        with self.assertRaises(ValueError):
+            validate_split(cards('A','A'),20,100,2,split_aces=True)

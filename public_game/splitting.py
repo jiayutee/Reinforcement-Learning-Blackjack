@@ -16,6 +16,17 @@ class SplitHand:
     complete: bool
 
 
+def validate_split(cards, stake, balance, hand_count, *, split_aces=False):
+    """Check hand eligibility before drawing; caller still owns phase/revision."""
+    validate_wager(balance, stake)
+    if type(hand_count) is not int or not 1 <= hand_count < 4:
+        raise ValueError('split must leave at most four hands')
+    if type(split_aces) is not bool or split_aces:
+        raise ValueError('split aces cannot be resplit')
+    if not hand_facts(cards).equal_rank_pair:
+        raise ValueError('split requires an equal-rank two-card pair')
+
+
 def split_hand(cards, additions, stake, balance, hand_count, *, split_aces=False):
     """Return two new hands and remaining balance; never draw or mutate inputs.
 
@@ -23,14 +34,8 @@ def split_hand(cards, additions, stake, balance, hand_count, *, split_aces=False
     the two additions. hand_count includes the hand being replaced. A previously
     split ace hand is ineligible, even if its one new card is another ace.
     """
-    validate_wager(balance, stake)
-    if type(hand_count) is not int or not 1 <= hand_count < 4:
-        raise ValueError('split must leave at most four hands')
-    if type(split_aces) is not bool or split_aces:
-        raise ValueError('split aces cannot be resplit')
     original, added = tuple(cards), tuple(additions)
-    if not hand_facts(original).equal_rank_pair:
-        raise ValueError('split requires an equal-rank two-card pair')
+    validate_split(original, stake, balance, hand_count, split_aces=split_aces)
     if len(added) != 2 or any(not isinstance(c, Card) for c in added):
         raise ValueError('split requires two added Cards in hand order')
     aces = original[0].rank == 'A'
