@@ -361,3 +361,9 @@
 - Extracted shared validate_split for eligibility before future transactional draws; split construction reuses it. Session phase/revision and full multi-hand integration remain pending; split is still not advertised.
 - All 116 Python tests passed. Added 1,352 rank/count/funds combinations comparing eligibility and construction with the declared rule, plus resplit-ace rejection. Updated lesson with rationale and coverage limits; diff check passed.
 - User Lesson1 edits preserved. At 06:00 summarize fixed initial-wager normalization, split groundwork, 116 tests and commits; explicitly distinguish groundwork from enabled split gameplay. October10 summary pending.
+
+## 2026-10-11, 03:00 checkpoint — aggregate round settlement
+
+- Added pure aggregation of one to four completed hands with per-hand split-aware settlement, total stake/credit/profit and original-wager normalization. No balance mutation or session split enablement.
+- All 119 Python tests passed, including mixed double results, balance conservation, ±8 four-double examples, all-bust settlement and incomplete/invalid inputs. Added beginner sum equations, worked example, runnable experiment and separate answers.
+- Multi-hand session progression/transaction integration remain unfinished; helper trusts engine-owned completion metadata. User Lesson1 edits preserved. October10 summary delivered; October11 summary pending.
