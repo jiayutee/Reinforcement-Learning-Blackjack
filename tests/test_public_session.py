@@ -201,13 +201,13 @@ class PublicSessionTests(unittest.TestCase):
                     revision = view['revision']
                     view = session.act(action, revision)
                     accepted += 1
-                    self.assertLessEqual(accepted, 21)
+                    self.assertLessEqual(accepted, 84)
                     committed = session._state
                     with self.assertRaises(ValueError): session.act(action, revision)
                     self.assertIs(session._state, committed)
                 self.assertEqual(view['legal_actions'], [])
                 self.assertEqual(view['balance'] - start, view['profit'])
-                self.assertEqual(len(view['player']) + len(view['dealer']) - 4,
+                self.assertEqual(sum(len(h['cards']) for h in view['hands']) + len(view['dealer']) - 4,
                                  draws_after_deal - session._state[0].remaining)
                 self.assertTrue(all(card is not None for card in view['dealer']))
             self.assertGreater(reshuffles, 0)
@@ -235,3 +235,47 @@ class PublicSessionTests(unittest.TestCase):
             new = session.deal(10,1)
         self.assertEqual(new['initial_stake'],10)
         self.assertIsNone(new['normalized_profit'])
+
+    def test_split_advances_then_aggregates_double_and_loss(self):
+        session = self.active(('8','10','8','8'))
+        self.assertIn('split',session.legal_actions())
+        with patch.object(Shoe,'draw',side_effect=[Card('3','clubs'),Card('9','clubs')]):
+            view = session.act('split',1)
+        self.assertEqual((view['balance'],view['active_hand']),(160,0))
+        self.assertEqual(len(view['hands']),2)
+        with patch.object(Shoe,'draw',side_effect=[Card('K','clubs')]):
+            view = session.act('double',2)
+        self.assertEqual((view['balance'],view['active_hand']),(140,1))
+        self.assertIsNone(view['dealer'][1])
+        self.assertIsNone(view['profit'])
+        view = session.act('stand',3)
+        self.assertEqual((view['balance'],view['profit'],view['normalized_profit']),(220,20,1))
+        self.assertEqual([h['profit'] for h in view['hands']],[40,-20])
+        self.assertEqual(view['legal_actions'],[])
+
+    def test_split_aces_finish_and_pay_ordinary_21(self):
+        session = self.active(('A','10','A','9'))
+        with patch.object(Shoe,'draw',side_effect=[Card('K','clubs'),Card('A','clubs')]) as draw:
+            view = session.act('split',1)
+            self.assertEqual(draw.call_count,2)
+        self.assertEqual(view['phase'],'settled')
+        self.assertEqual([h['profit'] for h in view['hands']],[20,-20])
+        self.assertTrue(all(h['complete'] and h['split_aces'] for h in view['hands']))
+        self.assertEqual(view['balance'],200)
+
+    def test_resplit_limit_and_split_failure_rollback(self):
+        session = self.active(('8','10','8','9'))
+        before = session._state
+        with patch.object(Shoe,'draw',side_effect=[Card('8','clubs'),RuntimeError('split failure')]):
+            with self.assertRaises(RuntimeError): session.act('split',1)
+        self.assertIs(session._state,before)
+        for revision in (1,2,3):
+            with patch.object(Shoe,'draw',side_effect=[Card('8','clubs'),Card('2','clubs')]):
+                view = session.act('split',revision)
+        self.assertEqual(len(view['hands']),4)
+        self.assertNotIn('split',view['legal_actions'])
+        before = session._state
+        with patch.object(Shoe,'draw') as draw:
+            with self.assertRaises(ValueError): session.act('split',4)
+            draw.assert_not_called()
+        self.assertIs(session._state,before)

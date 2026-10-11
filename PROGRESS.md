@@ -367,3 +367,9 @@
 - Added pure aggregation of one to four completed hands with per-hand split-aware settlement, total stake/credit/profit and original-wager normalization. No balance mutation or session split enablement.
 - All 119 Python tests passed, including mixed double results, balance conservation, ±8 four-double examples, all-bust settlement and incomplete/invalid inputs. Added beginner sum equations, worked example, runnable experiment and separate answers.
 - Multi-hand session progression/transaction integration remain unfinished; helper trusts engine-owned completion metadata. User Lesson1 edits preserved. October10 summary delivered; October11 summary pending.
+
+## 2026-10-11, 04:00 checkpoint — transactional multi-hand session
+
+- Integrated split/resplit up to four, split-ace completion, double after non-ace splits, left-to-right advancement and aggregate settlement after all hands finish. Candidate draws and debits commit together; snapshots include full hand collection and active index.
+- All 122 Python tests passed, including end-to-end split/double accounting, ace payout, four-hand limit and split-draw failure rollback. Updated 300-round check counts every hand's cards.
+- Added session walkthrough and snapshot semantics to today's lesson. Local engine only; Foundations browser and trained policies unchanged. User Lesson1 edits preserved. Next: focused multi-hand edge verification; October11 summary pending.

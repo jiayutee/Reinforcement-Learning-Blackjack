@@ -1,4 +1,4 @@
-"""Pure split construction; session integration and shoe transactions are pending."""
+"""Pure split construction; the session owns turn order and shoe transactions."""
 from dataclasses import dataclass
 from typing import Tuple
 
