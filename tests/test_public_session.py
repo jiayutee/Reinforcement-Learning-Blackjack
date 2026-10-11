@@ -279,3 +279,48 @@ class PublicSessionTests(unittest.TestCase):
             with self.assertRaises(ValueError): session.act('split',4)
             draw.assert_not_called()
         self.assertIs(session._state,before)
+
+    def test_all_split_hands_bust_without_dealer_draw(self):
+        session = self.active(('8','2','8','3'))
+        with patch.object(Shoe,'draw',side_effect=[Card('K','clubs'),Card('Q','clubs')]):
+            session.act('split',1)
+        with patch.object(Shoe,'draw',side_effect=[Card('K','clubs')]):
+            pending = session.act('hit',2)
+        self.assertEqual(pending['active_hand'],1)
+        self.assertIsNone(pending['dealer'][1])
+        with patch.object(Shoe,'draw',side_effect=[Card('K','clubs')]) as draw:
+            done = session.act('hit',3)
+            self.assertEqual(draw.call_count,1)
+        self.assertEqual((done['balance'],done['profit'],done['dealer_total']),(160,-40,5))
+        self.assertEqual(done['normalized_profit'],-2)
+
+    def test_last_split_hand_dealer_failure_rolls_back_and_retry_credits_once(self):
+        session = self.active(('8','2','8','3'))
+        with patch.object(Shoe,'draw',side_effect=[Card('K','clubs'),Card('9','clubs')]):
+            session.act('split',1)
+        session.act('stand',2)
+        before, bundle = session.view(), session._state
+        with patch.object(Shoe,'draw',side_effect=[Card('2','clubs'),RuntimeError('dealer failure')]):
+            with self.assertRaises(RuntimeError): session.act('stand',3)
+        self.assertIs(session._state,bundle)
+        self.assertEqual(session.view(),before)
+        with patch.object(Shoe,'draw',side_effect=[Card('K','clubs'),Card('2','clubs')]):
+            done = session.act('stand',3)
+        self.assertEqual((done['balance'],done['profit']),(220,20))
+        self.assertEqual([h['outcome'] for h in done['hands']],['win','push'])
+        with self.assertRaises(ValueError): session.act('stand',3)
+        self.assertEqual(session.view(),done)
+
+    def test_split_21_skips_to_next_hand_and_snapshot_is_detached(self):
+        session = self.active(('K','10','K','8'))
+        with patch.object(Shoe,'draw',side_effect=[Card('A','clubs'),Card('2','clubs')]):
+            view = session.act('split',1)
+        self.assertEqual(view['active_hand'],1)
+        self.assertTrue(view['hands'][0]['complete'])
+        before = session.view()
+        view['hands'][0]['cards'][0]['rank']='2'
+        view['hands'][0]['stake']=999
+        self.assertEqual(session.view(),before)
+        done = session.act('stand',2)
+        self.assertEqual([h['profit'] for h in done['hands']],[20,-20])
+        self.assertEqual(done['balance'],200)

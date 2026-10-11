@@ -373,3 +373,9 @@
 - Integrated split/resplit up to four, split-ace completion, double after non-ace splits, left-to-right advancement and aggregate settlement after all hands finish. Candidate draws and debits commit together; snapshots include full hand collection and active index.
 - All 122 Python tests passed, including end-to-end split/double accounting, ace payout, four-hand limit and split-draw failure rollback. Updated 300-round check counts every hand's cards.
 - Added session walkthrough and snapshot semantics to today's lesson. Local engine only; Foundations browser and trained policies unchanged. User Lesson1 edits preserved. Next: focused multi-hand edge verification; October11 summary pending.
+
+## 2026-10-11, 05:00 checkpoint — multi-hand completion edge proof
+
+- Added targeted tests for all-split bust without dealer draws, failure during final-hand dealer progression followed by successful retry and stale rejection, and split21 automatic skipping with detached nested snapshots/ordinary payout.
+- All 125 Python tests passed, including prior 300-round integration. No product code changes; lesson now explains retry revision semantics and measured accounting outcomes, with separate answers.
+- User Lesson1 edits preserved. At 06:00 summarize aggregate round rewards, enabled local split session, edge proof and pushed commits. Browser/compatible agent/concurrency integration remain pending. October11 summary pending.
