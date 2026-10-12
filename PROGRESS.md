@@ -379,3 +379,9 @@
 - Added targeted tests for all-split bust without dealer draws, failure during final-hand dealer progression followed by successful retry and stale rejection, and split21 automatic skipping with detached nested snapshots/ordinary payout.
 - All 125 Python tests passed, including prior 300-round integration. No product code changes; lesson now explains retry revision semantics and measured accounting outcomes, with separate answers.
 - User Lesson1 edits preserved. At 06:00 summarize aggregate round rewards, enabled local split session, edge proof and pushed commits. Browser/compatible agent/concurrency integration remain pending. October11 summary pending.
+
+## 2026-10-12, delayed 03:00 checkpoint at 04:18 — terminal public game
+
+- Added runnable public_game.play adapter using visible session snapshots and engine-owned action validation. Whole-chip wagers convert to half-chip units; all hands, active marker and completed normalized profit display locally.
+- All127 Python tests passed, including scripted seed7 round, invalid commands, concealment/reveal, unit output and EOF/nonmutation checks. Added beginner adapter lesson, equations, commands and separate answers.
+- Run was delayed within the work window; no earlier October12 progress found. Browser/compatible agent/concurrency remain unfinished. User Lesson1 edits preserved. October11 summary delivered; October12 summary pending.
