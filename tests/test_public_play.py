@@ -24,3 +24,25 @@ class PublicPlayTests(unittest.TestCase):
         before = session.view()
         self.assertIn('??',format_view(view))
         self.assertEqual(session.view(),before)
+
+    def test_split_double_display_follows_active_hand(self):
+        from unittest.mock import patch
+        from public_game.cards import Card, Shoe
+        session = PublicSession()
+        commands = iter(['deal 10','split','double','stand','quit'])
+        output = []
+        # Opening 8+8 vs18; split to11/17; double first to21.
+        ranks = ('8','10','8','8','3','9','K')
+        with patch.object(Shoe,'draw',side_effect=[Card(r,'hearts') for r in ranks]):
+            run(session,lambda prompt: next(commands),output.append)
+        split, doubled, settled = output[3:6]
+        self.assertIn('Hand 1 ->:',split)
+        self.assertIn('Hand 2:',split)
+        self.assertIn('Hand 2 ->:',doubled)
+        self.assertIn('stake 20 chips',doubled)
+        self.assertIn('??',doubled)
+        self.assertNotIn('Round profit:',doubled)
+        self.assertNotIn('??',settled)
+        self.assertNotIn(' ->:',settled)
+        self.assertIn('Round profit: 10 chips | normalized: 1',settled)
+        self.assertEqual(session.view()['balance'],220)

@@ -385,3 +385,9 @@
 - Added runnable public_game.play adapter using visible session snapshots and engine-owned action validation. Whole-chip wagers convert to half-chip units; all hands, active marker and completed normalized profit display locally.
 - All127 Python tests passed, including scripted seed7 round, invalid commands, concealment/reveal, unit output and EOF/nonmutation checks. Added beginner adapter lesson, equations, commands and separate answers.
 - Run was delayed within the work window; no earlier October12 progress found. Browser/compatible agent/concurrency remain unfinished. User Lesson1 edits preserved. October11 summary delivered; October12 summary pending.
+
+## 2026-10-12, delayed follow-up at 05:10 — terminal split journey
+
+- Verified scripted terminal split/double/stand presentation, active-hand arrows, concealed pending dealer, chip conversion and final aggregate result. All128 Python tests passed.
+- Actual module smoke test with seed7/deal10/stand/quit exited0 and showed balance90/profit-10/normalized-1. Added README launch instructions and lesson evidence; no product changes.
+- Scheduled04:30 follow-up executed05:10 within the work window. User Lesson1 edits preserved. October12 summary pending; report delays and unfinished browser/agent integration.

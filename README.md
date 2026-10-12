@@ -120,3 +120,17 @@ python play.py --mode agent_vs_agent --player_model models/player_dqn.pth --deal
 - `environment/`: Blackjack logic and Gym environment.
 - `training/`: Training loops and evaluation.
 - `interface/`: PyGame UI.
+
+## Public-rule terminal prototype
+
+Run from this repository's root (Python standard library only):
+
+```sh
+python3 -m public_game.play --seed 7
+```
+
+Start with `deal 10` for a ten-chip virtual wager. Follow the displayed actions: `hit`, `stand`, `double`, or `split`; `quit` exits. An arrow marks the active hand after splitting. Dealer `??` stays hidden until the round completes. Stakes and balances display in chips; normalized profit uses the initial wager.
+
+This local engine supports the declared six-deck rules, natural payouts, double, splits/resplits up to four and split-ace restrictions. It is a terminal prototype with no trained coach or persistence. The Foundations browser remains a separate simplified hit/stand teaching game; its agents are not full-rule coaches. Public hosting and browser integration are unfinished.
+
+Read the [adapter lesson and worked example](docs/daily/2026-10-12.md). Verify the terminal journey with `python3 -m unittest discover -s tests -p 'test_public_play.py' -v`.
