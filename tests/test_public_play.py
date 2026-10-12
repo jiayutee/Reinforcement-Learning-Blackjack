@@ -46,3 +46,18 @@ class PublicPlayTests(unittest.TestCase):
         self.assertNotIn(' ->:',settled)
         self.assertIn('Round profit: 10 chips | normalized: 1',settled)
         self.assertEqual(session.view()['balance'],220)
+
+    def test_visible_totals_soft_to_hard_and_dealer_concealment(self):
+        from unittest.mock import patch
+        from public_game.cards import Card, Shoe
+        session = PublicSession()
+        with patch.object(Shoe,'draw',side_effect=[Card(r,'hearts') for r in ('A','10','6','8')]):
+            view = session.deal(20,0)
+        text = format_view(view)
+        self.assertIn('soft 17',text)
+        self.assertNotIn('total 18',text)
+        with patch.object(Shoe,'draw',return_value=Card('K','clubs')):
+            view = session.act('hit',1)
+        self.assertIn('hard 17',format_view(view))
+        view = session.act('stand',2)
+        self.assertIn('total 18',format_view(view))

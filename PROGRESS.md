@@ -391,3 +391,9 @@
 - Verified scripted terminal split/double/stand presentation, active-hand arrows, concealed pending dealer, chip conversion and final aggregate result. All128 Python tests passed.
 - Actual module smoke test with seed7/deal10/stand/quit exited0 and showed balance90/profit-10/normalized-1. Added README launch instructions and lesson evidence; no product changes.
 - Scheduled04:30 follow-up executed05:10 within the work window. User Lesson1 edits preserved. October12 summary pending; report delays and unfinished browser/agent integration.
+
+## 2026-10-12, 05:13 checkpoint — visible terminal totals
+
+- Added player hard/soft/bust totals using shared visible-card scoring and dealer total only after reveal. No game-rule changes.
+- All129 Python tests passed, including soft17→hard17 after a ten-value hit and dealer-total concealment/reveal. Expanded adapter lesson with the ace arithmetic.
+- User Lesson1 edits preserved. At06:00 summarize terminal launch, split display/totals,129 tests and commits, noting earlier delayed execution. Browser/agent integration remains unfinished.

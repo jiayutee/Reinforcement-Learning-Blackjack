@@ -1,6 +1,8 @@
 """Local terminal adapter for public-rule sessions; virtual chips only."""
 import argparse
 from public_game.session import PublicSession
+from public_game.cards import Card
+from public_game.hands import hand_facts
 
 
 def format_view(view):
@@ -9,11 +11,15 @@ def format_view(view):
     lines = ['Balance: %g chips | %s | revision %s' %
              (view['balance']/2, view['phase'], view['revision'])]
     if view['dealer']:
-        lines.append('Dealer: ' + cards(view['dealer']))
+        lines.append('Dealer: ' + cards(view['dealer']) +
+                     (' | total %s' % view['dealer_total'] if view['dealer_total'] is not None else ''))
     for i, hand in enumerate(view['hands']):
         marker = ' ->' if view['active_hand'] == i else ''
-        lines.append('Hand %s%s: %s | stake %g chips%s' %
-                     (i+1, marker, cards(hand['cards']), hand['stake']/2,
+        facts = hand_facts([Card(c['rank'], c['suit']) for c in hand['cards']],
+                           from_split=hand['from_split'])
+        label = 'bust' if facts.bust else 'soft' if facts.usable_ace else 'hard'
+        lines.append('Hand %s%s: %s | %s %s | stake %g chips%s' %
+                     (i+1, marker, cards(hand['cards']), label, facts.total, hand['stake']/2,
                       ' | '+hand['outcome'] if hand['outcome'] else ''))
     if view['profit'] is not None:
         lines.append('Round profit: %g chips | normalized: %g' %
