@@ -397,3 +397,9 @@
 - Added player hard/soft/bust totals using shared visible-card scoring and dealer total only after reveal. No game-rule changes.
 - All129 Python tests passed, including soft17→hard17 after a ten-value hit and dealer-total concealment/reveal. Expanded adapter lesson with the ace arithmetic.
 - User Lesson1 edits preserved. At06:00 summarize terminal launch, split display/totals,129 tests and commits, noting earlier delayed execution. Browser/agent integration remains unfinished.
+
+## 2026-10-13, 03:00 checkpoint — strict public command boundary
+
+- Added transport-independent intent parser with exact field sets, known actions and revision validation. Session remains authoritative for legality/funds/results; payloads cannot claim balances or profits.
+- All131 Python tests passed, including seeded round/stale replay and malformed/extra-field nonmutation/control-stream checks. Added beginner interface-authority lesson, worked reward example and separate answers.
+- HTTP/browser transport, per-user isolation and concurrency remain unfinished. User Lesson1 edits preserved. October12 summary delivered; October13 summary pending.
