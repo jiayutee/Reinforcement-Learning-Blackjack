@@ -409,3 +409,9 @@
 - Added separate loopback server and basic visible-state browser inspector on8766 using existing local transport pattern and strict command boundary. One shared local session; Foundations unchanged; no public hosting.
 - All132 Python tests passed including actual HTTP authorization, concealed deal, stale409/current snapshot and stand settlement. HTML/JS real-browser verification and finished game graphics remain pending.
 - Next: browser interaction gate. User Lesson1 edits preserved. October13 summary pending.
+
+## 2026-10-13, 05:02 checkpoint — real-browser inspector gate
+
+- Added repeatable Playwright/Chrome journey for invalid wager nonmutation, concealed deal, refresh, keyboard stand/settlement, disabled terminal actions, mobile width and no JS errors. Passed; resources closed.
+- Initial node command unavailable on PATH; bundled Node retry succeeded without installations. Documented prerequisites and exact local command. Prior132 Python tests remain current; no product changes.
+- User Lesson1 edits preserved. At06:00 summarize intent boundary, local inspector launch, HTTP/Python and browser verification, commits and remaining polished UI/agent/public-hosting work. October13 summary pending.

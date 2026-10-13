@@ -30,3 +30,7 @@ node tests/browser/sound-player.cjs
 ```
 
 The second script uses Node's VM with simulated DOM, storage and audio objects. It checks zero volume, mute, persisted volume/enabled preference, fresh gesture after reload, unsupported/resume-failing audio and denied/corrupt storage. It verifies control logic, not browser permission implementation or audible quality. The main Playwright gate separately verifies real Web Audio scheduling.
+
+## Public-rule inspector
+
+`node tests/browser/public-game.cjs` uses the same Playwright/Chrome prerequisites and optional `CHROME_PATH`/`PYTHON` variables as the Foundations gate. It starts its own loopback server on an ephemeral port and closes resources afterward. Checks: invalid wager without mutation, deal/concealed hole card, read-only refresh, keyboard stand, terminal result/disabled actions, 390px overflow and page JavaScript errors. It does not audit appearance, accessibility or public hosting security.
