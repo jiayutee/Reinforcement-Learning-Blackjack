@@ -403,3 +403,9 @@
 - Added transport-independent intent parser with exact field sets, known actions and revision validation. Session remains authoritative for legality/funds/results; payloads cannot claim balances or profits.
 - All131 Python tests passed, including seeded round/stale replay and malformed/extra-field nonmutation/control-stream checks. Added beginner interface-authority lesson, worked reward example and separate answers.
 - HTTP/browser transport, per-user isolation and concurrency remain unfinished. User Lesson1 edits preserved. October12 summary delivered; October13 summary pending.
+
+## 2026-10-13, 03:56 follow-up — local public-rule HTTP inspector
+
+- Added separate loopback server and basic visible-state browser inspector on8766 using existing local transport pattern and strict command boundary. One shared local session; Foundations unchanged; no public hosting.
+- All132 Python tests passed including actual HTTP authorization, concealed deal, stale409/current snapshot and stand settlement. HTML/JS real-browser verification and finished game graphics remain pending.
+- Next: browser interaction gate. User Lesson1 edits preserved. October13 summary pending.

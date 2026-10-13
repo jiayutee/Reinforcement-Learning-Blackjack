@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Public Blackjack — local inspector</title>
+<style>body{font:18px system-ui;max-width:850px;margin:2rem auto;padding:1rem;background:#103d32;color:#fff}button,input{font:inherit;padding:.6rem;margin:.3rem}pre{white-space:pre-wrap;overflow-wrap:anywhere}button:disabled{opacity:.5}</style>
+<h1>Public Blackjack — local inspector</h1><p>Virtual chips. One shared local session across tabs. No trained coach. This is a development view, not the finished game.</p>
+<label>Wager in whole chips <input id="wager" type="number" min="1" step="1" value="10"></label>
+<div id="actions"><button data-action="deal">Deal</button><button data-action="hit">Hit</button><button data-action="stand">Stand</button><button data-action="double">Double</button><button data-action="split">Split</button></div>
+<button id="refresh">Refresh</button><p id="status" role="status" aria-live="polite"></p><pre id="state"></pre>
+<script>
+const token='__TOKEN__';let state=null,busy=false;
+const status=document.querySelector('#status');
+function render(){document.querySelector('#state').textContent=JSON.stringify(state,null,2);document.querySelectorAll('[data-action]').forEach(b=>{b.disabled=busy||!state||(b.dataset.action==='deal'?state.phase==='player_turn':!state.legal_actions.includes(b.dataset.action));});document.querySelector('#refresh').disabled=busy;}
+async function request(payload){busy=true;render();try{const response=await fetch(payload?'/command':'/state',payload?{method:'POST',headers:{'Content-Type':'application/json','X-Game-Token':token},body:JSON.stringify(payload)}:{});const data=await response.json();if(response.ok){state=data;status.textContent=payload?'Command accepted.':'State refreshed.';}else{if(data.state)state=data.state;status.textContent=data.error||'Request rejected.';}}catch(error){status.textContent='Connection failed. Refresh before trying again.';}finally{busy=false;render();}}
+document.querySelectorAll('[data-action]').forEach(b=>b.onclick=()=>{if(busy||!state)return;const payload={command:b.dataset.action,revision:state.revision};if(payload.command==='deal'){const chips=Number(document.querySelector('#wager').value);if(!Number.isSafeInteger(chips)||chips<=0||!Number.isSafeInteger(chips*2)){status.textContent='Enter a positive whole-chip wager.';return;}payload.stake=chips*2;}request(payload);});
+document.querySelector('#refresh').onclick=()=>request();request();
+</script></html>
