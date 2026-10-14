@@ -421,3 +421,9 @@
 - Added rank/suit card faces, patterned hidden card, per-hand sections/active highlight and chip balance/aggregate result above expandable visible JSON. Presentation reads snapshots only; no rule changes.
 - Real Chrome gate passed with new concealment/card-count/highlight/reveal/profit assertions plus existing keyboard/mobile checks. Prior132 Python tests remain current. Manual visual/accessibility and split UI checks still pending.
 - Added beginner rendering/observation lesson, unit equations, runnable example and separate answers. User Lesson1 edits preserved. October13 summary delivered; October14 summary pending.
+
+## 2026-10-14, 03:57 follow-up — split browser journey
+
+- Extended real Chrome gate using actual seed19 deal/split/double/stand. Verifies two hands, active marker advance, doubled stake, concealed pending dealer/no early result, terminal reveal/loss30chips and mobile width.
+- Both public browser journeys passed without JS errors; resources closed. No product changes; prior132 Python proof remains current. Documented path-selected seed limitation and runnable reproduction.
+- User Lesson1 edits preserved. Manual visual/accessibility review still pending. October14 summary pending.

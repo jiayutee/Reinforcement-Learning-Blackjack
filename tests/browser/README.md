@@ -34,3 +34,5 @@ The second script uses Node's VM with simulated DOM, storage and audio objects. 
 ## Public-rule inspector
 
 `node tests/browser/public-game.cjs` uses the same Playwright/Chrome prerequisites and optional `CHROME_PATH`/`PYTHON` variables as the Foundations gate. It starts its own loopback server on an ephemeral port and closes resources afterward. Checks: invalid wager without mutation, deal/concealed hole card, read-only refresh, keyboard stand, terminal result/disabled actions, 390px overflow and page JavaScript errors. It does not audit appearance, accessibility or public hosting security.
+
+The public gate also runs seed19 through deal/split/double/stand, verifying two hand sections, active-hand advancement, doubled stake, delayed dealer reveal/round result and aggregate loss at mobile width. The seed is chosen for path coverage, not performance measurement.

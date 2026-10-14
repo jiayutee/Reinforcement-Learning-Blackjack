@@ -42,5 +42,25 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   assert.deepEqual(errors,[]);
   console.log('PASS public inspector: wager validation, deal, concealment, refresh, keyboard stand, settlement, mobile width, no JS errors');
+  await page.close();await stop(child);child=null;
+  const splitServer=await start(19);child=splitServer.child;
+  const splitPage=await browser.newPage();const splitErrors=[];splitPage.on('pageerror',e=>splitErrors.push(e.message));
+  await splitPage.goto(splitServer.url);
+  await splitPage.waitForFunction(()=>document.querySelector('#state').textContent.includes('"ready"'));
+  async function action(name,revision){await splitPage.click('[data-action="'+name+'"]');await splitPage.waitForFunction(r=>JSON.parse(document.querySelector('#state').textContent).revision===r,revision);}
+  await action('deal',1);assert.equal(await splitPage.locator('[data-action="split"]').isDisabled(),false);
+  await action('split',2);assert.equal(await splitPage.locator('.hand').count(),2);
+  assert.match(await splitPage.locator('.hand.active h3').textContent(),/Hand 1/);
+  await action('double',3);assert.match(await splitPage.locator('.hand.active h3').textContent(),/Hand 2/);
+  assert.match(await splitPage.locator('.hand h3').first().textContent(),/20 chips/);
+  assert.equal(await splitPage.locator('#dealer .back').count(),1);
+  assert.doesNotMatch(await splitPage.locator('#summary').textContent(),/Round profit/);
+  await action('stand',4);
+  assert.equal(await splitPage.locator('.hand').count(),2);assert.equal(await splitPage.locator('.hand.active').count(),0);
+  assert.equal(await splitPage.locator('#dealer .back').count(),0);
+  assert.match(await splitPage.locator('#summary').textContent(),/Round profit: -30 chips/);
+  await splitPage.setViewportSize({width:390,height:844});assert.equal(await splitPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  assert.deepEqual(splitErrors,[]);
+  console.log('PASS public split: two hands, double stake, active hand advance, concealed pending result, aggregate loss, mobile width');
  }finally{if(browser)await browser.close();if(child)await stop(child)}
 })().catch(error=>{console.error(error);process.exitCode=1});
