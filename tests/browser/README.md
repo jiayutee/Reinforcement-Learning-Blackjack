@@ -36,3 +36,5 @@ The second script uses Node's VM with simulated DOM, storage and audio objects. 
 `node tests/browser/public-game.cjs` uses the same Playwright/Chrome prerequisites and optional `CHROME_PATH`/`PYTHON` variables as the Foundations gate. It starts its own loopback server on an ephemeral port and closes resources afterward. Checks: invalid wager without mutation, deal/concealed hole card, read-only refresh, keyboard stand, terminal result/disabled actions, 390px overflow and page JavaScript errors. It does not audit appearance, accessibility or public hosting security.
 
 The public gate also runs seed19 through deal/split/double/stand, verifying two hand sections, active-hand advancement, doubled stake, delayed dealer reveal/round result and aggregate loss at mobile width. The seed is chosen for path coverage, not performance measurement.
+
+Set `SCREENSHOT_DIR` to an existing writable directory to capture `public-desktop.png` and `public-mobile.png` at the seed19 split state. These optional full-page images aid visual review; they are not pixel-regression assertions. Example: `SCREENSHOT_DIR=/private/tmp` alongside the usual Node/Chrome environment variables.

@@ -51,6 +51,7 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   await action('deal',1);assert.equal(await splitPage.locator('[data-action="split"]').isDisabled(),false);
   await action('split',2);assert.equal(await splitPage.locator('.hand').count(),2);
   assert.match(await splitPage.locator('.hand.active h3').textContent(),/Hand 1/);
+  if(process.env.SCREENSHOT_DIR){await splitPage.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'public-desktop.png'),fullPage:true});await splitPage.setViewportSize({width:390,height:844});await splitPage.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'public-mobile.png'),fullPage:true});}
   await action('double',3);assert.match(await splitPage.locator('.hand.active h3').textContent(),/Hand 2/);
   assert.match(await splitPage.locator('.hand h3').first().textContent(),/20 chips/);
   assert.equal(await splitPage.locator('#dealer .back').count(),1);

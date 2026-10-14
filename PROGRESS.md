@@ -427,3 +427,9 @@
 - Extended real Chrome gate using actual seed19 deal/split/double/stand. Verifies two hands, active marker advance, doubled stake, concealed pending dealer/no early result, terminal reveal/loss30chips and mobile width.
 - Both public browser journeys passed without JS errors; resources closed. No product changes; prior132 Python proof remains current. Documented path-selected seed limitation and runnable reproduction.
 - User Lesson1 edits preserved. Manual visual/accessibility review still pending. October14 summary pending.
+
+## 2026-10-14, 04:55 checkpoint — desktop/mobile visual inspection
+
+- Added optional screenshot capture in public browser gate and inspected seed19 split table at1280px/390px. Cards, hidden back, active label/border and hand sections readable; no clipping/overlap in sampled state. Mobile wraps controls and scrolls vertically.
+- Both browser journeys passed again. Screenshots temporary; capture workflow documented. No product changes; prior132 Python tests current. Not a full accessibility/contrast/cross-browser audit.
+- User Lesson1 edits preserved. At06:00 summarize card UI, two browser journeys and bounded visual review with commits; public hosting/compatible agent/audio/polish remain unfinished. October14 summary pending.
