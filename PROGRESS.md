@@ -415,3 +415,9 @@
 - Added repeatable Playwright/Chrome journey for invalid wager nonmutation, concealed deal, refresh, keyboard stand/settlement, disabled terminal actions, mobile width and no JS errors. Passed; resources closed.
 - Initial node command unavailable on PATH; bundled Node retry succeeded without installations. Documented prerequisites and exact local command. Prior132 Python tests remain current; no product changes.
 - User Lesson1 edits preserved. At06:00 summarize intent boundary, local inspector launch, HTTP/Python and browser verification, commits and remaining polished UI/agent/public-hosting work. October13 summary pending.
+
+## 2026-10-14, 03:04 checkpoint — visible browser card table
+
+- Added rank/suit card faces, patterned hidden card, per-hand sections/active highlight and chip balance/aggregate result above expandable visible JSON. Presentation reads snapshots only; no rule changes.
+- Real Chrome gate passed with new concealment/card-count/highlight/reveal/profit assertions plus existing keyboard/mobile checks. Prior132 Python tests remain current. Manual visual/accessibility and split UI checks still pending.
+- Added beginner rendering/observation lesson, unit equations, runnable example and separate answers. User Lesson1 edits preserved. October13 summary delivered; October14 summary pending.
