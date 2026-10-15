@@ -324,3 +324,16 @@ class PublicSessionTests(unittest.TestCase):
         done = session.act('stand',2)
         self.assertEqual([h['profit'] for h in done['hands']],[20,-20])
         self.assertEqual(done['balance'],200)
+
+    def test_snapshot_totals_follow_visible_ace_scoring(self):
+        session = self.active(('A','10','6','8'))
+        hand = session.view()['hands'][0]
+        self.assertEqual((hand['total'],hand['usable_ace'],hand['bust']),(17,True,False))
+        with patch.object(Shoe,'draw',return_value=Card('K','clubs')):
+            view = session.act('hit',1)
+        hand = view['hands'][0]
+        self.assertEqual((hand['total'],hand['usable_ace'],hand['bust']),(17,False,False))
+        self.assertIsNone(view['dealer_total'])
+        with patch.object(Shoe,'draw',return_value=Card('5','clubs')):
+            view = session.act('hit',2)
+        self.assertEqual((view['hands'][0]['total'],view['hands'][0]['bust']),(22,True))

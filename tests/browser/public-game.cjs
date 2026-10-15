@@ -29,14 +29,14 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   assert.equal((await(await page.request.get(url+'/state')).json()).revision,0);
   await page.fill('#wager','10');await page.click('[data-action="deal"]');
   await page.waitForFunction(()=>document.querySelector('#state').textContent.includes('"player_turn"'));
-  const active=JSON.parse(await page.locator('#state').textContent());assert.equal(active.dealer[1],null);
+  const active=JSON.parse(await page.locator('#state').textContent());assert.equal(active.dealer[1],null);assert.match(await page.locator('.hand h3').textContent(),/Hard 18/);assert.equal(await page.locator('#dealer-title').textContent(),'Dealer');
   assert.equal(await page.locator('#dealer .back').count(),1);assert.equal(await page.locator('.hand.active').count(),1);assert.equal(await page.locator('#hands .card').count(),2);
   assert.equal(await page.locator('[data-action="deal"]').isDisabled(),true);
   await page.click('#refresh');await page.waitForFunction(()=>!document.querySelector('#refresh').disabled);
   assert.deepEqual(JSON.parse(await page.locator('#state').textContent()),active);
   await page.locator('[data-action="stand"]').focus();await page.keyboard.press('Enter');
   await page.waitForFunction(()=>document.querySelector('#state').textContent.includes('"settled"'));
-  const done=JSON.parse(await page.locator('#state').textContent());assert.equal(done.profit,-20);assert.notEqual(done.dealer[1],null);
+  const done=JSON.parse(await page.locator('#state').textContent());assert.equal(done.profit,-20);assert.notEqual(done.dealer[1],null);assert.equal(await page.locator('#dealer-title').textContent(),'Dealer · 20');
   assert.equal(await page.locator('#dealer .back').count(),0);assert.equal(await page.locator('.hand.active').count(),0);assert.match(await page.locator('#summary').textContent(),/Round profit: -10 chips/);
   assert.equal(await page.locator('[data-action="hit"]').isDisabled(),true);
   await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);

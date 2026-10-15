@@ -433,3 +433,9 @@
 - Added optional screenshot capture in public browser gate and inspected seed19 split table at1280px/390px. Cards, hidden back, active label/border and hand sections readable; no clipping/overlap in sampled state. Mobile wraps controls and scrolls vertically.
 - Both browser journeys passed again. Screenshots temporary; capture workflow documented. No product changes; prior132 Python tests current. Not a full accessibility/contrast/cross-browser audit.
 - User Lesson1 edits preserved. At06:00 summarize card UI, two browser journeys and bounded visual review with commits; public hosting/compatible agent/audio/polish remain unfinished. October14 summary pending.
+
+## 2026-10-15, 03:56 checkpoint — visible hand features
+
+- Added per-hand total/usable_ace/bust from existing engine scoring and displayed hard/soft/bust labels in browser; dealer total appears only after settlement.
+- All133 Python tests and both Chrome journeys passed, including soft17→hard17→bust22 and browser dealer-total concealment/reveal. Added beginner feature/ace lesson, worked equations and separate answers.
+- Earlier02:59 wake correctly did no development. User Lesson1 edits preserved. October14 summary delivered; October15 summary pending. Compatible agent/public deployment remain unfinished.
