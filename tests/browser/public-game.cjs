@@ -63,5 +63,21 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   await splitPage.setViewportSize({width:390,height:844});assert.equal(await splitPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   assert.deepEqual(splitErrors,[]);
   console.log('PASS public split: two hands, double stake, active hand advance, concealed pending result, aggregate loss, mobile width');
+  await splitPage.close();await stop(child);child=null;
+  const aceServer=await start(4);child=aceServer.child;
+  const acePage=await browser.newPage();const aceErrors=[];acePage.on('pageerror',e=>aceErrors.push(e.message));
+  await acePage.goto(aceServer.url);await acePage.waitForFunction(()=>document.querySelector('#state').textContent.includes('"ready"'));
+  await acePage.click('[data-action="deal"]');await acePage.waitForFunction(()=>JSON.parse(document.querySelector('#state').textContent).revision===1);
+  assert.match(await acePage.locator('.hand h3').textContent(),/Soft 15/);
+  await acePage.click('[data-action="hit"]');await acePage.waitForFunction(()=>JSON.parse(document.querySelector('#state').textContent).revision===2);
+  assert.match(await acePage.locator('.hand h3').textContent(),/Hard 15/);
+  assert.equal(await acePage.locator('#dealer-title').textContent(),'Dealer');
+  assert.equal(await acePage.locator('#dealer .back').count(),1);
+  assert.equal(await acePage.locator('[data-action="double"]').isDisabled(),true);
+  const before=JSON.parse(await acePage.locator('#state').textContent());
+  await acePage.click('#refresh');await acePage.waitForFunction(()=>!document.querySelector('#refresh').disabled);
+  assert.deepEqual(JSON.parse(await acePage.locator('#state').textContent()),before);
+  assert.deepEqual(aceErrors,[]);
+  console.log('PASS public ace: soft15 to hard15, dealer concealed, post-hit double disabled, refresh unchanged');
  }finally{if(browser)await browser.close();if(child)await stop(child)}
 })().catch(error=>{console.error(error);process.exitCode=1});

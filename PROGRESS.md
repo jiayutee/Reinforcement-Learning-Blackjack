@@ -439,3 +439,9 @@
 - Added per-hand total/usable_ace/bust from existing engine scoring and displayed hard/soft/bust labels in browser; dealer total appears only after settlement.
 - All133 Python tests and both Chrome journeys passed, including soft17→hard17→bust22 and browser dealer-total concealment/reveal. Added beginner feature/ace lesson, worked equations and separate answers.
 - Earlier02:59 wake correctly did no development. User Lesson1 edits preserved. October14 summary delivered; October15 summary pending. Compatible agent/public deployment remain unfinished.
+
+## 2026-10-15, 04:58 checkpoint — browser ace transition proof
+
+- Added real seed4 browser journey for Soft15→Hard15, concealed dealer, disabled post-hit Double and unchanged Refresh. All three Chrome journeys passed without JS errors; resources closed.
+- No product changes; prior133 Python tests current. Added runnable seed example and path-selection limitation to lesson. User Lesson1 edits preserved.
+- At06:00 summarize visible features and three browser journeys with commits; mention early02:59 wake skipped development. October15 summary pending.
