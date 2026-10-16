@@ -445,3 +445,9 @@
 - Added real seed4 browser journey for Soft15→Hard15, concealed dealer, disabled post-hit Double and unchanged Refresh. All three Chrome journeys passed without JS errors; resources closed.
 - No product changes; prior133 Python tests current. Added runnable seed example and path-selection limitation to lesson. User Lesson1 edits preserved.
 - At06:00 summarize visible features and three browser journeys with commits; mention early02:59 wake skipped development. October15 summary pending.
+
+## 2026-10-16, 03:02 checkpoint — public episode collection
+
+- Added visible-observation policy collector with legal-action checks, zero intermediate rewards and one terminal normalized round reward. Opening naturals retain round outcome without fictitious actions; session shoe persists.
+- All137 Python tests passed including split rewards, terminal opening, policy-copy isolation and illegal-action rejection. Added beginner episode/return lesson with runnable example and separate answers.
+- No learner/browser coach yet; policy failures retain earlier accepted transitions. User Lesson1 edits preserved. October15 summary delivered; October16 summary pending. Next: fixed-policy collection experiment.
