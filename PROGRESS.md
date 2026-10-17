@@ -451,3 +451,9 @@
 - Added visible-observation policy collector with legal-action checks, zero intermediate rewards and one terminal normalized round reward. Opening naturals retain round outcome without fictitious actions; session shoe persists.
 - All137 Python tests passed including split rewards, terminal opening, policy-copy isolation and illegal-action rejection. Added beginner episode/return lesson with runnable example and separate answers.
 - No learner/browser coach yet; policy failures retain earlier accepted transitions. User Lesson1 edits preserved. October15 summary delivered; October16 summary pending. Next: fixed-policy collection experiment.
+
+## 2026-10-17, 03:02 checkpoint — fixed-policy episode experiment
+
+- Added reproducible threshold baseline runner over the public session, reporting per-round normalized profit, outcome counts, population spread, opening naturals and decision transitions. It does not learn.
+- Both1,000-round runs completed: seed7 mean-0.0410 (409/474/117 W/L/P;101 naturals;1441 actions); seed19 mean-0.0595 (405/488/107;89;1443). Explicitly no strategy claim; persistent-shoe uncertainty requires later block-aware multi-seed evaluation.
+- All140 Python tests passed including same-seed reproducibility/count checks. Added equations, worked results, command and separate answers. User Lesson1 edits preserved. October16 summary delivered; October17 pending.
