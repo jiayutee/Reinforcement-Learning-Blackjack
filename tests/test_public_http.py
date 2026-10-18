@@ -17,6 +17,13 @@ class PublicHTTPTests(unittest.TestCase):
             response=connection.getresponse(); page=response.read().decode()
             self.assertEqual(response.status,200)
             token=re.search("const token='([^']+)'",page).group(1)
+            for path,marker in [('/sound-events.js','PublicGameSoundEvents'),
+                                ('/sound-player.js','BlackjackSoundPlayer')]:
+                connection.request('GET',path)
+                response=connection.getresponse(); script=response.read().decode()
+                self.assertEqual(response.status,200)
+                self.assertIn('text/javascript',response.getheader('Content-Type'))
+                self.assertIn(marker,script)
             headers={'Content-Type':'application/json','Origin':f'http://127.0.0.1:{server.server_port}','X-Game-Token':token}
             def post(payload, supplied=headers):
                 connection.request('POST','/command',json.dumps(payload),supplied)

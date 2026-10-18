@@ -8,6 +8,11 @@ from public_game.session import PublicSession
 from public_game.commands import apply_command
 
 PAGE = Path(__file__).with_name('local_game.html')
+FOUNDATIONS = Path(__file__).resolve().parents[1] / 'foundations'
+SOUND_ASSETS = {
+    '/sound-events.js': Path(__file__).with_name('sound_events.js'),
+    '/sound-player.js': FOUNDATIONS / 'sound-player.js',
+}
 
 
 def make_server(port=8766, seed=7):
@@ -38,6 +43,8 @@ def make_server(port=8766, seed=7):
                 self.reply(200, PAGE.read_text().replace('__TOKEN__', token), 'text/html; charset=utf-8')
             elif self.path == '/state':
                 self.reply(200, session.view())
+            elif self.path in SOUND_ASSETS:
+                self.reply(200, SOUND_ASSETS[self.path].read_text(), 'text/javascript; charset=utf-8')
             else:
                 self.reply(404, {'error': 'Not found'})
 
