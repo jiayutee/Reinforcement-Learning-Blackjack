@@ -471,3 +471,10 @@
 - Real Chrome gate passed manual, split and soft-ace journeys. It verified silent default, explicit gesture, volume input, Deal/outcome cues, refresh silence, mute on a subsequent Deal, hidden-card behavior, mobile width and no JS errors. Pure public event classifier, existing player controls, and Foundations event tests passed. These instrument oscillator scheduling, not acoustic quality.
 - Focused local HTTP asset test passed1/1. Full Python suite passed146/146; `git diff --check` passed. Browser prerequisites and commands are in `tests/browser/README.md`; daily lesson/answers are `docs/daily/2026-10-18.md` and `docs/lessons/solutions/2026-10-18-audio-ui.md`.
 - This is a local single-session UI increment only; no production hosting, cross-browser/audio-quality audit, or rule changes. Existing Lesson1 edits remain untouched and excluded. The verified HTML integration, classifier, tests, and teaching note form this checkpoint's GitHub save unit.
+
+## 2026-10-18, 05:00 checkpoint — screen-reader status messages
+
+- Replaced the generic accepted-command status with polite live announcements derived from the authoritative visible state: active hand, hard/soft/bust total, dealer up-card, available actions, then aggregate settled result and chip profit. Rejected requests and Refresh remain distinct. No session, rule, or reward code changed.
+- Real Chrome browser gate passed all three manual, split, and soft-ace journeys. New assertions cover initial accepted hand, active hand after split/double, soft-to-hard ace total, aggregate split result (`-30` chips), and ordinary round result (`-10` chips); no browser page errors.
+- Lesson and separate answers: `docs/daily/2026-10-18.md` and `docs/lessons/solutions/2026-10-18-live-announcements.md`. This verifies live-region text, not actual speech in a screen reader; manual assistive-technology and cross-browser review remain outstanding. Public game remains a local single-session development inspector, not hosted.
+- The unrelated pre-existing Lesson 1 edit remains untouched and excluded from this checkpoint.
