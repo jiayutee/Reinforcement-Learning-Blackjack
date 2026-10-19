@@ -492,3 +492,9 @@
 - Real Chrome verified exactly one main landmark and both named groups, then passed manual, split, and soft-ace journeys with no JavaScript errors. Full Python suite and diff check are recorded with this checkpoint below.
 - Added the second small lesson section to `docs/daily/2026-10-19.md` and separate answer `docs/lessons/solutions/2026-10-19-landmarks-and-groups.md`. Role assertions are not a full assistive-technology audit; manual screen-reader testing remains outstanding.
 - User Lesson 1 edit remains preserved and excluded.
+
+## 2026-10-19, 05:00 checkpoint — player-facing rule disclosure
+
+- Added a keyboard-native collapsed Game rules disclosure describing the six-deck shoe, dealer standing on soft 17, natural and split-21 payouts, double/split restrictions, and unavailable insurance/surrender. It is presentation-only; the Python rules contract remains authoritative.
+- Real Chrome checked the closed/open disclosure and all rule phrases. Manual, split, and soft-ace journeys all passed again. The full Python suite and `git diff --check` are recorded below. Static copy can drift when the rules contract changes; this test checks presence, not version synchronization.
+- Lesson and separate answers: `docs/daily/2026-10-19.md` and `docs/lessons/solutions/2026-10-19-rules-disclosure.md`. The local single-session inspector is not deployed. Lesson 1 user changes remain untouched and excluded.
