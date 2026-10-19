@@ -478,3 +478,10 @@
 - Real Chrome browser gate passed all three manual, split, and soft-ace journeys. New assertions cover initial accepted hand, active hand after split/double, soft-to-hard ace total, aggregate split result (`-30` chips), and ordinary round result (`-10` chips); no browser page errors.
 - Lesson and separate answers: `docs/daily/2026-10-18.md` and `docs/lessons/solutions/2026-10-18-live-announcements.md`. This verifies live-region text, not actual speech in a screen reader; manual assistive-technology and cross-browser review remain outstanding. Public game remains a local single-session development inspector, not hosted.
 - The unrelated pre-existing Lesson 1 edit remains untouched and excluded from this checkpoint.
+
+## 2026-10-19, 03:00 checkpoint — first-load game context
+
+- The first successful `/state` read now announces the current authoritative snapshot through the existing polite live region. On a new game it prompts for wager/Deal; on reconnect it reads out the active hand, total, dealer up-card and legal actions; if already settled it gives the final outcome. Later Refreshes remain neutral. Reads do not cue sound or mutate the session.
+- Real Chrome browser gate passed all three manual, split, and soft-ace journeys. Added checks for fresh-game prompt, active-hand context after reload, neutral later Refresh, existing terminal announcements, and no JavaScript page errors. No rules, rewards, or session logic changed.
+- Teaching note and separate answers: `docs/daily/2026-10-19.md` and `docs/lessons/solutions/2026-10-19-first-load-announcements.md`. Browser text assertions do not establish spoken behavior in every assistive technology; manual screen-reader and cross-browser verification remain necessary. The single-session game remains local, not hosted.
+- Preserved the unrelated Lesson 1 edit and excluded it from the save checkpoint.

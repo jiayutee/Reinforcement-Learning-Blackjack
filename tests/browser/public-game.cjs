@@ -25,6 +25,7 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.addInitScript(()=>{window.audioStarts=0;const original=AudioContext.prototype.createOscillator;AudioContext.prototype.createOscillator=function(...args){window.audioStarts++;return original.apply(this,args)};});
   await page.goto(url);await page.waitForFunction(()=>document.querySelector('#state').textContent.includes('"ready"'));
+  assert.equal(await page.locator('#status').textContent(),'Round ready. Enter a wager and choose Deal.');
   assert.equal(await page.evaluate(()=>window.audioStarts),0);assert.equal(await page.locator('#sound-toggle').getAttribute('aria-pressed'),'false');
   await page.click('#sound-toggle');assert.equal(await page.locator('#sound-toggle').getAttribute('aria-pressed'),'true');
   await page.locator('#sound-volume').evaluate(el=>{el.value='0.35';el.dispatchEvent(new Event('input',{bubbles:true}))});assert.equal(await page.locator('#sound-volume').inputValue(),'0.35');
@@ -39,7 +40,7 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   assert.equal(await page.locator('#dealer .back').count(),1);assert.equal(await page.locator('.hand.active').count(),1);assert.equal(await page.locator('#hands .card').count(),2);
   assert.equal(await page.locator('[data-action="deal"]').isDisabled(),true);
   await page.click('#refresh');await page.waitForFunction(()=>!document.querySelector('#refresh').disabled);
-  assert.deepEqual(JSON.parse(await page.locator('#state').textContent()),active);assert.equal(await page.evaluate(()=>window.audioStarts),1);
+  assert.deepEqual(JSON.parse(await page.locator('#state').textContent()),active);assert.equal(await page.locator('#status').textContent(),'State refreshed.');assert.equal(await page.evaluate(()=>window.audioStarts),1);
   await page.locator('[data-action="stand"]').focus();await page.keyboard.press('Enter');
   await page.waitForFunction(()=>document.querySelector('#state').textContent.includes('"settled"'));
   const done=JSON.parse(await page.locator('#state').textContent());assert.equal(done.profit,-20);assert.notEqual(done.dealer[1],null);assert.equal(await page.locator('#dealer-title').textContent(),'Dealer · 20');
@@ -90,8 +91,10 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   assert.equal(await acePage.locator('#dealer .back').count(),1);
   assert.equal(await acePage.locator('[data-action="double"]').isDisabled(),true);
   const before=JSON.parse(await acePage.locator('#state').textContent());
+  await acePage.reload();await acePage.waitForFunction(revision=>JSON.parse(document.querySelector('#state').textContent).revision===revision,before.revision);
+  assert.match(await acePage.locator('#status').textContent(),/Hand 1\. Hard total 15\. Dealer shows .+\. Available actions: hit, stand\./);
   await acePage.click('#refresh');await acePage.waitForFunction(()=>!document.querySelector('#refresh').disabled);
-  assert.deepEqual(JSON.parse(await acePage.locator('#state').textContent()),before);
+  assert.deepEqual(JSON.parse(await acePage.locator('#state').textContent()),before);assert.equal(await acePage.locator('#status').textContent(),'State refreshed.');
   assert.deepEqual(aceErrors,[]);
   console.log('PASS public ace: soft15 to hard15, dealer concealed, post-hit double disabled, refresh unchanged');
  }finally{if(browser)await browser.close();if(child)await stop(child)}
