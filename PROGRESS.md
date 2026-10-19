@@ -485,3 +485,10 @@
 - Real Chrome browser gate passed all three manual, split, and soft-ace journeys. Added checks for fresh-game prompt, active-hand context after reload, neutral later Refresh, existing terminal announcements, and no JavaScript page errors. No rules, rewards, or session logic changed.
 - Teaching note and separate answers: `docs/daily/2026-10-19.md` and `docs/lessons/solutions/2026-10-19-first-load-announcements.md`. Browser text assertions do not establish spoken behavior in every assistive technology; manual screen-reader and cross-browser verification remain necessary. The single-session game remains local, not hosted.
 - Preserved the unrelated Lesson 1 edit and excluded it from the save checkpoint.
+
+## 2026-10-19, 04:00 checkpoint — semantic landmarks and groups
+
+- Added a main landmark around the playable inspector and accessible names for the Hand actions and Sound settings groups. Kept browser-native buttons and input labels; no custom keyboard or game-state behavior added.
+- Real Chrome verified exactly one main landmark and both named groups, then passed manual, split, and soft-ace journeys with no JavaScript errors. Full Python suite and diff check are recorded with this checkpoint below.
+- Added the second small lesson section to `docs/daily/2026-10-19.md` and separate answer `docs/lessons/solutions/2026-10-19-landmarks-and-groups.md`. Role assertions are not a full assistive-technology audit; manual screen-reader testing remains outstanding.
+- User Lesson 1 edit remains preserved and excluded.

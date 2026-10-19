@@ -25,6 +25,9 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.addInitScript(()=>{window.audioStarts=0;const original=AudioContext.prototype.createOscillator;AudioContext.prototype.createOscillator=function(...args){window.audioStarts++;return original.apply(this,args)};});
   await page.goto(url);await page.waitForFunction(()=>document.querySelector('#state').textContent.includes('"ready"'));
+  assert.equal(await page.getByRole('main').count(),1);
+  assert.equal(await page.getByRole('group',{name:'Hand actions'}).count(),1);
+  assert.equal(await page.getByRole('group',{name:'Sound settings'}).count(),1);
   assert.equal(await page.locator('#status').textContent(),'Round ready. Enter a wager and choose Deal.');
   assert.equal(await page.evaluate(()=>window.audioStarts),0);assert.equal(await page.locator('#sound-toggle').getAttribute('aria-pressed'),'false');
   await page.click('#sound-toggle');assert.equal(await page.locator('#sound-toggle').getAttribute('aria-pressed'),'true');

@@ -2,10 +2,12 @@
 <title>Public Blackjack — local inspector</title>
 <style>body{font:18px system-ui;max-width:850px;margin:2rem auto;padding:1rem;background:#103d32;color:#fff}button,input{font:inherit;padding:.6rem;margin:.3rem}pre{white-space:pre-wrap;overflow-wrap:anywhere}button:disabled{opacity:.5}.cards{display:flex;flex-wrap:wrap;gap:.65rem;margin:1rem 0}.card{background:#fff8ec;color:#182c27;border-radius:.6rem;min-width:3.4rem;padding:.6rem;min-height:5rem;display:grid;align-content:space-between;font-weight:700;font-size:1.4rem;box-shadow:0 3px 8px #0005}.card.red{color:#a51e35}.card.back{background:repeating-linear-gradient(45deg,#244c78,#244c78 5px,#1b3a60 5px,#1b3a60 10px);color:white;border:2px solid #fff8ec}.hand{padding:1rem;border:2px solid transparent;border-radius:1rem;background:#ffffff09;margin:.6rem 0}.hand.active{border-color:#e8c56a}h2,h3{margin:.3rem 0}#summary{font-weight:600}details{margin-top:2rem}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #e8c56a}input{max-width:9rem}section{min-width:0}</style>
 <h1>Public Blackjack — local inspector</h1><p>Virtual chips. One shared local session across tabs. No trained coach. This is a development view, not the finished game.</p>
+<main>
 <label>Wager in whole chips <input id="wager" type="number" min="1" step="1" value="10"></label>
-<div id="actions"><button data-action="deal">Deal</button><button data-action="hit">Hit</button><button data-action="stand">Stand</button><button data-action="double">Double</button><button data-action="split">Split</button></div>
-<button id="refresh">Refresh</button><div><button id="sound-toggle" aria-pressed="false">Enable sound</button><label for="sound-volume">Volume</label> <input id="sound-volume" type="range" min="0" max="1" step="0.05" value="0.2"><p id="sound-status" role="status" aria-live="polite">Sound off.</p></div>
+<div id="actions" role="group" aria-label="Hand actions"><button data-action="deal">Deal</button><button data-action="hit">Hit</button><button data-action="stand">Stand</button><button data-action="double">Double</button><button data-action="split">Split</button></div>
+<button id="refresh">Refresh</button><div role="group" aria-label="Sound settings"><button id="sound-toggle" aria-pressed="false">Enable sound</button><label for="sound-volume">Volume</label> <input id="sound-volume" type="range" min="0" max="1" step="0.05" value="0.2"><p id="sound-status" role="status" aria-live="polite">Sound off.</p></div>
 <p id="status" role="status" aria-live="polite"></p><p id="summary"></p><section aria-label="Blackjack table"><h2 id="dealer-title">Dealer</h2><div id="dealer" class="cards"></div><div id="hands"></div></section><details><summary>Inspect visible state</summary><pre id="state"></pre></details>
+</main>
 <script src="/sound-events.js"></script><script src="/sound-player.js"></script>
 <script>
 const token='__TOKEN__';let state=null,busy=false,hasLoaded=false;
