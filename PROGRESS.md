@@ -498,3 +498,9 @@
 - Added a keyboard-native collapsed Game rules disclosure describing the six-deck shoe, dealer standing on soft 17, natural and split-21 payouts, double/split restrictions, and unavailable insurance/surrender. It is presentation-only; the Python rules contract remains authoritative.
 - Real Chrome checked the closed/open disclosure and all rule phrases. Manual, split, and soft-ace journeys all passed again. The full Python suite and `git diff --check` are recorded below. Static copy can drift when the rules contract changes; this test checks presence, not version synchronization.
 - Lesson and separate answers: `docs/daily/2026-10-19.md` and `docs/lessons/solutions/2026-10-19-rules-disclosure.md`. The local single-session inspector is not deployed. Lesson 1 user changes remain untouched and excluded.
+
+## 2026-10-20, 03:00 checkpoint — keyboard test for rules disclosure
+
+- Extended the public browser test to focus the native Game rules summary, open with Enter, verify all listed rules while expanded, and close with Space. No product code or blackjack state changed.
+- Installed Chrome passed the rules keyboard assertions and all three existing manual/split/soft-ace journeys, with no page errors. All 146 Python tests passed; `git diff --check` passed.
+- Added the test walkthrough/exercise and separate answer in `docs/daily/2026-10-20.md` and `docs/lessons/solutions/2026-10-20-keyboard-disclosure.md`. This proves the disclosure works in tested Chrome only; it is not a complete accessibility audit. Local single-session app remains unpublished; unrelated Lesson 1 user edit is preserved.

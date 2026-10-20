@@ -29,9 +29,11 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   assert.equal(await page.getByRole('group',{name:'Hand actions'}).count(),1);
   assert.equal(await page.getByRole('group',{name:'Sound settings'}).count(),1);
   assert.equal(await page.locator('#rules').getAttribute('open'),null);
-  await page.locator('#rules summary').click();
+  await page.locator('#rules summary').focus();await page.keyboard.press('Enter');
+  assert.equal(await page.locator('#rules').evaluate(el=>el.open),true);
   const rulesText=await page.locator('#rules').textContent();
   for(const phrase of ['Six-deck shoe','soft 17','3:2','equal naturals push','four hands','cannot be resplit','Insurance and surrender are not offered'])assert.ok(rulesText.includes(phrase),`missing rule text: ${phrase}`);
+  await page.keyboard.press('Space');assert.equal(await page.locator('#rules').evaluate(el=>el.open),false);
   assert.equal(await page.locator('#status').textContent(),'Round ready. Enter a wager and choose Deal.');
   assert.equal(await page.evaluate(()=>window.audioStarts),0);assert.equal(await page.locator('#sound-toggle').getAttribute('aria-pressed'),'false');
   await page.click('#sound-toggle');assert.equal(await page.locator('#sound-toggle').getAttribute('aria-pressed'),'true');
