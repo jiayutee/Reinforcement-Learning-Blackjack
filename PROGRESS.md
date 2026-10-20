@@ -504,3 +504,9 @@
 - Extended the public browser test to focus the native Game rules summary, open with Enter, verify all listed rules while expanded, and close with Space. No product code or blackjack state changed.
 - Installed Chrome passed the rules keyboard assertions and all three existing manual/split/soft-ace journeys, with no page errors. All 146 Python tests passed; `git diff --check` passed.
 - Added the test walkthrough/exercise and separate answer in `docs/daily/2026-10-20.md` and `docs/lessons/solutions/2026-10-20-keyboard-disclosure.md`. This proves the disclosure works in tested Chrome only; it is not a complete accessibility audit. Local single-session app remains unpublished; unrelated Lesson 1 user edit is preserved.
+
+## 2026-10-20, 04:00 checkpoint — quick whole-chip wagers
+
+- Added accessible 5/10/25/50 virtual-chip presets beside the existing editable whole-chip wager. `aria-pressed` stays synchronized with custom edits. Presets only change the input; Deal still performs the existing chip-to-half-chip conversion and the Python backend owns balance/phase validation.
+- Chrome verified preset selection by keyboard, input/pressed-state synchronization, custom input clearing stale selections, and unchanged revision before Deal. All three game journeys passed with no page errors. All 146 Python tests and `git diff --check` passed.
+- Lesson/exercise and separate answer are in `docs/daily/2026-10-20.md` and `docs/lessons/solutions/2026-10-20-quick-wagers.md`. This is local UI only; no real currency or server/game rule changes. The unrelated Lesson1 user edit remains untouched.

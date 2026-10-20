@@ -28,6 +28,14 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   assert.equal(await page.getByRole('main').count(),1);
   assert.equal(await page.getByRole('group',{name:'Hand actions'}).count(),1);
   assert.equal(await page.getByRole('group',{name:'Sound settings'}).count(),1);
+  assert.equal(await page.locator('[data-wager]').count(),4);
+  assert.equal(await page.locator('[data-wager="10"]').getAttribute('aria-pressed'),'true');
+  await page.locator('[data-wager="25"]').focus();await page.keyboard.press('Enter');
+  assert.equal(await page.locator('#wager').inputValue(),'25');
+  assert.equal(await page.locator('[data-wager="25"]').getAttribute('aria-pressed'),'true');
+  assert.equal(await page.locator('[data-wager="10"]').getAttribute('aria-pressed'),'false');
+  assert.equal((await(await page.request.get(url+'/state')).json()).revision,0);
+  await page.fill('#wager','10');assert.equal(await page.locator('[data-wager="10"]').getAttribute('aria-pressed'),'true');
   assert.equal(await page.locator('#rules').getAttribute('open'),null);
   await page.locator('#rules summary').focus();await page.keyboard.press('Enter');
   assert.equal(await page.locator('#rules').evaluate(el=>el.open),true);
@@ -39,6 +47,7 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   await page.click('#sound-toggle');assert.equal(await page.locator('#sound-toggle').getAttribute('aria-pressed'),'true');
   await page.locator('#sound-volume').evaluate(el=>{el.value='0.35';el.dispatchEvent(new Event('input',{bubbles:true}))});assert.equal(await page.locator('#sound-volume').inputValue(),'0.35');
   await page.fill('#wager','0');await page.click('[data-action="deal"]');
+  assert.equal(await page.locator('[data-wager][aria-pressed="true"]').count(),0);
   assert.match(await page.locator('#status').textContent(),/positive whole-chip/);
   assert.equal((await(await page.request.get(url+'/state')).json()).revision,0);assert.equal(await page.evaluate(()=>window.audioStarts),0);
   await page.fill('#wager','10');await page.click('[data-action="deal"]');
