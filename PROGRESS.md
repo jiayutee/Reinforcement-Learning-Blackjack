@@ -518,3 +518,11 @@
 - All 146 Python tests passed; all three public Chrome journeys passed; `git diff --check` passed. Browser verification is scoped to the installed Chrome test environment; no full accessibility audit is claimed.
 - Lesson, runnable command, equation, exercise, and separate solution: `docs/daily/2026-10-21.md` and `docs/lessons/solutions/2026-10-21-wager-affordability.md`. This is a local UI affordance only; no rules, backend validation, money, or hosting changed.
 - Preserved the unrelated pre-existing `docs/lessons/01-agent-environment.md` edit and excluded it from this checkpoint. Prior saved checkpoint is `6fa8112`; this verified unit is being saved as the next GitHub checkpoint now.
+
+## 2026-10-22, 04:00 checkpoint — typed wager feedback
+
+- The wager input now describes the whole-chip/balance constraint for assistive technology, marks zero or over-budget values with `aria-invalid`, and disables Deal until the custom amount is a positive safe integer affordable from the latest snapshot. Existing server validation remains authoritative.
+- Chrome verifies at a 10-chip fixture balance that 5/10 presets remain available, 25/50 do not, and typed 11 or zero disables Deal; the temporary low-balance browser snapshot is restored before the real play path. The manual, split, and soft-ace Chrome journeys all passed with no page errors.
+- Full Python suite: 146 tests passed. `git diff --check` passed. This is a client-side usability check, not a security boundary or a complete assistive-technology audit.
+- Lesson and separate answer: `docs/daily/2026-10-22.md` and `docs/lessons/solutions/2026-10-22-custom-wager-validation.md`. No rules engine, reward, balance, or hosting behavior changed.
+- The unrelated pre-existing `docs/lessons/01-agent-environment.md` edit remains untouched and excluded. This checkpoint follows saved commit `cd3bbb9` and is being saved separately.
