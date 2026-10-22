@@ -29,6 +29,9 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   assert.equal(await page.getByRole('group',{name:'Hand actions'}).count(),1);
   assert.equal(await page.getByRole('group',{name:'Sound settings'}).count(),1);
   assert.equal(await page.locator('[data-wager]').count(),4);
+  assert.equal(await page.locator('#wager').isDisabled(),false);
+  const affordability=await page.evaluate(()=>{const saved=state;state={...state,balance:20};render();const disabled=Array.from(document.querySelectorAll('[data-wager]'),button=>button.disabled);state=saved;render();return disabled;});
+  assert.deepEqual(affordability,[false,false,true,true]);
   assert.equal(await page.locator('[data-wager="10"]').getAttribute('aria-pressed'),'true');
   await page.locator('[data-wager="25"]').focus();await page.keyboard.press('Enter');
   assert.equal(await page.locator('#wager').inputValue(),'25');
@@ -52,6 +55,8 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   assert.equal((await(await page.request.get(url+'/state')).json()).revision,0);assert.equal(await page.evaluate(()=>window.audioStarts),0);
   await page.fill('#wager','10');await page.click('[data-action="deal"]');
   await page.waitForFunction(()=>document.querySelector('#state').textContent.includes('"player_turn"'));
+  assert.equal(await page.locator('#wager').isDisabled(),true);
+  assert.equal(await page.locator('[data-wager]:disabled').count(),4);
   assert.equal(await page.evaluate(()=>window.audioStarts),1);
   assert.match(await page.locator('#status').textContent(),/Hand 1\. Hard total 18\. Dealer shows .+\. Available actions: hit, stand, double\./);
   const active=JSON.parse(await page.locator('#state').textContent());assert.equal(active.dealer[1],null);assert.match(await page.locator('.hand h3').textContent(),/Hard 18/);assert.equal(await page.locator('#dealer-title').textContent(),'Dealer');
@@ -62,6 +67,7 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   await page.locator('[data-action="stand"]').focus();await page.keyboard.press('Enter');
   await page.waitForFunction(()=>document.querySelector('#state').textContent.includes('"settled"'));
   const done=JSON.parse(await page.locator('#state').textContent());assert.equal(done.profit,-20);assert.notEqual(done.dealer[1],null);assert.equal(await page.locator('#dealer-title').textContent(),'Dealer · 20');
+  assert.equal(await page.locator('#wager').isDisabled(),false);
   assert.equal(await page.locator('#status').textContent(),'Round complete. You lost. Net profit: -10 chips.');
   assert.equal(await page.locator('#dealer .back').count(),0);assert.equal(await page.locator('.hand.active').count(),0);assert.match(await page.locator('#summary').textContent(),/Round profit: -10 chips/);
   assert.equal(await page.locator('[data-action="hit"]').isDisabled(),true);

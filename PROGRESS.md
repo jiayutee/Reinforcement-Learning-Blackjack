@@ -510,3 +510,11 @@
 - Added accessible 5/10/25/50 virtual-chip presets beside the existing editable whole-chip wager. `aria-pressed` stays synchronized with custom edits. Presets only change the input; Deal still performs the existing chip-to-half-chip conversion and the Python backend owns balance/phase validation.
 - Chrome verified preset selection by keyboard, input/pressed-state synchronization, custom input clearing stale selections, and unchanged revision before Deal. All three game journeys passed with no page errors. All 146 Python tests and `git diff --check` passed.
 - Lesson/exercise and separate answer are in `docs/daily/2026-10-20.md` and `docs/lessons/solutions/2026-10-20-quick-wagers.md`. This is local UI only; no real currency or server/game rule changes. The unrelated Lesson1 user edit remains untouched.
+
+## 2026-10-22, 03:00 checkpoint — complete wager availability
+
+- Completed the wager-control availability behavior begun in the prior day's checkpoint: custom wager and quick-preset controls disable while a request is busy, before state loads, or during an active player hand; each preset also disables when its whole-chip cost exceeds the latest server snapshot bankroll. Deal/server validation remains authoritative.
+- The Chrome gate verifies the initial affordance, low-bankroll preset selection using a temporary client-only snapshot (5/10 enabled; 25/50 disabled), lock during a real player hand, and re-enable after settlement. The synthetic snapshot is restored before play and never sent to the server.
+- All 146 Python tests passed; all three public Chrome journeys passed; `git diff --check` passed. Browser verification is scoped to the installed Chrome test environment; no full accessibility audit is claimed.
+- Lesson, runnable command, equation, exercise, and separate solution: `docs/daily/2026-10-21.md` and `docs/lessons/solutions/2026-10-21-wager-affordability.md`. This is a local UI affordance only; no rules, backend validation, money, or hosting changed.
+- Preserved the unrelated pre-existing `docs/lessons/01-agent-environment.md` edit and excluded it from this checkpoint. Prior saved checkpoint is `6fa8112`; this verified unit is being saved as the next GitHub checkpoint now.
