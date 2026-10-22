@@ -37,7 +37,7 @@ The second script uses Node's VM with simulated DOM, storage and audio objects. 
 
 The public gate also runs seed19 through deal/split/double/stand, verifying two hand sections, active-hand advancement, doubled stake, delayed dealer reveal/round result and aggregate loss at mobile width. The seed is chosen for path coverage, not performance measurement.
 
-Set `SCREENSHOT_DIR` to an existing writable directory to capture `public-desktop.png` and `public-mobile.png` at the seed19 split state. These optional full-page images aid visual review; they are not pixel-regression assertions. Example: `SCREENSHOT_DIR=/private/tmp` alongside the usual Node/Chrome environment variables.
+Set `SCREENSHOT_DIR` to an existing writable directory to capture viewport-sized `public-desktop.png` and `public-mobile.png` images at the seed19 split state. They aid visual review and are not pixel-regression assertions. Example: `SCREENSHOT_DIR=/private/tmp` alongside the usual Node/Chrome environment variables.
 
 The public gate also uses seed4 to check Soft15→Hard15 after Hit, continued dealer concealment, disabled post-hit Double and unchanged state after Refresh. This seed is selected for coverage, not policy evaluation.
 

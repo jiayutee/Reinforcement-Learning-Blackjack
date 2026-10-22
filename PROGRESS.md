@@ -526,3 +526,11 @@
 - Full Python suite: 146 tests passed. `git diff --check` passed. This is a client-side usability check, not a security boundary or a complete assistive-technology audit.
 - Lesson and separate answer: `docs/daily/2026-10-22.md` and `docs/lessons/solutions/2026-10-22-custom-wager-validation.md`. No rules engine, reward, balance, or hosting behavior changed.
 - The unrelated pre-existing `docs/lessons/01-agent-environment.md` edit remains untouched and excluded. This checkpoint follows saved commit `cd3bbb9` and is being saved separately.
+
+## 2026-10-22, 05:00 checkpoint — responsive screenshot inspection
+
+- Changed the optional public-game browser captures from a tall full-page image to viewport-sized desktop and 390×844 mobile screenshots, making the sampled split-hand UI easier to inspect. Browser pass/fail assertions and gameplay are unchanged.
+- Captured and inspected both views for the seed-19 split state. The two hand panels and active outline are visible at desktop width; controls wrap vertically on mobile. The existing mobile no-horizontal-overflow assertion and all three Chrome journeys passed.
+- `git diff --check` passed. No Python source changed, so Python tests were not rerun at this checkpoint; the 146-test pass is recorded at 04:00. Screenshot review is a sample, not a cross-browser, full-page, contrast, or complete accessibility audit.
+- Notes and separate answer: `docs/daily/2026-10-22.md` and `docs/lessons/solutions/2026-10-22-screenshot-scope.md`. Screenshot files are temporary and not added to Git.
+- Preserved the unrelated Lesson 1 edit. This checkpoint follows pushed commit `8ed37b6` and is being pushed as a separate test/documentation refinement.
