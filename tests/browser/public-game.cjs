@@ -30,8 +30,8 @@ async function stop(child){if(child.exitCode!==null)return;await new Promise(res
   assert.equal(await page.getByRole('group',{name:'Sound settings'}).count(),1);
   assert.equal(await page.locator('[data-wager]').count(),4);
   assert.equal(await page.locator('#wager').isDisabled(),false);
-  const affordability=await page.evaluate(()=>{const saved=state;state={...state,balance:20};render();const disabled=Array.from(document.querySelectorAll('[data-wager]'),button=>button.disabled);const input=document.querySelector('#wager');input.value='11';syncWagerButtons();const custom={dealDisabled:document.querySelector('[data-action="deal"]').disabled,invalid:input.getAttribute('aria-invalid')};input.value='10';state=saved;render();return {disabled,custom};});
-  assert.deepEqual(affordability,{disabled:[false,false,true,true],custom:{dealDisabled:true,invalid:'true'}});
+  const affordability=await page.evaluate(()=>{const saved=state;state={...state,balance:20};render();const disabled=Array.from(document.querySelectorAll('[data-wager]'),button=>button.disabled);const input=document.querySelector('#wager');const deal=document.querySelector('[data-action="deal"]');input.value='10';syncWagerButtons();const exactLimit={dealDisabled:deal.disabled,invalid:input.getAttribute('aria-invalid')};input.value='11';syncWagerButtons();const custom={dealDisabled:deal.disabled,invalid:input.getAttribute('aria-invalid')};input.value='10';state=saved;render();return {disabled,exactLimit,custom};});
+  assert.deepEqual(affordability,{disabled:[false,false,true,true],exactLimit:{dealDisabled:false,invalid:'false'},custom:{dealDisabled:true,invalid:'true'}});
   assert.equal(await page.locator('#wager').getAttribute('aria-describedby'),'wager-hint');
   assert.equal(await page.locator('[data-wager="10"]').getAttribute('aria-pressed'),'true');
   await page.locator('[data-wager="25"]').focus();await page.keyboard.press('Enter');

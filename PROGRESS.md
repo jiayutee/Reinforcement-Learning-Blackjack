@@ -534,3 +534,10 @@
 - `git diff --check` passed. No Python source changed, so Python tests were not rerun at this checkpoint; the 146-test pass is recorded at 04:00. Screenshot review is a sample, not a cross-browser, full-page, contrast, or complete accessibility audit.
 - Notes and separate answer: `docs/daily/2026-10-22.md` and `docs/lessons/solutions/2026-10-22-screenshot-scope.md`. Screenshot files are temporary and not added to Git.
 - Preserved the unrelated Lesson 1 edit. This checkpoint follows pushed commit `8ed37b6` and is being pushed as a separate test/documentation refinement.
+
+## 2026-10-23, 03:00 checkpoint — exact-balance wager boundary
+
+- Extended the public browser fixture to distinguish an exact-balance wager from a one-chip-over wager using the half-chip balance equation. At 20 half-chip units, a 10-chip wager remains valid and Deal is enabled; 11 chips is invalid and disables Deal. The temporary snapshot is restored before the server-backed journeys.
+- All three Chrome journeys passed: manual wager/deal/stand, split/double settlement, and soft-to-hard ace. No JavaScript page errors. `git diff --check` passed. No Python source changed; the 146-test Python run is the verified result from the prior checkpoint.
+- Lesson and separate answer: `docs/daily/2026-10-23.md` and `docs/lessons/solutions/2026-10-23-wager-boundary.md`. This confirms the browser affordance boundary only; backend validation remains authoritative.
+- Preserved the unrelated Lesson 1 edit. This checkpoint follows pushed `8ac3c09` and is being saved separately.
