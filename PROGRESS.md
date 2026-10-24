@@ -541,3 +541,10 @@
 - All three Chrome journeys passed: manual wager/deal/stand, split/double settlement, and soft-to-hard ace. No JavaScript page errors. `git diff --check` passed. No Python source changed; the 146-test Python run is the verified result from the prior checkpoint.
 - Lesson and separate answer: `docs/daily/2026-10-23.md` and `docs/lessons/solutions/2026-10-23-wager-boundary.md`. This confirms the browser affordance boundary only; backend validation remains authoritative.
 - Preserved the unrelated Lesson 1 edit. This checkpoint follows pushed `8ac3c09` and is being saved separately.
+
+## 2026-10-24, 03:00 checkpoint — server rejects a forged unaffordable wager
+
+- Extended the real loopback HTTP test to bypass the browser UI and submit an authenticated `deal` intent for 202 half-chip units against the default 200-unit balance. The endpoint returns HTTP 409 with the wager validation error and the original state; no balance, revision, or round mutation occurs. The subsequent unauthorized and valid-request controls still pass.
+- All 146 Python tests passed, including this new HTTP assertion; `git diff --check` passed. The focused lesson and separate answer are `docs/daily/2026-10-24.md` and `docs/lessons/solutions/2026-10-24-server-wager-authority.md`.
+- This demonstrates why browser disabling is only a usability affordance. It does not constitute a full security, concurrency, or public deployment audit. The game remains local and single-session.
+- Preserved the unrelated Lesson 1 edit. This checkpoint follows pushed `0b68429` and is being saved separately.
